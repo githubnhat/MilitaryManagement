@@ -1,0 +1,35 @@
+.bg-navbar {
+	background: #ee2e34;
+}
+
+.main-content {
+	margin-top: 88px;
+}
+
+.home-page-content {
+	margin: 88px 0px 50px 0px;
+	flex: 1;
+}
+
+/* Client page */
+.title {
+	padding-top: 10px;
+}
+
+.form-content {
+	min-height: 522px
+}
+
+.form-btn {
+	float: right;
+	width: 350px;
+}
+
+.error{
+	color: red;
+	display: none;
+}
+
+.info{
+	display: none;
+}
