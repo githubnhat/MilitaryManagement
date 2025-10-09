@@ -25,15 +25,13 @@ public class ExportApi {
 
     @GetMapping("/export/word/{id}")
     public void exportMilitaryToWord(@PathVariable Long id, HttpServletResponse response) throws IOException {
-        // 1. Lấy thông tin military từ database
         Military military = militaryService.findMilitaryById(id);
         if (military == null) {
-            // Xử lý trường hợp không tìm thấy
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Military not found with id: " + id);
             return;
         }
 
-        // 2. Gọi service để tạo và trả về file Word
-        wordExportService.exportToWord(response, military);
+        // Gọi service với phương thức mới
+        wordExportService.exportFromTemplate(response, military);
     }
 }

@@ -424,7 +424,336 @@
                                         <p class="error errnotes ml-3"></p>
                                     </div>
                                 </div>
+                                    <%-- =================================================================================================== --%>
+                                    <%-- ============================ THÔNG TIN CHI TIẾT (DÙNG CHO MẪU WORD) ============================ --%>
+                                    <%-- =================================================================================================== --%>
+                                <h5 class="section-title">Thông tin chi tiết (Bổ sung cho mẫu Word)</h5>
 
+                                    <%-- Thông tin bổ sung --%>
+                                <h6>1. Thông tin bổ sung</h6>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Đơn vị huấn luyện CSM</label>
+                                        <div class="col-9"><form:input path="trainingUnit" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errtrainingUnit ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Tiểu đoàn</label>
+                                        <div class="col-9"><form:input path="battalion" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errbattalion ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Đại đội</label>
+                                        <div class="col-9"><form:input path="company" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errcompany ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Tiếng dân tộc</label>
+                                        <div class="col-9"><form:input path="ethnicLanguage" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errethnicLanguage ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Ngành nghề tự học</label>
+                                        <div class="col-9"><form:input path="selfTaughtProfession"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errselfTaughtProfession ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Bệnh lý</label>
+                                        <div class="col-9"><form:input path="pathology" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errpathology ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Chiều cao (cm)</label>
+                                        <div class="col-9"><form:input path="height" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errheight ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Cân nặng (kg)</label>
+                                        <div class="col-9"><form:input path="weight" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errweight ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Khí chất</label>
+                                        <div class="col-9">
+                                            <form:select path="temperament" cssClass="col-12 pl-1"
+                                                         disabled="${isViewMode}">
+                                                <form:option value="" label="-- Chọn --"/>
+                                                <form:option value="Trầm lặng" label="Trầm lặng"/>
+                                                <form:option value="Nóng nảy" label="Nóng nảy"/>
+                                                <form:option value="Hoạt bát" label="Hoạt bát"/>
+                                            </form:select>
+                                        </div>
+                                        <p class="error errtemperament ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Gia đình chính sách</label>
+                                        <div class="col-9">
+                                            <form:select path="familyPolicyStatus" cssClass="col-12 pl-1"
+                                                         disabled="${isViewMode}">
+                                                <form:option value="" label="-- Chọn --"/>
+                                                <form:option value="Con liệt sĩ" label="Con liệt sĩ"/>
+                                                <form:option value="Con TB" label="Con thương binh"/>
+                                                <form:option value="Con BB" label="Con bệnh binh"/>
+                                                <form:option value="Hộ nghèo" label="Hộ nghèo"/>
+                                                <form:option value="Hộ cận nghèo" label="Hộ cận nghèo"/>
+                                            </form:select>
+                                        </div>
+                                        <p class="error errfamilyPolicyStatus ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Sở thích</label>
+                                        <div class="col-9"><form:input path="hobbies" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errhobbies ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Công việc trước nhập
+                                            ngũ</label>
+                                        <div class="col-9"><form:input path="preEnlistmentJob" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errpreEnlistmentJob ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Địa chỉ khi đi phép</label>
+                                        <div class="col-9"><form:input path="leaveAddress" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errleaveAddress ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Địa chỉ người nhận
+                                            tin</label>
+                                        <div class="col-9"><form:input path="emergencyContactAddress"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error erremergencyContactAddress ml-3"></p>
+                                    </div>
+                                </div>
+
+                                    <%-- Chi tiết gia đình (Cha, Mẹ) --%>
+                                <h6>2. Chi tiết gia đình (Cha, Mẹ)</h6>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Ngày sinh cha</label>
+                                        <div class="col-9"><form:input path="fatherDateOfBirth" cssClass="col-12 pl-1"
+                                                                       placeholder="dd/MM/yyyy"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errfatherDateOfBirth ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">SĐT cha</label>
+                                        <div class="col-9"><form:input path="fatherPhoneNumber" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errfatherPhoneNumber ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Nghề nghiệp cha</label>
+                                        <div class="col-9"><form:input path="fatherJob" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errfatherJob ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Địa chỉ cha</label>
+                                        <div class="col-9"><form:input path="fatherCurrentAddress"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errfatherCurrentAddress ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Cha là đảng viên</label>
+                                        <div class="col-9">
+                                            <form:radiobuttons path="fatherIsPartyMember"
+                                                               items="${ {'true':'Có', 'false':'Không'} }"
+                                                               disabled="${isViewMode}"/>
+                                        </div>
+                                        <p class="error errfatherIsPartyMember ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Cha còn sống/đã mất</label>
+                                        <div class="col-9">
+                                            <form:radiobuttons path="fatherIsDeceased"
+                                                               items="${ {'false':'Còn sống', 'true':'Đã mất'} }"
+                                                               disabled="${isViewMode}"/>
+                                        </div>
+                                        <p class="error errfatherIsDeceased ml-3"></p>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 1px solid #ccc;"/>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Ngày sinh mẹ</label>
+                                        <div class="col-9"><form:input path="motherDateOfBirth" cssClass="col-12 pl-1"
+                                                                       placeholder="dd/MM/yyyy"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errmotherDateOfBirth ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">SĐT mẹ</label>
+                                        <div class="col-9"><form:input path="motherPhoneNumber" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errmotherPhoneNumber ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Nghề nghiệp mẹ</label>
+                                        <div class="col-9"><form:input path="motherJob" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errmotherJob ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Địa chỉ mẹ</label>
+                                        <div class="col-9"><form:input path="motherCurrentAddress"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errmotherCurrentAddress ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Mẹ là đảng viên</label>
+                                        <div class="col-9">
+                                            <form:radiobuttons path="motherIsPartyMember"
+                                                               items="${ {'true':'Có', 'false':'Không'} }"
+                                                               disabled="${isViewMode}"/>
+                                        </div>
+                                        <p class="error errmotherIsPartyMember ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Mẹ còn sống/đã mất</label>
+                                        <div class="col-9">
+                                            <form:radiobuttons path="motherIsDeceased"
+                                                               items="${ {'false':'Còn sống', 'true':'Đã mất'} }"
+                                                               disabled="${isViewMode}"/>
+                                        </div>
+                                        <p class="error errmotherIsDeceased ml-3"></p>
+                                    </div>
+                                </div>
+                                <hr style="border-top: 1px solid #ccc;"/>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Tình trạng hôn nhân cha
+                                            mẹ</label>
+                                        <div class="col-9"><form:input path="parentsMaritalStatus"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errparentsMaritalStatus ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Kinh tế gia đình</label>
+                                        <div class="col-9"><form:input path="familyEconomicStatus"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errfamilyEconomicStatus ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">SĐT gia đình</label>
+                                        <div class="col-9"><form:input path="familyPhoneNumber" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errfamilyPhoneNumber ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Tổng số anh chị em</label>
+                                        <div class="col-9"><form:input path="numberOfSiblings" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errnumberOfSiblings ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Số anh em trai</label>
+                                        <div class="col-9"><form:input path="numberOfBrothers" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errnumberOfBrothers ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Số chị em gái</label>
+                                        <div class="col-9"><form:input path="numberOfSisters" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errnumberOfSisters ml-3"></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Là con thứ mấy</label>
+                                        <div class="col-9"><form:input path="birthOrder" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errbirthOrder ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">ACE ruột là đảng viên</label>
+                                        <div class="col-9"><form:input path="siblingsPartyMembers"
+                                                                       cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errsiblingsPartyMembers ml-3"></p>
+                                    </div>
+                                </div>
+
+                                    <%-- Nguyện vọng --%>
+                                <h6>3. Nguyện vọng</h6>
+                                <div class="row">
+                                    <div class="form-group col-4"><label class="control-label no-padding-right ml-3">Học
+                                        trường hạ sĩ quan</label>
+                                        <div class="col-9"><form:checkbox path="aspirationAttendNcoSchool"
+                                                                          disabled="${isViewMode}"/></div>
+                                    </div>
+                                    <div class="form-group col-4"><label class="control-label no-padding-right ml-3">Học
+                                        trường CMKT</label>
+                                        <div class="col-9"><form:checkbox path="aspirationAttendTechnicalSchool"
+                                                                          disabled="${isViewMode}"/></div>
+                                    </div>
+                                    <div class="form-group col-4"><label class="control-label no-padding-right ml-3">Học
+                                        trường sĩ quan dự bị</label>
+                                        <div class="col-9"><form:checkbox path="aspirationAttendReserveOfficerSchool"
+                                                                          disabled="${isViewMode}"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-4"><label class="control-label no-padding-right ml-3">Học
+                                        trường sĩ quan</label>
+                                        <div class="col-9"><form:checkbox path="aspirationAttendOfficerSchool"
+                                                                          disabled="${isViewMode}"/></div>
+                                    </div>
+                                    <div class="form-group col-4"><label class="control-label no-padding-right ml-3">Kết
+                                        nạp Đảng</label>
+                                        <div class="col-9"><form:checkbox path="aspirationJoinParty"
+                                                                          disabled="${isViewMode}"/></div>
+                                    </div>
+                                    <div class="form-group col-4"><label class="control-label no-padding-right ml-3">Ra
+                                        quân đúng hạn</label>
+                                        <div class="col-9"><form:checkbox path="aspirationDischargeOnTime"
+                                                                          disabled="${isViewMode}"/></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <label class="control-label no-padding-right ml-3">Chi tiết nguyện vọng
+                                            CMKT</label>
+                                        <div class="col-11"><form:input path="cmktAspirationDetail"
+                                                                        cssClass="col-12 pl-1"
+                                                                        disabled="${isViewMode}"/></div>
+                                        <p class="error errcmktAspirationDetail ml-3"></p>
+                                    </div>
+                                </div>
+                                    <%-- =================================================================================================== --%>
+                                    <%-- ======================================= KẾT THÚC MỤC MỚI ======================================== --%>
+                                    <%-- =================================================================================================== --%>
                             </div>
                             <div class="clearfix form-actions form-btn">
                                 <div>
