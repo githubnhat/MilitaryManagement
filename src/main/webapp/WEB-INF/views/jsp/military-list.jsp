@@ -50,8 +50,9 @@
                             <div class="text-center float-left alert alert-${alert}">${message}</div>
                         </c:if>
                         <div class="float-right">
-                            <a href="#addUserModal" class="btn btn-success" data-toggle="modal"><i
-                                    class="fa fa-plus-circle" aria-hidden="true"></i> <span>Thêm</span></a>
+                               <a href="<c:url value='/api/v1/military/export/excel'/>" class="btn btn-success mb-3">
+                                    <i class='bx bxs-file-export'></i> Xuất Excel
+                               </a>
                             <a href="#deleteUserModal" class="btn btn-danger" data-toggle="modal"><i
                                     class="fa fa-trash-o" aria-hidden="true"></i> <span>Xóa</span></a>
                         </div>

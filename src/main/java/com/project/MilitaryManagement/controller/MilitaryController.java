@@ -4,7 +4,6 @@ import com.project.MilitaryManagement.entity.Military;
 import com.project.MilitaryManagement.service.MilitaryService;
 import com.project.MilitaryManagement.utils.MessageUtil;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Parameter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
