@@ -49,9 +49,7 @@
                         <strong class="card-title">Danh sách quân nhân</strong>
                     </div>
                     <div class="card-header">
-                        <c:if test="${not empty message}">
-                            <div class="text-center float-left alert alert-${alert}">${message}</div>
-                        </c:if>
+
                         <%--<div class="float-right">
                                <a href="<c:url value='/api/v1/military/export/excel'/>" class="btn btn-success mb-3">
                                     <i class='bx bxs-file-export'></i> Xuất Excel
@@ -80,7 +78,11 @@
                                 <a href="#deleteUserModal" class="btn btn-danger" data-toggle="modal"><i
                                     class="fa fa-trash-o" aria-hidden="true"></i> <span>Xóa</span></a>
                             </div>
+
                         </div>
+                        <c:if test="${not empty message}">
+                            <div class="text-center float-left alert alert-${alert}">${message}</div>
+                        </c:if>
                     </div>
                     <div class="card-body">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
