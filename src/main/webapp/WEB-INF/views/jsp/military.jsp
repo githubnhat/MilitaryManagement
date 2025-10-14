@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Military Management</title>
-    <link rel="icon" href="<c:url value='/template/images/logo.svg'/>">
+    <link rel="icon" href="<c:url value='/template/images/LOGO 950.png'/>">
     <link href="<c:url value='/template/menu/boxicons-2.1.4/css/boxicons.min.css'/>" rel="stylesheet"/>
     <link rel="stylesheet" href="<c:url value='/template/vendor/css/bootstrap.min.css'/>" type="text/css">
     <link rel="stylesheet" href="<c:url value='/template/vendor/css/style.css'/>" type="text/css">
@@ -20,6 +20,9 @@
     <script src="<c:url value='/template/vendor/jquery/jquery.js'/>"></script>
 </head>
 <body>
+<div class="load" style="display: none">
+        <img src="<c:url value='/images/loading.gif'/>">
+    </div>
 <%@ include file="/common/header.jsp" %>
 <div>
     <%@ include file="/common/menu.jsp" %>
@@ -800,6 +803,7 @@
             });
 
             function createMilitary(data) {
+                $('.load').show();
                 $.ajax({
                     url: '${createMilitaryAPI}',
                     type: 'POST',
@@ -831,6 +835,7 @@
             });
 
             function modifyMilitary(data) {
+                $('.load').show();
                 $.ajax({
                     url: '${modifyMilitaryAPI}',
                     type: 'POST',
@@ -853,6 +858,8 @@
             $('#btnContinue, #btnCancel').click(function (e) {
                 window.location.href = "${listMilitaryURL}";
             });
+
+
 
             function validation() {
                 $('.error').hide().text('');

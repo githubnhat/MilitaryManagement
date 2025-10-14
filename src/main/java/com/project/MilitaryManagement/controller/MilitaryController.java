@@ -54,9 +54,24 @@ public class MilitaryController {
     }
 
     @GetMapping(value = "/military-list")
-    public String militaryList(Model model) {
-        List<Military> militarys = militaryService.findAllByStatus(1);
+    public String militaryList(Model model,
+                               @RequestParam(value = "keyword", required = false) String keyword,
+                               @RequestParam(value = "message", required = false) String message,
+                               @RequestParam(value = "alert", required = false) String alert) {
+        List<Military> militarys;
+
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // Nếu có từ khóa, thực hiện tìm kiếm
+            militarys = militaryService.searchByKeyword(keyword);
+        } else {
+            // Nếu không có từ khóa, lấy toàn bộ danh sách
+            militarys = militaryService.findAllByStatus(1);
+        }
+
         model.addAttribute("militarys", militarys);
+        model.addAttribute("keyword", keyword); // Trả lại từ khóa để hiển thị trên ô tìm kiếm
+        messageUtil.showMessage(message, alert, model);
         return "military-list";
     }
+
 }

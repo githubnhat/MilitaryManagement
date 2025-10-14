@@ -1,7 +1,10 @@
 package com.project.MilitaryManagement.payload.request;
 
 import lombok.With;
+import org.apache.poi.ss.formula.functions.T;
+
 import java.util.Date;
+import java.util.List;
 
 @With
 public record MilitaryRequest(
@@ -203,6 +206,7 @@ public record MilitaryRequest(
         boolean aspirationDischargeOnTime,             // Nguyện vọng ra quân đúng hạn
 
         // --- Quản trị ---
+        long [] ids,
         int status,                                    // Trạng thái
         String createdBy,                              // Người tạo
         String modifiedBy,                             // Người chỉnh sửa

@@ -26,7 +26,7 @@
 				<li><a href="<c:url value='/create-military'/>">Thêm quân nhân</a></li>
 			</ul>
 		</li>
-		<li>
+		<%--<li>
 			<div class="icon-links">
 				<a href="#"> <i class="bx bx-file arrow"></i> <scan
 						class="link_name arrow dropdown">Xuất file</scan> <i
@@ -38,7 +38,7 @@
 				<li><a href="<c:url value='/excel-export'/>">Xuất excel</a></li>
 				<li><a href="<c:url value='/modify-account'/>">Xuất word</a></li>
 			</ul>
-		</li>
+		</li>--%>
 		<%--<li>
 			<div class="icon-links">
 				<a href="#"> <i class="bx bx-shield-quarter"></i> <scan

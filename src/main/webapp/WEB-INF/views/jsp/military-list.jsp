@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="APIurl" value="/api-admin-user"/>
-<c:url var="UserUrl" value="/quan-tri/nguoi-dung"/>
+<c:url var="MilitaryUrl" value="/military-list"/>
+<c:url var="deleteMilitaryAPI" value='/api/v1/military/delete'/>
 
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
 <title>Military Management</title>
 
 <link rel="icon"
-	href="<c:url value='/template/images/logo.svg'/>">
+	href="<c:url value='/template/images/LOGO 950.png'/>">
 <link
 	href="<c:url value='/template/menu/boxicons-2.1.4/css/boxicons.min.css'/>"
 	rel="stylesheet" />
@@ -32,6 +32,9 @@
 <!-- Custom styles for this template -->
 </head>
 <body>
+<div class="load" style="display: none">
+        <img src="<c:url value='/template/images/loading.gif'/>">
+    </div>
 	<%@ include file="/common/header.jsp"%>
 	<div>
 		<%@ include file="/common/menu.jsp"%>
@@ -49,12 +52,34 @@
                         <c:if test="${not empty message}">
                             <div class="text-center float-left alert alert-${alert}">${message}</div>
                         </c:if>
-                        <div class="float-right">
+                        <%--<div class="float-right">
                                <a href="<c:url value='/api/v1/military/export/excel'/>" class="btn btn-success mb-3">
                                     <i class='bx bxs-file-export'></i> Xuất Excel
                                </a>
                             <a href="#deleteUserModal" class="btn btn-danger" data-toggle="modal"><i
                                     class="fa fa-trash-o" aria-hidden="true"></i> <span>Xóa</span></a>
+                        </div>--%>
+                        <div class="row mb-3">
+                            <div class="col-8">
+                                <form action="<c:url value='/military-list'/>" method="get" class="form-inline">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="keyword"
+                                               placeholder="Nhập tên, số hiệu QN, CCCD..."
+                                               value="${keyword}" style="width: 300px;"/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary ml-2">
+                                        <i class='bx bx-search'></i> Tìm kiếm
+                                    </button>
+                                    <a href="<c:url value='/military-list'/>" class="btn btn-secondary ml-2">Làm mới</a>
+                                </form>
+                            </div>
+                            <div class="col-4 text-right">
+                                <a href="<c:url value='/api/v1/military/export/excel'/>" class="btn btn-success">
+                                    <i class='bx bxs-file-export'></i> Xuất Excel
+                                </a>
+                                <a href="#deleteUserModal" class="btn btn-danger" data-toggle="modal"><i
+                                    class="fa fa-trash-o" aria-hidden="true"></i> <span>Xóa</span></a>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -68,10 +93,12 @@
                                                 </span>
                                 </th>
                                 <th class="text-center">Họ và tên</th>
-                                <th class="text-center">Chức vụ đảm nhận</th>
-                                <th class="text-center">Ngày tháng nhận</th>
+                                <th class="text-center">Số hiệu QN</th>
+                                <th class="text-center">CCCD</th>
+                                <th class="text-center">Chức vụ</th>
+                                <th class="text-center">Cấp bậc</th>
                                 <th class="text-center">Ngày sinh</th>
-                                <th class="text-center">Trạng thái</th>
+                                <th class="text-center">Trạng thái</th>x
                                 <th class="text-center">Thao tác</th>
                             </tr>
                             </thead>
@@ -85,9 +112,10 @@
                                                 </span>
                                     </td>
                                     <td>${item.birthFullName}</td>
+                                    <td>${item.militaryIdNumber}</td>
+                                    <td>${item.nationalIdNumber}</td>
+                                    <td>${item.position}</td>
                                     <td>${item.militaryRank}</td>
-                                    <td class="text-center">${item.rankConfermentDate}</td>
-
                                     <td>${item.dateOfBirth}</td>
 
                                     <c:if test="${item.status == 1}">
@@ -131,11 +159,11 @@
         <div class="modal-content">
             <form>
                 <div class="modal-header">
-                    <h4 class="modal-title">Xóa người dùng</h4>
+                    <h4 class="modal-title">Xóa Quân Nhân</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Bạn chắc chắn muốn xóa những người dùng này?</p>
+                    <p>Bạn chắc chắn muốn xóa những quân nhân này?</p>
                     <p class="text-warning"><small>Hành động này sẽ không thể khôi phục lại.</small></p>
                 </div>
                 <div class="modal-footer">
@@ -147,54 +175,7 @@
     </div>
 </div>
 <script>
-    $('#addUser').click(function (e) {
-        if($('#formSubmit')[0].checkValidity()) {
-            e.preventDefault();
-            let data = {}; // mang object name: value
-            let formData = $('#formSubmit').serializeArray();
-            // vong lap
-            $.each(formData, function (i, v) {
-                data['' + v.name] = v.value
-            });
-            data['uploadFile'] = {}
-            var files = $('#avatar')[0].files[0];
-            if(files != undefined) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    data['uploadFile']['base64'] = e.target.result;
-                    data['uploadFile']['name'] = files.name;
-                    addUser(data);
-                };
-                reader.readAsDataURL(files);
-            } else
-                addUser(data);
-        }
-    })
 
-    function addUser(data) {
-        $('.load').show();
-        $.ajax({
-            url: '${APIurl}',
-            type: 'POST',
-            contentType: 'application/json',
-            data: JSON.stringify(data),
-            dataType: 'json',
-            success: function (result) {
-
-                $('.load').hide();
-                if(result !== null){
-                    const id = result.id;
-                    window.location.href = "${UserUrl}?id="+id+"&message=insert_success&alert=success";
-                }
-                else
-                    window.location.href = "${UserUrl}?message=username_email_exist&alert=danger";
-            },
-            error: function (error) {
-                $('.load').hide();
-                window.location.href = "${UserUrl}?message=system_error&alert=danger";
-            }
-        })
-    }
 
     $('#deleteUser').click(function (e) {
         e.preventDefault();
@@ -212,21 +193,21 @@
     function deleteUser(data) {
         $('.load').show();
         $.ajax({
-            url: '${APIurl}',
-            type: 'DELETE',
+            url: '${deleteMilitaryAPI}',
+            type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
                 $('.load').hide();
                 if(result)
-                    window.location.href = "${UserUrl}?message=delete_success&alert=success";
+                    window.location.href = "${MilitaryUrl}?message=delete_success&alert=success";
                 else
-                    window.location.href = "${UserUrl}?message=delete_user_fail&alert=danger";
+                    window.location.href = "${MilitaryUrl}?message=delete_fail&alert=danger";
             },
             error: function (error) {
                 $('.load').hide();
-                window.location.href = "${UserUrl}?message=system_error&alert=danger";
+                window.location.href = "${MilitaryUrl}?message=system_error&alert=danger";
             }
         })
     }

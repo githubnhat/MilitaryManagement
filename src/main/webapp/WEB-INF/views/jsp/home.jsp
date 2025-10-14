@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Military Management</title>
 <link rel="icon"
-	href="<c:url value='/template/images/logo.svg'/>">
+	href="<c:url value='/template/images/LOGO 950.png'/>">
 <link
 	href="<c:url value='/template/menu/boxicons-2.1.4/css/boxicons.min.css'/>"
 	rel="stylesheet" />

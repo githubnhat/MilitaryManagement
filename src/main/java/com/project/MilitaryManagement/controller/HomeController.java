@@ -16,4 +16,8 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping(value = "/")
+    public String welcomePage(Model model) {
+        return "index";
+    }
 }

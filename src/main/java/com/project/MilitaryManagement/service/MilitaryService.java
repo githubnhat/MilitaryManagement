@@ -12,5 +12,6 @@ public interface MilitaryService {
     List<Military> findAllByStatus(int status);
     Military findMilitaryById(Long id);
     ResponseEntity<MilitaryResponse> update(MilitaryRequest request) throws Exception;
-
+    List<Military> searchByKeyword(String keyword);
+    boolean delete (long [] ids);
 }

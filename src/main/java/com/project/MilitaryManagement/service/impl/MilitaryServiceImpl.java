@@ -35,13 +35,13 @@ public class MilitaryServiceImpl implements MilitaryService {
 
     @Override
     public Military findMilitaryById(Long id) {
-        return militaryRepository.findMilitaryById(id);
+        return militaryRepository.findMilitaryByIdAndStatus(id,1);
     }
 
     @Override
     public ResponseEntity<MilitaryResponse> update(MilitaryRequest request) throws Exception {
         Military entity = militaryMapper.toMilitary(request);
-        Military military = militaryRepository.findMilitaryById(entity.getId());
+        Military military = militaryRepository.findMilitaryByIdAndStatus(entity.getId(),1);
         entity.setStatus(military.getStatus());
         Military militaryUpdated = new Military();
         if (military != null) {
@@ -52,5 +52,28 @@ public class MilitaryServiceImpl implements MilitaryService {
             return ResponseEntity.accepted().body(militaryResponse);
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+
+    @Override
+    public List<Military> searchByKeyword(String keyword) {
+        return militaryRepository.searchByKeyword(keyword);
+    }
+
+    @Override
+    public boolean delete(long[] ids) {
+        boolean flag = true;
+        for (long id : ids) {
+            Military military = militaryRepository.findMilitaryByIdAndStatus(id, 1);
+            Military militaryUpdated = new Military();
+            if (military != null) {
+                military.setStatus(0);
+                militaryUpdated = militaryRepository.save(military);
+            }
+            if (militaryUpdated == null) {
+                flag = false;
+                return flag;
+            }
+        }
+        return flag;
     }
 }
