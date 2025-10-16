@@ -68,11 +68,11 @@
 		<li>
           <div class="profile-details">
             <div class="profile-contect">
-              <img src="/template/images/profile.jpg" alt="profile" />
+              <img src="/template/images/phuhieu.jpg" alt="profile" />
             </div>
             <div class="name-job">
               <div class="profile-name">Hữu Lợi</div>
-              <div class="job">Đại Tướng</div>
+              <div class="job">Thượng úy</div>
             </div>
             <i class="bx bx-log-out"></i>
           </div>
