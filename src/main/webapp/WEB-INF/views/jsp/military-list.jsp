@@ -100,7 +100,7 @@
                                 <th class="text-center">Chức vụ</th>
                                 <th class="text-center">Cấp bậc</th>
                                 <th class="text-center">Ngày sinh</th>
-                                <th class="text-center">Trạng thái</th>x
+                                <th class="text-center">Trạng thái</th>
                                 <th class="text-center">Thao tác</th>
                             </tr>
                             </thead>

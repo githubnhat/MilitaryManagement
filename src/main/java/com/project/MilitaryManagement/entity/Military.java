@@ -55,7 +55,12 @@ public class Military {
     private String reenlistmentDate; // Ngày tái ngũ
     @Column(length = 100)
     private String recruitmentInfo; // Thông tin tuyển chọn, tuyển dụng
-
+    // --- BỔ SUNG: Thông tin Chiến đấu & Quá trình công tác ---
+    private boolean participatedInCombat; // Chiến đấu (Kiểu dữ liệu boolean)
+    @Column(columnDefinition = "TEXT")
+    private String previousPositions; // Chức vụ đã qua (Kiểu dữ liệu string)
+    @Column(length = 100)
+    private String combatDuration; // Thời gian chiến đấu (Kiểu dữ liệu string)
     // --- Thông tin Đảng & Đoàn ---
     @Column(length = 20)
     private String youthUnionJoinDate; // Ngày vào Đoàn

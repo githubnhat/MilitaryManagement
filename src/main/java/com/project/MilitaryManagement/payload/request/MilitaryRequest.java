@@ -28,7 +28,9 @@ public record MilitaryRequest(
         String dischargeDate,                          // Ngày xuất ngũ
         String reenlistmentDate,                       // Ngày tái ngũ
         String recruitmentInfo,                        // Thông tin tuyển chọn
-
+        boolean participatedInCombat,
+        String previousPositions,
+        String combatDuration,
         // --- Đảng & Đoàn ---
         String youthUnionJoinDate,                     // Ngày vào Đoàn
         String partyJoinDate,                          // Ngày vào Đảng

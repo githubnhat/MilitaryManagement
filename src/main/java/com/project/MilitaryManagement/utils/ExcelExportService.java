@@ -90,7 +90,12 @@ public class ExcelExportService {
                 String ngayChinhThucVaoDang = military.getOfficialPartyMembershipDate() != null ? military.getOfficialPartyMembershipDate() : "";
                 createCell(currentRow, 5, ngayVaoDang + "\n" + ngayChinhThucVaoDang, createWrapTextStyle(workbook, templateCellStyles[5]));
 
-                createCell(currentRow, 6, "", templateCellStyles[6]);
+                // Cột 6:
+                String chienDau = military.isParticipatedInCombat() ? "Có" : "Không";
+                String chucVuDaQua = military.getPreviousPositions() != null ? military.getPreviousPositions() :"";
+                String thoiGianChienDau = military.getCombatDuration() != null ? military.getCombatDuration() : "";
+                String cot6 = "*Chiến đấu: " + chienDau + "\n" + "Chức vụ" + "\n" + "- " + chucVuDaQua + "\n" + thoiGianChienDau;
+                createCell(currentRow, 6, cot6, templateCellStyles[6]);
 
                 String truong = military.getSchoolName() != null ? military.getSchoolName() : "";
                 String thoiGianHoc = military.getStudyDuration() != null ? military.getStudyDuration() : "";

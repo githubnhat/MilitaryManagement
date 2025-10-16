@@ -190,6 +190,48 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Tuyển chọn, tuyển
+                                            dụng</label>
+                                        <div class="col-9"><form:input path="recruitmentInfo" cssClass="col-12 pl-1"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errrecruitmentInfo ml-3"></p>
+                                    </div>
+                                </div>
+
+                                <h5 class="section-title">Thông tin Chiến đấu & Quá trình công tác</h5>
+                                <div class="row">
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Tham gia Chiến đấu</label>
+                                        <div class="col-9">
+                                                <%-- Sử dụng checkbox cho kiểu boolean --%>
+                                            <form:checkbox path="participatedInCombat"
+                                                           cssClass="ml-3"
+                                                           disabled="${isViewMode}"/>
+                                        </div>
+                                        <p class="error errparticipatedInCombat ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Thời gian chiến đấu</label>
+                                        <div class="col-9"><form:input path="combatDuration" cssClass="col-12 pl-1"
+                                                                       placeholder="Ví dụ: 10/1978"
+                                                                       disabled="${isViewMode}"/></div>
+                                        <p class="error errcombatDuration ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Chức vụ đã qua</label>
+                                            <%-- Sử dụng textarea để nhập nhiều chức vụ đã qua --%>
+                                        <div class="col-9">
+                                            <form:textarea path="previousPositions" cssClass="col-12 pl-1"
+                                                           rows="2"
+                                                           disabled="${isViewMode}"/>
+                                        </div>
+                                        <p class="error errpreviousPositions ml-3"></p>
+                                    </div>
+                                </div>
+
+
                                 <h5 class="section-title">Thông tin Đảng & Đoàn</h5>
                                 <div class="row">
                                     <div class="form-group col-4">
