@@ -55,39 +55,40 @@
 
 
                                 <div class="row">
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-4">
                                         <label class="control-label no-padding-right ml-3">Họ tên khai sinh</label>
                                         <div class="col-9"><form:input path="hoTenKhaiSinh" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
                                         <p class="error errhoTenKhaiSinh ml-3"></p>
                                     </div>
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-4">
                                         <label class="control-label no-padding-right ml-3">Họ tên thường dùng</label>
                                         <div class="col-9"><form:input path="hoTenThuongDung" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
                                         <p class="error errhoTenThuongDung ml-3"></p>
                                     </div>
-                                    <div class="form-group col-3">
+                                    <div class="form-group col-4">
                                         <label class="control-label no-padding-right ml-3">Số hiệu quân nhân</label>
                                         <div class="col-9"><form:input path="soHieuQuanNhan" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
                                         <p class="error errsoHieuQuanNhan ml-3"></p>
                                     </div>
-                                    <div class="form-group col-3">
+
+                                </div>
+                                <div class="row">
+                                <div class="form-group col-4">
                                         <label class="control-label no-padding-right ml-3">Căn cước công dân</label>
                                         <div class="col-9"><form:input path="canCuocCongDan" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
                                         <p class="error errcanCuocCongDan ml-3"></p>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="form-group col-3">
                                         <label class="control-label no-padding-right ml-3">Ngày, tháng, năm sinh</label>
                                         <div class="col-9"><form:input path="ngayThangNamSinh" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
                                         <p class="error errhoTenKhaiSinh ml-3"></p>
                                     </div>
-                                    <div class="form-group col-4">
+                                    <div class="form-group col-2">
                                         <label class="control-label no-padding-right ml-3">Cấp bậc</label>
                                         <div class="col-9">
                                             <form:select path="capBac" cssClass="col-12 pl-1"
