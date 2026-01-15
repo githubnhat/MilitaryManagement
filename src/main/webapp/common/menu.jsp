@@ -23,7 +23,7 @@
 			<ul class="sub-menu">
 				<li><a class="link_name" href="#">Quản lý quân nhân</a></li>
 				<li><a href="<c:url value='/military-list'/>">Danh sách quân nhân</a></li>
-				<li><a href="<c:url value='/create-military'/>">Thêm quân nhân</a></li>
+				<li><a href="<c:url value='/tao-quan-nhan'/>">Thêm quân nhân</a></li>
 			</ul>
 		</li>
 		<%--<li>
