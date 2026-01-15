@@ -1,4 +1,4 @@
-package com.project.MilitaryManagement.service;
+package com.project.MilitaryManagement.mapper;
 
 import com.project.MilitaryManagement.entity.Military;
 import com.project.MilitaryManagement.entity.QuanNhan;
@@ -6,13 +6,10 @@ import com.project.MilitaryManagement.payload.request.MilitaryRequest;
 import com.project.MilitaryManagement.payload.request.QuanNhanRequest;
 import com.project.MilitaryManagement.payload.response.MilitaryResponse;
 import com.project.MilitaryManagement.payload.response.QuanNhanResponse;
-import org.springframework.http.ResponseEntity;
+import org.mapstruct.Mapper;
 
-import java.util.List;
-
-public interface QuanNhanService {
-    ResponseEntity<QuanNhanResponse> save(QuanNhanRequest request) throws Exception;
-    QuanNhan findQuanNhanById(Long id);
-    List<QuanNhan> findAllByStatus(int status);
-    List<QuanNhan> searchByKeyword(String keyword);
+@Mapper(componentModel = "spring")
+public interface QuanNhanMapper {
+    QuanNhan toQuanNhan(QuanNhanRequest quanNhanRequest);
+    QuanNhanResponse toQuanNhanResponse(QuanNhan quanNhan);
 }

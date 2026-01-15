@@ -71,7 +71,7 @@ public class MilitaryController {
         model.addAttribute("militarys", militarys);
         model.addAttribute("keyword", keyword); // Trả lại từ khóa để hiển thị trên ô tìm kiếm
         messageUtil.showMessage(message, alert, model);
-        return "military-list";
+        return "danhSachQuanNhan";
     }
 
 }

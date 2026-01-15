@@ -1,7 +1,10 @@
 package com.project.MilitaryManagement.api;
 
+import com.project.MilitaryManagement.entity.QuanNhan;
 import com.project.MilitaryManagement.payload.request.MilitaryRequest;
+import com.project.MilitaryManagement.payload.request.QuanNhanRequest;
 import com.project.MilitaryManagement.payload.response.MilitaryResponse;
+import com.project.MilitaryManagement.payload.response.QuanNhanResponse;
 import com.project.MilitaryManagement.service.MilitaryService;
 import com.project.MilitaryManagement.service.QuanNhanService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/quan-nhan")
 public class QuanNhanAPI {
     private final QuanNhanService quanNhanService;
-    @PostMapping("/tao-moi")
-    public ResponseEntity<MilitaryResponse> taoQuanNhan(@RequestBody MilitaryRequest request) throws Exception
+    @PostMapping("/tao-quan-nhan")
+    public ResponseEntity<QuanNhanResponse> taoQuanNhan(@RequestBody QuanNhanRequest request) throws Exception
     {
         return quanNhanService.save(request);
     }

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Military Management</title>
+<title>Quản lý quân nhân</title>
 <link rel="icon"
 	href="<c:url value='/template/images/LOGO 950.png'/>">
 <link
@@ -37,7 +37,7 @@
 			<!-- Page Content -->
 			<div class="container-fluid home-page-content">
 
-			<h1>Welcome to Military Management!</h1>
+			<h1>Quản lý quân nhân!</h1>
 			<c:if test="${not empty message}">
 			<div class="text-center float-left text-success">${message}</div>
 			</c:if>

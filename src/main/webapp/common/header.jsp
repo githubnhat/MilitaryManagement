@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 	<div class="container-fluid">
-			<a href="<c:url value='/home'/>" class="navbar-brand ml-5">
+			<a href="<c:url value='/trang-chu'/>" class="navbar-brand ml-5">
 				<img src="<c:url value='/template/images/LOGO 950.png'/>" alt=" "
 				class="img-fluid" style = "width: 50px">
 			</a>

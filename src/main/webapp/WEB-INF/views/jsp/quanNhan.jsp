@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
-<c:url var="createMilitaryURL" value='/create-military'/>
+<c:url var="taoQuanNhanURL" value='/tao-quan-nhan'/>
 <c:url var="modifyMilitaryURL" value='/modify-military'/>
-<c:url var="enquiryMilitaryURL" value='/enquiry-military'/>
+<c:url var="xemQuanNhanURL" value='/xem-quan-nhan'/>
 <c:url var="listMilitaryURL" value='/military-list'/>
 <c:url var="homeURL" value="/home"/>
-<c:url var="createMilitaryAPI" value='/api/v1/military/create'/>
+<c:url var="taoQuanNhanAPI" value='/api/v1/quan-nhan/tao-quan-nhan'/>
 <c:url var="modifyMilitaryAPI" value='/api/v1/military/modify'/>
 <!DOCTYPE html>
 <html>
@@ -82,28 +82,44 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-3">
-                                        <label class="control-label no-padding-right ml-3">Họ tên khai sinh</label>
-                                        <div class="col-9"><form:input path="hoTenKhaiSinh" cssClass="col-12 pl-1"
-                                                                       disabled="${isViewMode}"/></div>
-                                        <p class="error errhoTenKhaiSinh ml-3"></p>
-                                    </div>
-                                    <div class="form-group col-3">
                                         <label class="control-label no-padding-right ml-3">Ngày, tháng, năm sinh</label>
                                         <div class="col-9"><form:input path="ngayThangNamSinh" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
-                                        <p class="error errngayThangNamSinh ml-3"></p>
+                                        <p class="error errhoTenKhaiSinh ml-3"></p>
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <label class="control-label no-padding-right ml-3">Cấp bậc</label>
+                                        <div class="col-9">
+                                            <form:select path="capBac" cssClass="col-12 pl-1"
+                                                         disabled="${isViewMode}">
+                                                <form:option value="" label="-- Chọn --"/>
+                                                <form:option value="1/" label="1/"/>
+                                                <form:option value="2/" label="2/"/>
+                                                <form:option value="3/" label="3/"/>
+                                                <form:option value="4/" label="4/"/>
+                                                <form:option value="1//" label="1//"/>
+                                                <form:option value="2//" label="2//"/>
+                                                <form:option value="1/CN" label="1/CN"/>
+                                                <form:option value="2/CN" label="2/CN"/>
+                                                <form:option value="3/CN" label="3/CN"/>
+                                                <form:option value="4/CN" label="4/CN"/>
+                                                <form:option value="1//CN" label="1//CN"/>
+                                                <form:option value="2//CN" label="2//CN"/>
+                                            </form:select>
+                                        </div>
+                                        <p class="error errcapBac ml-3"></p>
                                     </div>
                                     <div class="form-group col-3">
-                                        <label class="control-label no-padding-right ml-3">Số hiệu quân nhân</label>
-                                        <div class="col-9"><form:input path="soHieuQuanNhan" cssClass="col-12 pl-1"
+                                        <label class="control-label no-padding-right ml-3">Ngày nhận cấp bậc</label>
+                                        <div class="col-9"><form:input path="ngayNhanCapBac" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
-                                        <p class="error errsoHieuQuanNhan ml-3"></p>
+                                        <p class="error errngayNhanCapBac ml-3"></p>
                                     </div>
                                     <div class="form-group col-3">
-                                        <label class="control-label no-padding-right ml-3">Căn cước công dân</label>
-                                        <div class="col-9"><form:input path="canCuocCongDan" cssClass="col-12 pl-1"
+                                        <label class="control-label no-padding-right ml-3">Ngày nhận cấp thẻ quân nhân</label>
+                                        <div class="col-9"><form:input path="ngayCapTheQuanNhan" cssClass="col-12 pl-1"
                                                                        disabled="${isViewMode}"/></div>
-                                        <p class="error errcanCuocCongDan ml-3"></p>
+                                        <p class="error errngayCapTheQuanNhan ml-3"></p>
                                     </div>
                                 </div>
                                </div>
@@ -143,7 +159,7 @@
         <script>
             $('#btnCreate').click(function (e) {
                 e.preventDefault();
-                if (!validation()) return;
+                // if (!validation()) return;
                 var data = {};
                 var formData = $('#formSubmit').serializeArray();
                 $.each(formData, function (i, v) {
@@ -155,7 +171,7 @@
             function createMilitary(data) {
                 $('.load').show();
                 $.ajax({
-                    url: '${createMilitaryAPI}',
+                    url: '${taoQuanNhanAPI}',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(data),
@@ -163,19 +179,19 @@
                     success: function (result) {
                         $('.load').hide();
                         if (result !== null)
-                            window.location.href = "${enquiryMilitaryURL}/" + result.id + "?message=create_success&alert=success";
+                            window.location.href = "${xemQuanNhanURL}/" + result.id + "?message=create_success&alert=success";
                         else
-                            window.location.href = "${createMilitaryURL}" + "?message=create_fail&alert=danger";
+                            window.location.href = "${taoQuanNhanURL}" + "?message=create_fail&alert=danger";
                     },
                     error: function (error) {
-                        window.location.href = "${createMilitaryURL}?message=system_error&alert=danger";
+                        window.location.href = "${taoQuanNhanURL}?message=system_error&alert=danger";
                     },
                 });
             }
 
             $('#btnModify').click(function (e) {
                 e.preventDefault();
-                if (!validation()) return;
+                // if (!validation()) return;
                 var data = {};
                 var formData = $('#formSubmit').serializeArray();
                 $.each(formData, function (i, v) {

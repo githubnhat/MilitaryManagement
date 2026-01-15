@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="MilitaryUrl" value="/military-list"/>
+<c:url var="QuanNhanUrl" value="/danh-sach-quan-nhan"/>
 <c:url var="deleteMilitaryAPI" value='/api/v1/military/delete'/>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Military Management</title>
+<title>Quản lý quân nhân</title>
 
 <link rel="icon"
 	href="<c:url value='/template/images/LOGO 950.png'/>">
@@ -59,7 +59,7 @@
                         </div>--%>
                         <div class="row mb-3">
                             <div class="col-8">
-                                <form action="<c:url value='/military-list'/>" method="get" class="form-inline">
+                                <form action="<c:url value='/danh-sach-quan-nhan'/>" method="get" class="form-inline">
                                     <div class="form-group">
                                         <input type="text" class="form-control" name="keyword"
                                                placeholder="Nhập tên, số hiệu QN, CCCD..."
@@ -68,7 +68,7 @@
                                     <button type="submit" class="btn btn-primary ml-2">
                                         <i class='bx bx-search'></i> Tìm kiếm
                                     </button>
-                                    <a href="<c:url value='/military-list'/>" class="btn btn-secondary ml-2">Làm mới</a>
+                                    <a href="<c:url value='/danh-sach-quan-nhan'/>" class="btn btn-secondary ml-2">Làm mới</a>
                                 </form>
                             </div>
                             <div class="col-4 text-right">
@@ -105,7 +105,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="item" items="${militarys}">
+                            <c:forEach var="item" items="${quanNhans}">
                                 <tr>
                                     <td class="text-center">
                                                  <span class="custom-checkbox">
@@ -113,12 +113,12 @@
                                                     <label for="checkbox_${item.id}"></label>
                                                 </span>
                                     </td>
-                                    <td>${item.birthFullName}</td>
-                                    <td>${item.militaryIdNumber}</td>
-                                    <td>${item.nationalIdNumber}</td>
-                                    <td>${item.position}</td>
-                                    <td>${item.militaryRank}</td>
-                                    <td>${item.dateOfBirth}</td>
+                                    <td>${item.hoTenKhaiSinh}</td>
+                                    <td>${item.soHieuQuanNhan}</td>
+                                    <td>${item.canCuocCongDan}</td>
+                                    <td>${item.capBac}</td>
+                                    <td>${item.ngayNhanCapBac}</td>
+                                    <td>${item.ngayThangNamSinh}</td>
 
                                     <c:if test="${item.status == 1}">
                                         <td class="text-center"><span class="status text-success">&bull;</span>Tại ngũ
@@ -203,13 +203,13 @@
             success: function (result) {
                 $('.load').hide();
                 if(result)
-                    window.location.href = "${MilitaryUrl}?message=delete_success&alert=success";
+                    window.location.href = "${QuanNhanUrl}?message=delete_success&alert=success";
                 else
-                    window.location.href = "${MilitaryUrl}?message=delete_fail&alert=danger";
+                    window.location.href = "${QuanNhanUrl}?message=delete_fail&alert=danger";
             },
             error: function (error) {
                 $('.load').hide();
-                window.location.href = "${MilitaryUrl}?message=system_error&alert=danger";
+                window.location.href = "${QuanNhanUrl}?message=system_error&alert=danger";
             }
         })
     }
