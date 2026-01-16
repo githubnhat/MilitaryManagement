@@ -15,4 +15,6 @@ public interface QuanNhanService {
     QuanNhan findQuanNhanById(Long id);
     List<QuanNhan> findAllByStatus(int status);
     List<QuanNhan> searchByKeyword(String keyword);
+    ResponseEntity<QuanNhanResponse> update(QuanNhanRequest request) throws Exception;
+    boolean delete (long [] ids);
 }

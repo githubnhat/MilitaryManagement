@@ -5,6 +5,7 @@ import lombok.With;
 @With
 public record QuanNhanRequest (
         Long id,
+        long [] ids,
         String hoTenKhaiSinh,
         String hoTenThuongDung,
         String soHieuQuanNhan,

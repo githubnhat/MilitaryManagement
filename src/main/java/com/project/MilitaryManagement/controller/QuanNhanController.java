@@ -64,4 +64,17 @@ public class QuanNhanController {
         return "danhSachQuanNhan";
     }
 
+    @GetMapping(value = "/cap-nhat-quan-nhan/{id}")
+    public String modifyMilitary(@PathVariable Long id, Model model,
+                                 @RequestParam(value = "message", required = false) String message,
+                                 @RequestParam(value = "alert", required = false) String alert) {
+        if (id != null) {
+            QuanNhan quanNhan = quanNhanService.findQuanNhanById(id);
+            model.addAttribute("hanhDong", "M");
+            model.addAttribute("quanNhan", quanNhan);
+        }
+        messageUtil.showMessage(message, alert, model);
+        return "quanNhan";
+    }
+
 }

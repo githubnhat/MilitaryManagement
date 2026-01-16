@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="taoQuanNhanURL" value='/tao-quan-nhan'/>
-<c:url var="modifyMilitaryURL" value='/modify-military'/>
+<c:url var="capNhatQuanNhaURL" value='/cap-nhat-quan-nhan'/>
 <c:url var="xemQuanNhanURL" value='/xem-quan-nhan'/>
 <c:url var="danhSachQuanNhanURL" value='/danh-sach-quan-nhan'/>
 <c:url var="trangChuURL" value="/trang-chu"/>
 <c:url var="taoQuanNhanAPI" value='/api/v1/quan-nhan/tao-quan-nhan'/>
-<c:url var="modifyMilitaryAPI" value='/api/v1/military/modify'/>
+<c:url var="capNhatQuanNhanAPI" value='/api/v1/quan-nhan/cap-nhat-quan-nhan'/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -244,7 +244,7 @@
                                     </c:if>
                                 </div>
                                 <c:if test="${hanhDong.equals('M')}">
-                                    <input type="hidden" value="${military.id}" id="id" name="id"/>
+                                    <input type="hidden" value="${quanNhan.id}" id="id" name="id"/>
                                 </c:if>
                             </div>
                         </form:form>
@@ -260,7 +260,7 @@
                     // 1. Khi trang đã tải xong hoàn toàn
                     $(".load").hide(); // Hiệu ứng mờ dần rồi ẩn đi
                 });
-                $('a, #btnContinue, #btnCancel').on('click', function (e) {
+                $('a').on('click', function (e) {
                     const url = $(this).attr('href');
                     const target = $(this).attr('target');
 
@@ -327,27 +327,31 @@
             function modifyMilitary(data) {
 
                 $.ajax({
-                    url: '${modifyMilitaryAPI}',
+                    url: '${capNhatQuanNhanAPI}',
                     type: 'POST',
                     contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(data),
                     dataType: 'json',
                     success: function (result) {
-
                         if (result !== null)
-                            window.location.href = "${modifyMilitaryURL}/" + result.id + "?message=update_success&alert=success";
+                            window.location.href = "${capNhatQuanNhaURL}/" + result.id + "?message=update_success&alert=success";
                         else
-                            window.location.href = "${modifyMilitaryURL}/" + result.id + "?message=update_fail&alert=danger";
+                            window.location.href = "${capNhatQuanNhaURL}/" + result.id + "?message=update_fail&alert=danger";
                     },
                     error: function (error) {
                         $(".load").hide();
-                        window.location.href = "${modifyMilitaryURL}?message=system_error&alert=danger";
+                        window.location.href = "${capNhatQuanNhaURL}?message=system_error&alert=danger";
                     }
                 });
             }
 
             $('#btnContinue, #btnCancel').click(function (e) {
-                window.location.href = "${danhSachQuanNhanURL}";
+                e.preventDefault(); // Chặn chuyển trang tức thì
+                // Hiện hiệu ứng loading
+                $(".load").css("display", "flex").hide().fadeIn(200);
+                setTimeout(function () {
+                    window.location.href = "${danhSachQuanNhanURL}";
+                }, 400);
             });
 
 

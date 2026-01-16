@@ -14,6 +14,7 @@ public class QuanNhan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // Mã định danh quân nhân
+    @Column
     private int status;
     // --- Thông tin cá nhân & quân nhân ---
     @Column(length = 100)

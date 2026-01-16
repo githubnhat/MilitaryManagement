@@ -12,6 +12,7 @@ import com.project.MilitaryManagement.repository.MilitaryRepository;
 import com.project.MilitaryManagement.repository.QuanNhanRepository;
 import com.project.MilitaryManagement.service.QuanNhanService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -47,5 +48,38 @@ public class QuanNhanServiceImpl implements QuanNhanService {
         return quanNhanRepository.searchByKeyword(keyword);
     }
 
+    @Override
+    public ResponseEntity<QuanNhanResponse> update(QuanNhanRequest request) throws Exception {
+        QuanNhan entity = quanNhanMapper.toQuanNhan(request);
+        QuanNhan quanNhan = quanNhanRepository.findQuanNhanByIdAndStatus(entity.getId(),1);
+        entity.setStatus(quanNhan.getStatus());
+        QuanNhan quanNhanUpdated = new QuanNhan();
+        if (quanNhan != null) {
+            quanNhanUpdated = quanNhanRepository.save(entity);
+        }
+        if (quanNhanUpdated != null) {
+            QuanNhanResponse quanNhanResponse = quanNhanMapper.toQuanNhanResponse(quanNhanUpdated);
+            return ResponseEntity.accepted().body(quanNhanResponse);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    }
+
+    @Override
+    public boolean delete(long[] ids) {
+        boolean flag = true;
+        for (long id : ids) {
+            QuanNhan quanNhan = quanNhanRepository.findQuanNhanByIdAndStatus(id, 1);
+            QuanNhan quanNhanUpdated = new QuanNhan();
+            if (quanNhan != null) {
+                quanNhan.setStatus(0);
+                quanNhanUpdated = quanNhanRepository.save(quanNhan);
+            }
+            if (quanNhanUpdated == null) {
+                flag = false;
+                return flag;
+            }
+        }
+        return flag;
+    }
 
 }

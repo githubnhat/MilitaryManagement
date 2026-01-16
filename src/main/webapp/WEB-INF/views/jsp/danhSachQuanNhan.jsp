@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
-<c:url var="QuanNhanUrl" value="/danh-sach-quan-nhan"/>
-<c:url var="deleteMilitaryAPI" value='/api/v1/military/delete'/>
+<c:url var="quanNhanUrl" value="/danh-sach-quan-nhan"/>
+<c:url var="xoaQuanNhanAPI" value='/api/v1/api/v1/quan-nhan/tao-quan-nhan'/>
 
 <!DOCTYPE html>
 <html>
@@ -129,7 +129,7 @@
                                         </td>
                                     </c:if>
                                     <td class="text-center">
-                                        <a href="<c:url value='/modify-military/${item.id}'/>" class="edit">
+                                        <a href="<c:url value='/cap-nhat-quan-nhan/${item.id}'/>" class="edit">
                                             <i class="bx bx-pencil" aria-hidden="true" data-toggle="tooltip"
                                                title="Chỉnh sửa"></i>
                                         </a>
@@ -139,7 +139,7 @@
                                                title="Xuất file Word"></i>
                                         </a>
 
-                                        <a href="<c:url value='/enquiry-military/${item.id}' />">
+                                        <a href="<c:url value='/xem-quan-nhan/${item.id}' />">
                                             <i class='bx bx-show' aria-hidden="true" data-toggle="tooltip"
                                                title="Xem"></i>
                                         </a>
@@ -202,6 +202,7 @@
 
     $('#deleteUser').click(function (e) {
         e.preventDefault();
+        $('.load').show();
         let data = {}; // mang object name: value
         // lay data khi check vao cac checkbox
         let dataArray = $('tbody input[type=checkbox]:checked').map(function () {
@@ -214,22 +215,21 @@
     })
 
     function deleteUser(data) {
-        $('.load').show();
         $.ajax({
-            url: '${deleteMilitaryAPI}',
+            url: '${xoaQuanNhanAPI}',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
                 if(result)
-                    window.location.href = "${QuanNhanUrl}?message=delete_success&alert=success";
+                    window.location.href = "${quanNhanUrl}?message=delete_success&alert=success";
                 else
-                    window.location.href = "${QuanNhanUrl}?message=delete_fail&alert=danger";
+                    window.location.href = "${quanNhanUrl}?message=delete_fail&alert=danger";
             },
             error: function (error) {
                 $('.load').hide();
-                window.location.href = "${QuanNhanUrl}?message=system_error&alert=danger";
+                window.location.href = "${quanNhanUrl}?message=system_error&alert=danger";
             }
         })
     }
