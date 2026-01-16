@@ -30,6 +30,10 @@ public record QuanNhanRequest (
         String thanhPhanGd,
         String thanhPhanBanThan,
         String danToc,
-        String tonGiao
+        String tonGiao,
+        String vanHoa,
+        String ngoaiNgu,
+        String sucKhoe,
+        String hangThuongBinh
 ){
 }

@@ -11,18 +11,19 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Military Management</title>
+    <title>Quản lý quân nhân</title>
     <link rel="icon" href="<c:url value='/template/images/LOGO 950.png'/>">
     <link href="<c:url value='/template/menu/boxicons-2.1.4/css/boxicons.min.css'/>" rel="stylesheet"/>
     <link rel="stylesheet" href="<c:url value='/template/vendor/css/bootstrap.min.css'/>" type="text/css">
     <link rel="stylesheet" href="<c:url value='/template/vendor/css/style.css'/>" type="text/css">
     <link rel="stylesheet" href="<c:url value='/template/menu/menu.css'/>" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
     <script src="<c:url value='/template/vendor/jquery/jquery.js'/>"></script>
 </head>
 <body>
-<div class="load">
-        <img src="<c:url value='/template/images/loading.gif'/>">
-    </div>
+<%--<div class="load">--%>
+<%--        <img src="<c:url value='/template/images/loading.gif'/>">--%>
+<%--    </div>--%>
 <%@ include file="/common/header.jsp" %>
 <div>
     <%@ include file="/common/menu.jsp" %>
@@ -219,6 +220,28 @@
                                                     <p class="error errtonGiao text-danger small"></p>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="form-group col-md-3">
+                                                    <label class="control-label font-weight-bold">Văn hóa</label>
+                                                    <form:input path="vanHoa" cssClass="form-control" disabled="${isViewMode}"/>
+                                                    <p class="error errvanHoa text-danger small"></p>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label class="control-label font-weight-bold">Ngoại ngữ</label>
+                                                    <form:input path="ngoaiNgu" cssClass="form-control" disabled="${isViewMode}"/>
+                                                    <p class="error errngoaiNgu text-danger small"></p>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label class="control-label font-weight-bold">Sức khỏe</label>
+                                                    <form:input path="sucKhoe" cssClass="form-control" disabled="${isViewMode}"/>
+                                                    <p class="error errsucKhoe text-danger small"></p>
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label class="control-label font-weight-bold">Hạng thương binh</label>
+                                                    <form:input path="hangThuongBinh" cssClass="form-control" disabled="${isViewMode}"/>
+                                                    <p class="error errhangThuongBinh text-danger small"></p>
+                                                </div>
+                                            </div>
                                         </div>
                             <div class="clearfix form-actions form-btn">
                                 <div>
@@ -363,6 +386,7 @@
                 var hoTenKhaiSinh = $('input[name="hoTenKhaiSinh"]').val().trim();
                 var canCuocCongDan = $('input[name="canCuocCongDan"]').val().trim();
                 var soHieuQuanNhan = $('input[name="soHieuQuanNhan"]').val().trim();
+                var ngayThangNamSinh = $('input[name="ngayThangNamSinh"]').val().trim();
 
                 if (hoTenKhaiSinh === '') {
                     $('.errhoTenKhaiSinh').show().text('Họ tên khai sinh không được để trống');
@@ -374,6 +398,10 @@
                 }
                 if (soHieuQuanNhan === '') {
                     $('.errsoHieuQuanNhan').show().text('Số hiệu quân nhân không được để trống');
+                    isValid = false;
+                }
+                if (ngayThangNamSinh === '') {
+                    $('.errngayThangNamSinh').show().text('Ngày, tháng, năm sinh không được để trống');
                     isValid = false;
                 }
                 return isValid;

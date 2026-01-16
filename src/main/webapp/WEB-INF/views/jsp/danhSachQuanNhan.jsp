@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 <c:url var="quanNhanUrl" value="/danh-sach-quan-nhan"/>
-<c:url var="xoaQuanNhanAPI" value='/api/v1/api/v1/quan-nhan/tao-quan-nhan'/>
+<c:url var="xoaQuanNhanAPI" value='/api/v1/quan-nhan/xoa-quan-nhan'/>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 <link
 	href="<c:url value='/template/menu/boxicons-2.1.4/css/boxicons.min.css'/>"
 	rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
 <!-- Bootstrap core CSS -->
 <link rel="stylesheet"
 	href="<c:url value='/template/vendor/css/bootstrap.min.css'/>"
@@ -32,9 +32,9 @@
 <!-- Custom styles for this template -->
 </head>
 <body>
-<div class="load">
-        <img src="<c:url value='/template/images/loading.gif'/>">
-    </div>
+<%--<div class="load">--%>
+<%--        <img src="<c:url value='/template/images/loading.gif'/>">--%>
+<%--    </div>--%>
 	<%@ include file="/common/header.jsp"%>
 	<div>
 		<%@ include file="/common/menu.jsp"%>

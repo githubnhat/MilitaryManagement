@@ -67,4 +67,12 @@ public class QuanNhan {
     private String danToc;
     @Column(length = 50)
     private String tonGiao;
+    @Column(length = 100)
+    private String vanHoa;
+    @Column(length = 100)
+    private String ngoaiNgu;
+    @Column(length = 100)
+    private String sucKhoe;
+    @Column(length = 50)
+    private String hangThuongBinh;
 }

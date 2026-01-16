@@ -7,7 +7,7 @@
 }
 
 .home-page-content {
-	margin: 88px 0px 50px 0px;
+	margin: 120px 0px 50px 0px;
 	flex: 1;
 }
 
@@ -63,3 +63,14 @@
 /*	from { transform: translate(-50%, -50%) rotate(0deg); }*/
 /*	to { transform: translate(-50%, -50%) rotate(360deg); }*/
 /*}*/
+.banner {
+	font-family: 'Black Ops One', system-ui;
+	font-size: 2rem;
+	font-weight: bold;
+	color: #ff0000;
+	text-transform: uppercase;
+	text-align: center;
+}
+.bg-header{
+	background-color: #369333;
+}

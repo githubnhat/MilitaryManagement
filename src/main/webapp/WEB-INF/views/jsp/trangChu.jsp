@@ -20,7 +20,7 @@
 	href="<c:url value='/template/vendor/css/style.css'/>" type="text/css">
 <link rel="stylesheet" href="<c:url value='/template/menu/menu.css'/>"
 	type="text/css">
-
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
 <script src="<c:url value='/template/vendor/jquery/jquery.js'/>"></script>
 <%-- <script src="<c:url value='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.js'/>" integrity="sha512-CX7sDOp7UTAq+i1FYIlf9Uo27x4os+kGeoT7rgwvY+4dmjqV0IuE/Bl5hVsjnQPQiTOhAX1O2r2j5bjsFBvv/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
  --%>
@@ -33,9 +33,9 @@
 		<%@ include file="/common/menu.jsp"%>
 		<div class="home-section">
 			<body>
-			<div class="load">
-				<img src="<c:url value='/template/images/loading.gif'/>">
-			</div>
+<%--			<div class="load">--%>
+<%--				<img src="<c:url value='/template/images/loading.gif'/>">--%>
+<%--			</div>--%>
 			<!-- Page Content -->
 			<div class="container-fluid home-page-content">
 
