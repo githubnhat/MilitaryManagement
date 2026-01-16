@@ -12,6 +12,22 @@ public record QuanNhanResponse (
     String ngayThangNamSinh,
     String capBac,
     String ngayNhanCapBac,
-    String ngayCapTheQuanNhan
+    String ngayCapTheQuanNhan,
+    String chucVu,
+    String ngayNhanChucVu,
+    String cNQS,
+    String bacKyThuat,
+    String nhapNgu,
+    String xuatNgu,
+    String taiNgu,
+    String ngayChuyenQncn,String luong,
+    String ngayVaoDoan,
+    String ngayVaoDang,
+    String ngayChinhThuc,
+    String ngayChuyenCnvcqp,
+    String thanhPhanGd,
+    String thanhPhanBanThan,
+    String danToc,
+    String tonGiao
 ){
 }

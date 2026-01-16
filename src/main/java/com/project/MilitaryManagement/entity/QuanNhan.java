@@ -32,4 +32,38 @@ public class QuanNhan {
     private String ngayNhanCapBac;
     @Column(length = 50)
     private String ngayCapTheQuanNhan;
+    @Column(length = 50)
+    private String chucVu;
+    @Column(length = 50)
+    private String ngayNhanChucVu;
+    @Column(length = 50)
+    private String cNQS;
+    @Column(length = 50)
+    private String bacKyThuat;
+    @Column(length = 50)
+    private String nhapNgu;
+    @Column(length = 50)
+    private String xuatNgu;
+    @Column(length = 50)
+    private String taiNgu;
+    @Column(length = 50)
+    private String ngayChuyenQncn;
+    @Column(length = 50)
+    private String ngayChuyenCnvcqp;
+    @Column(length = 50)
+    private String luong;
+    @Column(length = 50)
+    private String ngayVaoDoan;
+    @Column(length = 50)
+    private String ngayVaoDang;
+    @Column(length = 50)
+    private String ngayChinhThuc;
+    @Column(length = 50)
+    private String thanhPhanGd;
+    @Column(length = 50)
+    private String thanhPhanBanThan;
+    @Column(length = 50)
+    private String danToc;
+    @Column(length = 50)
+    private String tonGiao;
 }
