@@ -15,7 +15,7 @@ public record QuanNhanResponse (
     String ngayCapTheQuanNhan,
     String chucVu,
     String ngayNhanChucVu,
-    String cNQS,
+    String cnqs,
     String bacKyThuat,
     String nhapNgu,
     String xuatNgu,

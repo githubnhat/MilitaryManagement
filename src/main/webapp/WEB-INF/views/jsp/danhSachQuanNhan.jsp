@@ -32,7 +32,7 @@
 <!-- Custom styles for this template -->
 </head>
 <body>
-<div class="load" style="display: none">
+<div class="load">
         <img src="<c:url value='/template/images/loading.gif'/>">
     </div>
 	<%@ include file="/common/header.jsp"%>
@@ -177,7 +177,28 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+                $(window).on('load', function () {
+                    // 1. Khi trang đã tải xong hoàn toàn
+                    $(".load").hide(); // Hiệu ứng mờ dần rồi ẩn đi
+                });
+                $('a, #btnContinue, #btnCancel').on('click', function (e) {
+                    const url = $(this).attr('href');
+                    const target = $(this).attr('target');
 
+                    // Chỉ xử lý nếu có link, không phải link nội bộ (#) và không mở tab mới
+                    if (url && url !== "#" && !target && this.hostname === window.location.hostname) {
+                        e.preventDefault(); // Chặn chuyển trang ngay lập tức
+
+                        $(".load").css("display", "flex").hide().fadeIn(200);
+
+                        // Đợi 400ms để người dùng thấy hiệu ứng xoay rồi mới đi tiếp
+                        setTimeout(function () {
+                            window.location.href = url;
+                        }, 400);
+                    }
+                });
+            });
 
     $('#deleteUser').click(function (e) {
         e.preventDefault();
@@ -201,7 +222,6 @@
             data: JSON.stringify(data),
             dataType: 'json',
             success: function (result) {
-                $('.load').hide();
                 if(result)
                     window.location.href = "${QuanNhanUrl}?message=delete_success&alert=success";
                 else

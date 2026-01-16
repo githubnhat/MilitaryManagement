@@ -37,7 +37,7 @@ public class QuanNhan {
     @Column(length = 50)
     private String ngayNhanChucVu;
     @Column(length = 50)
-    private String cNQS;
+    private String cnqs;
     @Column(length = 50)
     private String bacKyThuat;
     @Column(length = 50)

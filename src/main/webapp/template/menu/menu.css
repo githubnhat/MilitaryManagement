@@ -216,7 +216,7 @@
 	padding: 6px 0;
 	transition: all 0.5s ease;
 }
-.sidebar.close .profile-details{
+.sidebar.close-dropdown .profile-details{
 	width: 78px;
 	background: none;
 }
@@ -234,7 +234,7 @@
 	padding: 10px;
 	transition: all 0.5s ease;
 }
-.sidebar.close .profile-details img {
+.sidebar.close-dropdown .profile-details img {
 	padding: 10px;
 }
 .sidebar .profile-details .profile-name,
@@ -245,9 +245,9 @@
 	white-space: nowrap;
 
 }
-.sidebar.close .profile-details i,
-.sidebar.close .profile-details .profile-name,
-.sidebar.close .profile-details .job{
+.sidebar.close-dropdown .profile-details i,
+.sidebar.close-dropdown .profile-details .profile-name,
+.sidebar.close-dropdown .profile-details .job{
 	display: none;
 }
 .sidebar .profile-details .job {
