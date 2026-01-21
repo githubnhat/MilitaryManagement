@@ -7,31 +7,20 @@ public record QuanNhanResponse (
     Long id,
     String hoTenKhaiSinh,
     String hoTenThuongDung,
-    String soHieuQuanNhan,
-    String canCuocCongDan,
     String ngayThangNamSinh,
-    String capBac,
-    String ngayNhanCapBac,
-    String ngayCapTheQuanNhan,
-    String chucVu,
-    String ngayNhanChucVu,
-    String cnqs,
-    String bacKyThuat,
+    String danToc,
+    String tonGiao,
+    String thanhPhanGd,
+    String thanhPhanBanThan,
+    String nguyenQuan,      // Mới
+    String hoKhau,          // Mới
     String nhapNgu,
-    String xuatNgu,
-    String taiNgu,
-    String ngayChuyenQncn,String luong,
+    String donViCSM,        // Mới
     String ngayVaoDoan,
     String ngayVaoDang,
     String ngayChinhThuc,
-    String ngayChuyenCnvcqp,
-    String thanhPhanGd,
-    String thanhPhanBanThan,
-    String danToc,
-    String tonGiao,
-    String vanHoa,
+    String trinhDoHocVan,   // Mới (thay cho vanHoa)
     String ngoaiNgu,
-    String sucKhoe,
-    String hangThuongBinh
+    String tiengDanToc    // Mới
 ){
 }

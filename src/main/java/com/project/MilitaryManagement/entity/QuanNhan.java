@@ -22,37 +22,27 @@ public class QuanNhan {
     @Column(length = 100)
     private String hoTenThuongDung;
     @Column(length = 20)
-    private String soHieuQuanNhan;
-    @Column(length = 12)
-    private String canCuocCongDan;
-    @Column(length = 100)
     private String ngayThangNamSinh;
+    @Column(length = 12)
+    private String danToc;
+    @Column(length = 100)
+    private String tonGiao;
     @Column(length = 20)
-    private String capBac;
+    private String thanhPhanGd;
     @Column(length = 50)
-    private String ngayNhanCapBac;
+    private String thanhPhanBanThan;
     @Column(length = 50)
-    private String ngayCapTheQuanNhan;
+    private String nguyenQuan;
     @Column(length = 50)
-    private String chucVu;
+    private String hoKhau;
     @Column(length = 50)
-    private String ngayNhanChucVu;
+    private String donViCSM;
     @Column(length = 50)
-    private String cnqs;
+    private String trinhDoHocVan;
     @Column(length = 50)
-    private String bacKyThuat;
+    private String tiengDanToc;
     @Column(length = 50)
     private String nhapNgu;
-    @Column(length = 50)
-    private String xuatNgu;
-    @Column(length = 50)
-    private String taiNgu;
-    @Column(length = 50)
-    private String ngayChuyenQncn;
-    @Column(length = 50)
-    private String ngayChuyenCnvcqp;
-    @Column(length = 50)
-    private String luong;
     @Column(length = 50)
     private String ngayVaoDoan;
     @Column(length = 50)
@@ -60,19 +50,5 @@ public class QuanNhan {
     @Column(length = 50)
     private String ngayChinhThuc;
     @Column(length = 50)
-    private String thanhPhanGd;
-    @Column(length = 50)
-    private String thanhPhanBanThan;
-    @Column(length = 50)
-    private String danToc;
-    @Column(length = 50)
-    private String tonGiao;
-    @Column(length = 100)
-    private String vanHoa;
-    @Column(length = 100)
     private String ngoaiNgu;
-    @Column(length = 100)
-    private String sucKhoe;
-    @Column(length = 50)
-    private String hangThuongBinh;
 }

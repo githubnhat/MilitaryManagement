@@ -10,7 +10,7 @@
 				</a>
 			</div>
 			<div class="col-9 d-flex justify-content-center">
-				<span class="banner">CÁCH MẠNG-CHÍNH QUY-TINH NHUỆ-HIỆN ĐẠI</span>
+				<span class="banner">CÁCH MẠNG - CHÍNH QUY - TINH NHUỆ - HIỆN ĐẠI</span>
 			</div>
 		</div>
 

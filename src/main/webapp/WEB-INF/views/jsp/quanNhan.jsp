@@ -54,195 +54,89 @@
 
                                         <div class="form-content container-fluid">
                                             <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Họ tên khai sinh</label>
-                                                    <div class="input-group">
-                                                        <form:input path="hoTenKhaiSinh" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    </div>
-                                                    <p class="error errhoTenKhaiSinh text-danger small"></p>
+                                                <div class="form-group col-md-4">
+                                                    <label class="control-label font-weight-bold">Họ và tên khai sinh</label>
+                                                    <form:input path="hoTenKhaiSinh" cssClass="form-control" disabled="${isViewMode}"/> [cite: 8]
                                                 </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Họ tên thường dùng</label>
-                                                    <div class="input-group">
-                                                        <form:input path="hoTenThuongDung" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    </div>
-                                                    <p class="error errhoTenThuongDung text-danger small"></p>
+                                                <div class="form-group col-md-4">
+                                                    <label class="control-label font-weight-bold">Họ và tên thường dùng</label>
+                                                    <form:input path="hoTenThuongDung" cssClass="form-control" disabled="${isViewMode}"/> [cite: 12]
                                                 </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Số hiệu quân nhân</label>
-                                                    <div class="input-group">
-                                                        <form:input path="soHieuQuanNhan" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    </div>
-                                                    <p class="error errsoHieuQuanNhan text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Căn cước công dân</label>
-                                                    <div class="input-group">
-                                                        <form:input path="canCuocCongDan" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    </div>
-                                                    <p class="error errcanCuocCongDan text-danger small"></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
+                                                <div class="form-group col-md-4">
                                                     <label class="control-label font-weight-bold">Ngày, tháng, năm sinh</label>
-                                                    <form:input path="ngayThangNamSinh" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayThangNamSinh text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Cấp bậc</label>
-                                                    <form:select path="capBac" cssClass="form-control" disabled="${isViewMode}">
-                                                        <form:option value="" label="-- Chọn --"/>
-                                                        <form:option value="1/" label="1/"/>
-                                                        <form:option value="2/" label="2/"/>
-                                                        <form:option value="3/" label="3/"/>
-                                                        <form:option value="4/" label="4/"/>
-                                                        <form:option value="1//" label="1//"/>
-                                                        <form:option value="2//" label="2//"/>
-                                                        <form:option value="1/CN" label="1/CN"/>
-                                                        <form:option value="2/CN" label="2/CN"/>
-                                                        <form:option value="3/CN" label="3/CN"/>
-                                                        <form:option value="4/CN" label="4/CN"/>
-                                                        <form:option value="1//CN" label="1//CN"/>
-                                                        <form:option value="2//CN" label="2//CN"/>
-                                                    </form:select>
-                                                    <p class="error errcapBac text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Ngày nhận cấp bậc</label>
-                                                    <form:input path="ngayNhanCapBac" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayNhanCapBac text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Ngày nhận thẻ quân nhân</label>
-                                                    <form:input path="ngayCapTheQuanNhan" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayCapTheQuanNhan text-danger small"></p>
+                                                    <form:input path="ngayThangNamSinh" cssClass="form-control" disabled="${isViewMode}"/> [cite: 24]
                                                 </div>
                                             </div>
 
                                             <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Chức vụ</label>
-                                                    <form:input path="chucVu" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errchucVu text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Ngày nhận chức vụ</label>
-                                                    <form:input path="ngayNhanChucVu" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayNhanChucVu text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">CNQS</label>
-                                                    <form:input path="cnqs" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errcnqs text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Bậc kỹ thuật</label>
-                                                    <form:input path="bacKyThuat" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errbacKyThuat text-danger small"></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Nhập ngũ</label>
-                                                    <form:input path="nhapNgu" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errnhapNgu text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Xuất ngũ</label>
-                                                    <form:input path="xuatNgu" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errxuatNgu text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Tái ngũ</label>
-                                                    <form:input path="taiNgu" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errtaiNgu text-danger small"></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Ngày chuyển QNCN</label>
-                                                    <form:input path="ngayChuyenQncn" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayChuyenQncn text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Ngày chuyển CNVCQP</label>
-                                                    <form:input path="ngayChuyenCnvcqp" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayChuyenCnvcqp text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Lương</label>
-                                                    <form:input path="luong" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errluong text-danger small"></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Ngày vào đoàn</label>
-                                                    <form:input path="ngayVaoDoan" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayVaoDoan text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Ngày vào Đảng</label>
-                                                    <form:input path="ngayVaoDang" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayVaoDang text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Ngày chính thức</label>
-                                                    <form:input path="ngayChinhThuc" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngayChinhThuc text-danger small"></p>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Thành phần GĐ</label>
-                                                    <form:input path="thanhPhanGd" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errthanhPhanGd text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Thành phần bản thân</label>
-                                                    <form:input path="thanhPhanBanThan" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errthanhPhanBanThan text-danger small"></p>
-                                                </div>
                                                 <div class="form-group col-md-3">
                                                     <label class="control-label font-weight-bold">Dân tộc</label>
-                                                    <form:input path="danToc" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errdanToc text-danger small"></p>
+                                                    <form:input path="danToc" cssClass="form-control" disabled="${isViewMode}"/> [cite: 87]
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label class="control-label font-weight-bold">Tôn giáo</label>
-                                                    <form:input path="tonGiao" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errtonGiao text-danger small"></p>
+                                                    <form:input path="tonGiao" cssClass="form-control" disabled="${isViewMode}"/> [cite: 89]
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label class="control-label font-weight-bold">Thành phần gia đình</label>
+                                                    <form:input path="thanhPhanGd" cssClass="form-control" disabled="${isViewMode}"/> [cite: 81]
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label class="control-label font-weight-bold">Bản thân</label>
+                                                    <form:input path="thanhPhanBanThan" cssClass="form-control" disabled="${isViewMode}"/> [cite: 84]
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Văn hóa</label>
-                                                    <form:input path="vanHoa" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errvanHoa text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Ngoại ngữ</label>
-                                                    <form:input path="ngoaiNgu" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errngoaiNgu text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Sức khỏe</label>
-                                                    <form:input path="sucKhoe" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errsucKhoe text-danger small"></p>
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Hạng thương binh</label>
-                                                    <form:input path="hangThuongBinh" cssClass="form-control" disabled="${isViewMode}"/>
-                                                    <p class="error errhangThuongBinh text-danger small"></p>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label font-weight-bold">Nguyên quán (ấp, xã, huyện, tỉnh)</label>
+                                    <form:input path="nguyenQuan" cssClass="form-control" disabled="${isViewMode}"/>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label font-weight-bold">Nơi đăng ký hộ khẩu thường trú</label>
+                                    <form:input path="hoKhau" cssClass="form-control" disabled="${isViewMode}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label class="control-label font-weight-bold">Nhập ngũ</label>
+                                    <form:input path="nhapNgu" cssClass="form-control" disabled="${isViewMode}"/> [cite: 55]
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label font-weight-bold">Đơn vị huấn luyện CSM</label>
+                                    <form:input path="donViCSM" cssClass="form-control" disabled="${isViewMode}"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label font-weight-bold">Ngày vào Đoàn</label>
+                                    <form:input path="ngayVaoDoan" cssClass="form-control" disabled="${isViewMode}"/> [cite: 72]
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label font-weight-bold">Ngày vào Đảng</label>
+                                    <form:input path="ngayVaoDang" cssClass="form-control" disabled="${isViewMode}"/> [cite: 75]
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label font-weight-bold">Chính thức</label>
+                                    <form:input path="ngayChinhThuc" cssClass="form-control" disabled="${isViewMode}"/> [cite: 78]
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label class="control-label font-weight-bold">Trình độ học vấn</label>
+                                    <form:input path="trinhDoHocVan" cssClass="form-control" disabled="${isViewMode}"/>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label font-weight-bold">Ngoại ngữ</label>
+                                    <form:input path="ngoaiNgu" cssClass="form-control" disabled="${isViewMode}"/> [cite: 95]
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label class="control-label font-weight-bold">Biết tiếng dân tộc</label>
+                                    <form:input path="tiengDanToc" cssClass="form-control" disabled="${isViewMode}"/>
+                                </div>
+                            </div>
                             <div class="clearfix form-actions form-btn">
                                 <div>
                                     <c:if test="${hanhDong.equals('C')}">
