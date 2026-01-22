@@ -155,4 +155,5 @@ public class QuanNhan {
     @ManyToOne
     @JoinColumn(name = "id_tieu_doi")
     private TieuDoi tieuDoi;
+
 }

@@ -26,4 +26,7 @@ public class DaiDoi {
 
     @OneToMany(mappedBy = "daiDoi", cascade = CascadeType.ALL)
     private List<TrungDoi> dsTrungDoi;
+
+    @Column
+    private int status;
 }

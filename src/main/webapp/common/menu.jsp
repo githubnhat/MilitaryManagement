@@ -36,10 +36,10 @@
 			</div>
 			<ul class="sub-menu">
 				<li><a class="link_name" href="#">Quản lý tiểu đoàn</a></li>
-				<li><a href="<c:url value='/tieu-doan'/>">Tiểu đoàn</a></li>
-				<li><a href="<c:url value='/dai-doi'/>">Đại đội</a></li>
-				<li><a href="<c:url value='/trung-doi'/>">Trung đội</a></li>
-				<li><a href="<c:url value='/tieu-doi'/>">Tiểu đội</a></li>
+				<li><a href="<c:url value='/danh-sach-tieu-doan'/>">Tiểu đoàn</a></li>
+				<li><a href="<c:url value='/danh-sach-dai-doi'/>">Đại đội</a></li>
+				<li><a href="<c:url value='/danh-sach-trung-doi'/>">Trung đội</a></li>
+				<li><a href="<c:url value='/danh-sach-tieu-doi'/>">Tiểu đội</a></li>
 			</ul>
 		</li>
 		<%--<li>

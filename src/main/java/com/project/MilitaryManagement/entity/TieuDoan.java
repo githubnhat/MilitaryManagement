@@ -22,4 +22,7 @@ public class TieuDoan {
 
     @OneToMany(mappedBy = "tieuDoan", cascade = CascadeType.ALL)
     private List<DaiDoi> dsDaiDoi;
+
+    @Column
+    private int status;
 }

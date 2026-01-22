@@ -25,4 +25,7 @@ public class TieuDoi {
     private TrungDoi trungDoi;
     @OneToMany(mappedBy = "tieuDoi", cascade = CascadeType.ALL)
     private List<QuanNhan> dsQuanNhan;
+
+    @Column
+    private int status;
 }
