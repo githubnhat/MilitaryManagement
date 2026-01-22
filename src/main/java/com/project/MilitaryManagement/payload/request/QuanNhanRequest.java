@@ -72,7 +72,17 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha>(
         String thongTinOngBaNoi,
         String ghiChuNoi,
         String thongTinOngBaNgoai,
-        String ghiChuNgoai
+        String ghiChuNgoai,
+        String hoTenBanGai,
+        String ngaySinhBanGai,
+        String diaChiBanGai,
+        String sdtBanGai,
+        String hoTenBanTrai,
+        String ngaySinhBanTrai,
+        String diaChiBanTrai,
+        String sdtBanTrai,
+        String nguoiAnhHuongTichCuc,
+        String canBoDiaPhuongTinNhiem
 ) {
 }
 

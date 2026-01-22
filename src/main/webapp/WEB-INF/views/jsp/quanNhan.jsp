@@ -326,9 +326,15 @@
                                                 <form:input path="coQuanCha" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                             <div class="form-group col-md-3">
-                                                <label class="font-weight-bold">Là Đảng viên</label>
-                                                <div class="mt-2">
-                                                    <form:checkbox path="laDangVienCha" value="true" disabled="${isViewMode}"/> <span class="ml-1">Đúng</span>
+                                                <div class="d-flex align-items-center mt-4">
+                                                    <label class="font-weight-bold mb-0 mr-2" for="laDangVienCha">
+                                                        Đảng viên
+                                                    </label>
+                                                    <form:checkbox path="laDangVienCha"
+                                                                   value="true"
+                                                                   disabled="${isViewMode}"
+                                                                   id="laDangVienCha"
+                                                                   cssStyle="width: 18px; height: 18px; cursor: pointer;" />
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-3">
@@ -375,6 +381,28 @@
                                                 <form:input path="noiOHienNayMe" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Cơ quan công tác</label>
+                                                <form:input path="coQuanCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <div class="d-flex align-items-center mt-4">
+                                                    <label class="font-weight-bold mb-0 mr-2" for="laDangVienCha">
+                                                        Đảng viên
+                                                    </label>
+                                                    <form:checkbox path="laDangVienCha"
+                                                                   value="true"
+                                                                   disabled="${isViewMode}"
+                                                                   id="laDangVienCha"
+                                                                   cssStyle="width: 18px; height: 18px; cursor: pointer;" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Sức khỏe / Bệnh lý</label>
+                                                <form:input path="sucKhoeCha" cssClass="form-control" placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
 
                                         <h6 class="text-info font-weight-bold border-bottom mt-4">Tình trạng hôn nhân & Kinh tế</h6>
                                         <div class="row bg-light py-2 rounded border mx-0 mb-3">
@@ -398,12 +426,20 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-12">
                                                 <label class="font-weight-bold">Gia đình có mấy anh em?</label>
                                                 <div class="input-group">
                                                     <form:input path="soAnhEm" type="number" cssClass="form-control" placeholder="Tổng số"/>
-                                                    <form:input path="soAnhEmTrai" type="number" cssClass="form-control" placeholder="Trai"/>
-                                                    <form:input path="soAnhEmGai" type="number" cssClass="form-control" placeholder="Gái"/>
+
+                                                    <form:input path="soAnhEmTrai" type="number" cssClass="form-control" placeholder="Số lượng"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Trai</span>
+                                                    </div>
+
+                                                    <form:input path="soAnhEmGai" type="number" cssClass="form-control" placeholder="Số lượng"/>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">Gái</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group col-md-3">
@@ -440,6 +476,66 @@
                                                                    placeholder="- Ông ngoại: Tình trạng, năm mất...&#10;- Bà ngoại: Tình trạng, năm mất..." disabled="${isViewMode}"/>
                                                     <label class="mt-2 small italic">Ghi chú (Ngoại):</label>
                                                     <form:input path="ghiChuNgoai" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                </div>
+                                            </div>
+                                            <div class="card mb-4 border-primary">
+                                                <div class="card-header bg-primary text-white font-weight-bold">
+                                                    III. QUAN HỆ XÃ HỘI
+                                                </div>
+                                                <div class="card-body">
+                                                    <h6 class="text-primary font-weight-bold border-bottom pb-1">1. Bạn bè thân thiết</h6>
+                                                    <div class="row">
+                                                        <div class="col-md-6 border-right">
+                                                            <p class="text-danger small font-weight-bold mb-2">● Bạn gái thân nhất</p>
+                                                            <div class="form-group mb-2">
+                                                                <label class="small">Họ và tên / Năm sinh</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <form:input path="hoTenBanGai" cssClass="form-control" placeholder="Họ tên" disabled="${isViewMode}"/>
+                                                                    <form:input path="ngaySinhBanGai" cssClass="form-control" placeholder="Năm sinh" disabled="${isViewMode}"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-2">
+                                                                <label class="small">SĐT / Địa chỉ</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <form:input path="sdtBanGai" cssClass="form-control" placeholder="Số điện thoại" disabled="${isViewMode}"/>
+                                                                    <form:input path="diaChiBanGai" cssClass="form-control" placeholder="Địa chỉ" disabled="${isViewMode}"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p class="text-primary small font-weight-bold mb-2">● Bạn trai thân nhất</p>
+                                                            <div class="form-group mb-2">
+                                                                <label class="small">Họ và tên / Năm sinh</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <form:input path="hoTenBanTrai" cssClass="form-control" placeholder="Họ tên" disabled="${isViewMode}"/>
+                                                                    <form:input path="ngaySinhBanTrai" cssClass="form-control" placeholder="Năm sinh" disabled="${isViewMode}"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group mb-2">
+                                                                <label class="small">SĐT / Địa chỉ</label>
+                                                                <div class="input-group input-group-sm">
+                                                                    <form:input path="sdtBanTrai" cssClass="form-control" placeholder="Số điện thoại" disabled="${isViewMode}"/>
+                                                                    <form:input path="diaChiBanTrai" cssClass="form-control" placeholder="Địa chỉ" disabled="${isViewMode}"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <hr>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 mb-3">
+                                                            <h6 class="text-primary font-weight-bold">2. Người có ảnh hưởng tích cực</h6>
+                                                            <label class="small italic text-muted">Trong bạn bè, người thân ai là người có ảnh hưởng tích cực đến cuộc sống và sự nghiệp của đồng chí?</label>
+                                                            <form:textarea path="nguoiAnhHuongTichCuc" cssClass="form-control" rows="2" placeholder="Ghi rõ họ tên, mối quan hệ và lý do..." disabled="${isViewMode}"/>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <h6 class="text-primary font-weight-bold">3. Cán bộ địa phương quen biết và tín nhiệm</h6>
+                                                            <label class="small italic text-muted">Ghi rõ họ tên, chức vụ, địa chỉ công tác (có thể nêu nhiều người):</label>
+                                                            <form:textarea path="canBoDiaPhuongTinNhiem" cssClass="form-control" rows="3" placeholder="Ví dụ: Ông Nguyễn Văn A - Chủ tịch xã X; Bà Trần Thị B - Bí thư đoàn..." disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -608,53 +704,53 @@
                 $('.error').hide().text('');
                 var isValid = true;
 
-                var hoTenKhaiSinh = $('input[name="hoTenKhaiSinh"]').val().trim();
-                var canCuocCongDan = $('input[name="canCuocCongDan"]').val().trim();
-                var soHieuQuanNhan = $('input[name="soHieuQuanNhan"]').val().trim();
-                var ngayThangNamSinh = $('input[name="ngayThangNamSinh"]').val().trim();
-                var sucKhoe = $('select[name="sucKhoe"]').val();
-                var chieuCao = $('input[name="chieuCao"]').val();
-                var canNang = $('input[name="canNang"]').val();
-                var khiChat = $('select[name="khiChat"]').val();
-                var sdt = $('input[name="soDienThoaiBaoTin"]').val().trim();
-                var phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
-
-                if (hoTenKhaiSinh === '') {
-                    $('.errhoTenKhaiSinh').show().text('Họ tên khai sinh không được để trống');
-                    isValid = false;
-                }
-                if (canCuocCongDan === '') {
-                    $('.errcanCuocCongDan').show().text('Số căn cước công dân không được để trống');
-                    isValid = false;
-                }
-                if (soHieuQuanNhan === '') {
-                    $('.errsoHieuQuanNhan').show().text('Số hiệu quân nhân không được để trống');
-                    isValid = false;
-                }
-                if (ngayThangNamSinh === '') {
-                    $('.errngayThangNamSinh').show().text('Ngày, tháng, năm sinh không được để trống');
-                    isValid = false;
-                }
-                if (sucKhoe === '' || sucKhoe === null) {
-                    alert('Vui lòng chọn phân loại sức khỏe');
-                    isValid = false;
-                }
-                if (chieuCao !== '' && chieuCao <= 0) {
-                    alert('Chiều cao phải lớn hơn 0');
-                    return false;
-                }
-                if (canNang !== '' && canNang <= 0) {
-                    alert('Cân nặng phải lớn hơn 0');
-                    return false;
-                }
-                if (khiChat === '') {
-                    alert('Vui lòng chọn đặc điểm khí chất');
-                    isValid = false;
-                }
-                if (sdt !== '' && !phoneRegex.test(sdt)) {
-                    alert('Số điện thoại báo tin không đúng định dạng (10 số, bắt đầu bằng 03, 05, 07, 08, 09)');
-                    return false;
-                }
+                // var hoTenKhaiSinh = $('input[name="hoTenKhaiSinh"]').val().trim();
+                // var canCuocCongDan = $('input[name="canCuocCongDan"]').val().trim();
+                // var soHieuQuanNhan = $('input[name="soHieuQuanNhan"]').val().trim();
+                // var ngayThangNamSinh = $('input[name="ngayThangNamSinh"]').val().trim();
+                // var sucKhoe = $('select[name="sucKhoe"]').val();
+                // var chieuCao = $('input[name="chieuCao"]').val();
+                // var canNang = $('input[name="canNang"]').val();
+                // var khiChat = $('select[name="khiChat"]').val();
+                // var sdt = $('input[name="soDienThoaiBaoTin"]').val().trim();
+                // var phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
+                //
+                // if (hoTenKhaiSinh === '') {
+                //     $('.errhoTenKhaiSinh').show().text('Họ tên khai sinh không được để trống');
+                //     isValid = false;
+                // }
+                // if (canCuocCongDan === '') {
+                //     $('.errcanCuocCongDan').show().text('Số căn cước công dân không được để trống');
+                //     isValid = false;
+                // }
+                // if (soHieuQuanNhan === '') {
+                //     $('.errsoHieuQuanNhan').show().text('Số hiệu quân nhân không được để trống');
+                //     isValid = false;
+                // }
+                // if (ngayThangNamSinh === '') {
+                //     $('.errngayThangNamSinh').show().text('Ngày, tháng, năm sinh không được để trống');
+                //     isValid = false;
+                // }
+                // if (sucKhoe === '' || sucKhoe === null) {
+                //     alert('Vui lòng chọn phân loại sức khỏe');
+                //     isValid = false;
+                // }
+                // if (chieuCao !== '' && chieuCao <= 0) {
+                //     alert('Chiều cao phải lớn hơn 0');
+                //     return false;
+                // }
+                // if (canNang !== '' && canNang <= 0) {
+                //     alert('Cân nặng phải lớn hơn 0');
+                //     return false;
+                // }
+                // if (khiChat === '') {
+                //     alert('Vui lòng chọn đặc điểm khí chất');
+                //     isValid = false;
+                // }
+                // if (sdt !== '' && !phoneRegex.test(sdt)) {
+                //     alert('Số điện thoại báo tin không đúng định dạng (10 số, bắt đầu bằng 03, 05, 07, 08, 09)');
+                //     return false;
+                // }
                 return isValid;
             }
         </script>

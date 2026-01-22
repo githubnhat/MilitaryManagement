@@ -105,7 +105,7 @@
 
                     <div class="form-group">
                         <label class="font-weight-bold">Trực thuộc tiểu đoàn</label>
-                        <select class="form-control" name="idTieuDoan" id="idTieuDoan" required>
+                        <select class="form-control" name="tieuDoan" id="idTieuDoan" required>
                             <option value="">-- Chọn tiểu đoàn --</option>
                             <c:forEach var="tieuDoan" items="${tieuDoanList}">
                                 <option value="${tieuDoan.id}">${tieuDoan.tenTieuDoan}</option>

@@ -152,6 +152,28 @@ public class QuanNhan {
     private String ghiChuNoi;
     @Column(length = 255)
     private String ghiChuNgoai;
+
+    @Column(length = 100)
+    private String hoTenBanGai;
+    @Column(length = 20)
+    private String ngaySinhBanGai;
+    @Column(length = 255)
+    private String diaChiBanGai;
+    @Column(length = 20)
+    private String sdtBanGai;
+    @Column(length = 100)
+    private String hoTenBanTrai;
+    @Column(length = 20)
+    private String ngaySinhBanTrai;
+    @Column(length = 255)
+    private String diaChiBanTrai;
+    @Column(length = 20)
+    private String sdtBanTrai;
+    @Column(columnDefinition = "TEXT")
+    private String nguoiAnhHuongTichCuc;
+    @Column(columnDefinition = "TEXT")
+    private String canBoDiaPhuongTinNhiem;
+
     @ManyToOne
     @JoinColumn(name = "id_tieu_doi")
     private TieuDoi tieuDoi;
