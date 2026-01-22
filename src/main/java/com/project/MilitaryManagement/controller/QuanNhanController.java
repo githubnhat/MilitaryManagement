@@ -2,8 +2,10 @@ package com.project.MilitaryManagement.controller;
 
 import com.project.MilitaryManagement.entity.Military;
 import com.project.MilitaryManagement.entity.QuanNhan;
+import com.project.MilitaryManagement.entity.TieuDoi;
 import com.project.MilitaryManagement.service.MilitaryService;
 import com.project.MilitaryManagement.service.QuanNhanService;
+import com.project.MilitaryManagement.service.TieuDoiService;
 import com.project.MilitaryManagement.utils.MessageUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,12 +20,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuanNhanController {
     private final QuanNhanService quanNhanService;
+    private final TieuDoiService tieuDoiService;
     private  final MessageUtil messageUtil;
     @GetMapping(value = "/tao-quan-nhan")
     public String taoQuanNhan(Model model,
                                  @RequestParam(value = "message", required = false) String message,
                                  @RequestParam(value = "alert", required = false) String alert) {
         model.addAttribute("hanhDong", "C");
+        List<TieuDoi> tieuDoiList = tieuDoiService.findAll();
+        model.addAttribute("tieuDoiList",tieuDoiList);
         QuanNhan quanNhan = new QuanNhan();
         model.addAttribute("quanNhan", quanNhan);
         messageUtil.showMessage(message, alert, model);

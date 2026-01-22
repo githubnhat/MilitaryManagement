@@ -27,6 +27,21 @@
 
 			</ul>
 		</li>
+		<li>
+			<div class="icon-links">
+				<a href="#"> <i class="bx bx-user arrow"></i> <scan
+						class="link_name arrow dropdown">Quản lý tiểu đoàn</scan> <i
+						class="bx bxs-chevron-down arrow icon-show"></i>
+				</a>
+			</div>
+			<ul class="sub-menu">
+				<li><a class="link_name" href="#">Quản lý tiểu đoàn</a></li>
+				<li><a href="<c:url value='/tieu-doan'/>">Tiểu đoàn</a></li>
+				<li><a href="<c:url value='/dai-doi'/>">Đại đội</a></li>
+				<li><a href="<c:url value='/trung-doi'/>">Trung đội</a></li>
+				<li><a href="<c:url value='/tieu-doi'/>">Tiểu đội</a></li>
+			</ul>
+		</li>
 		<%--<li>
 			<div class="icon-links">
 				<a href="#"> <i class="bx bx-file arrow"></i> <scan

@@ -52,89 +52,398 @@
 
                             <c:set var="isViewMode" value="${hanhDong.equals('I')}"/>
 
-                                        <div class="form-content container-fluid">
-                                            <div class="row">
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Họ và tên khai sinh</label>
-                                                    <form:input path="hoTenKhaiSinh" cssClass="form-control" disabled="${isViewMode}"/> [cite: 8]
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Họ và tên thường dùng</label>
-                                                    <form:input path="hoTenThuongDung" cssClass="form-control" disabled="${isViewMode}"/> [cite: 12]
-                                                </div>
-                                                <div class="form-group col-md-4">
-                                                    <label class="control-label font-weight-bold">Ngày, tháng, năm sinh</label>
-                                                    <form:input path="ngayThangNamSinh" cssClass="form-control" disabled="${isViewMode}"/> [cite: 24]
+                            <div class="form-content container-fluid">
+                                <div class="card mb-4 border-primary">
+                                    <div class="card-header bg-primary text-white font-weight-bold text-center">
+                                        I. BẢN THÂN
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Họ và tên khai sinh</label>
+                                                <form:input path="hoTenKhaiSinh" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Họ và tên thường dùng</label>
+                                                <form:input path="hoTenThuongDung" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Ngày, tháng, năm sinh</label>
+                                                <form:input path="ngayThangNamSinh" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Dân tộc</label>
+                                                <form:input path="danToc" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Tôn giáo</label>
+                                                <form:input path="tonGiao" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Thành phần gia đình</label>
+                                                <form:input path="thanhPhanGd" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Thành phần bản thân</label>
+                                                <form:input path="thanhPhanBanThan" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Nguyên quán (ấp, xã, huyện, tỉnh)</label>
+                                                <form:input path="nguyenQuan" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Hộ khẩu thường trú</label>
+                                                <form:input path="hoKhau" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <hr> <div class="row">
+                                        <div class="form-group col-md-3">
+                                            <label class="font-weight-bold">Nhập ngũ</label>
+                                            <form:input path="nhapNgu" cssClass="form-control" disabled="${isViewMode}"/>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="font-weight-bold">Ngày vào Đoàn</label>
+                                            <form:input path="ngayVaoDoan" cssClass="form-control" disabled="${isViewMode}"/>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="font-weight-bold">Ngày vào Đảng</label>
+                                            <form:input path="ngayVaoDang" cssClass="form-control" disabled="${isViewMode}"/>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label class="font-weight-bold">Ngày Chính thức</label>
+                                            <form:input path="ngayChinhThuc" cssClass="form-control" disabled="${isViewMode}"/>
+                                        </div>
+                                    </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Trình độ học vấn</label>
+                                                <form:input path="trinhDoHocVan" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Ngoại ngữ</label>
+                                                <form:input path="ngoaiNgu" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Biết tiếng dân tộc</label>
+                                                <form:input path="tiengDanToc" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Chuyên môn đào tạo qua trường</label>
+                                                <form:input path="chuyenMonDaoTao" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Chuyên môn tự học, biết làm</label>
+                                                <form:input path="chuyenMonTuHoc" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="row bg-light py-2 rounded">
+                                            <div class="form-group col-md-2">
+                                                <label class="font-weight-bold">Sức khỏe (Loại)</label>
+                                                <form:select path="sucKhoe" cssClass="form-control" disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn --"/>
+                                                    <form:option value="1" label="Loại 1"/><form:option value="2" label="Loại 2"/>
+                                                    <form:option value="3" label="Loại 3"/><form:option value="4" label="Loại 4"/>
+                                                </form:select>
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label class="font-weight-bold">Chiều cao (cm)</label>
+                                                <form:input path="chieuCao" type="number" step="0.1" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-2">
+                                                <label class="font-weight-bold">Cân nặng (kg)</label>
+                                                <form:input path="canNang" type="number" step="0.1" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Khí chất</label>
+                                                <form:select path="khiChat" cssClass="form-control" disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn --"/>
+                                                    <form:option value="Trầm lặng" label="Trầm lặng"/>
+                                                    <form:option value="Nóng nảy" label="Nóng nảy"/>
+                                                    <form:option value="Hoạt bát" label="Hoạt bát"/>
+                                                </form:select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Bệnh lý</label>
+                                                <form:input path="benhLy" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Trước nhập ngũ (Làm gì, ở đâu, thời gian)</label>
+                                                <form:input path="truocNhapNgu" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Sở thích cá nhân</label>
+                                                <form:input path="soThichCaNhan" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-5">
+                                                <label class="font-weight-bold">Lý do đi bộ đội</label>
+                                                <form:select path="lyDoNhapNgu" cssClass="form-control" disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn --"/>
+                                                    <form:option value="Do lệnh gọi" label="Do lệnh gọi"/>
+                                                    <form:option value="Do tình nguyện" label="Do tình nguyện"/>
+                                                </form:select>
+                                            </div>
+                                            <div class="form-group col-md-7">
+                                                <label class="font-weight-bold">Suy nghĩ về môi trường quân đội</label>
+                                                <form:select path="suyNghiMoiTruong" cssClass="form-control" disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn --"/>
+                                                    <form:option value="Đây là môi trường tốt rèn luyện con người" label="Đây là môi trường tốt rèn luyện con người"/>
+                                                    <form:option value="Đây là môi trường gian nan, vất vả" label="Đây là môi trường gian nan, vất vả"/>
+                                                </form:select>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Nguyện vọng bản thân</label>
+                                                <form:select path="nguyenVongBanThan" id="nguyenVongSelect" cssClass="form-control" disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn --"/>
+                                                    <form:option value="Tiểu đội trưởng, khẩu đội trưởng" label="Đi học tiểu đội trưởng, khẩu đội trưởng"/>
+                                                    <form:option value="Đi học CMKT" label="Đi học CMKT"/>
+                                                    <form:option value="Đi học SQDB" label="Đi học SQDB"/>
+                                                    <form:option value="Đi học sĩ quan" label="Đi học sĩ quan"/>
+                                                    <form:option value="Kết nạp vào đảng" label="Kết nạp vào đảng"/>
+                                                    <form:option value="Ra quân" label="Ra quân khi hết nghĩa vụ"/>
+                                                </form:select>
+                                            </div>
+                                            <div class="form-group col-md-6" id="fieldCMKT" style="display: none;">
+                                                <label class="font-weight-bold text-danger">Ngành CMKT muốn học cụ thể</label>
+                                                <form:input path="chiTietCMKT" cssClass="form-control border-danger" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <hr>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label class="font-weight-bold">Địa chỉ khi đi phép, đi tranh thủ</label>
+                                                <form:input path="diaChiDiPhep" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row bg-light p-2 rounded border mx-0">
+                                            <div class="col-md-12"><small class="text-primary font-weight-bold">KHI CẦN BÁO TIN CHO AI</small></div>
+                                            <div class="form-group col-md-3">
+                                                <label>Họ tên người thân</label>
+                                                <form:input path="nguoiBaoTin" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Địa chỉ</label>
+                                                <form:input path="diaChiNguoiBaoTin" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label>Số điện thoại</label>
+                                                <form:input path="soDienThoaiBaoTin" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-bold text-success">Đơn vị huấn luyện CSM</label>
+                                        <form:input path="donViCSM" cssClass="form-control" disabled="${isViewMode}"/>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label class="font-weight-bold text-success">Biên chế tại Tiểu đội</label>
+                                        <select name="tieuDoiId" class="form-control" ${isViewMode ? 'disabled' : ''}>
+                                            <c:forEach var="item" items="${tieuDoiList}">
+                                                <option value="${item.id}" ${item.id == quanNhan.tieuDoi.id ? 'selected' : ''}>
+                                                        ${item.tenTieuDoi}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-content container-fluid">
+                                <div class="card mb-4 border-info">
+                                    <div class="card-header bg-info text-white font-weight-bold">
+                                        II. GIA ĐÌNH (Dựa trên biểu mẫu hồ sơ)
+                                    </div>
+                                    <div class="card-body">
+
+                                        <h6 class="text-info font-weight-bold border-bottom">1. Họ và tên cha</h6>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Họ tên cha</label>
+                                                <form:input path="hoTenCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Sinh ngày</label>
+                                                <form:input path="ngaySinhCha" cssClass="form-control" placeholder="dd/mm/yyyy" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Số điện thoại (SĐT)</label>
+                                                <form:input path="sdtCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Tình trạng</label>
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <form:radiobutton path="tinhTrangCha" value="Còn sống" disabled="${isViewMode}"/> <span class="ml-1 mr-3">Còn sống</span>
+                                                    <form:radiobutton path="tinhTrangCha" value="Từ trần" disabled="${isViewMode}"/> <span class="ml-1">Từ trần</span>
                                                 </div>
                                             </div>
-
-                                            <div class="row">
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Dân tộc</label>
-                                                    <form:input path="danToc" cssClass="form-control" disabled="${isViewMode}"/> [cite: 87]
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Tôn giáo</label>
-                                                    <form:input path="tonGiao" cssClass="form-control" disabled="${isViewMode}"/> [cite: 89]
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Thành phần gia đình</label>
-                                                    <form:input path="thanhPhanGd" cssClass="form-control" disabled="${isViewMode}"/> [cite: 81]
-                                                </div>
-                                                <div class="form-group col-md-3">
-                                                    <label class="control-label font-weight-bold">Bản thân</label>
-                                                    <form:input path="thanhPhanBanThan" cssClass="form-control" disabled="${isViewMode}"/> [cite: 84]
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Ngày từ trần (nếu có)</label>
+                                                <form:input path="ngayTuTranCha" cssClass="form-control" placeholder="DL hay AL" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Nghề nghiệp</label>
+                                                <form:input path="ngheNghiepCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Chức vụ</label>
+                                                <form:input path="chucVuCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Cơ quan công tác</label>
+                                                <form:input path="coQuanCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Là Đảng viên</label>
+                                                <div class="mt-2">
+                                                    <form:checkbox path="laDangVienCha" value="true" disabled="${isViewMode}"/> <span class="ml-1">Đúng</span>
                                                 </div>
                                             </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label font-weight-bold">Nguyên quán (ấp, xã, huyện, tỉnh)</label>
-                                    <form:input path="nguyenQuan" cssClass="form-control" disabled="${isViewMode}"/>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label font-weight-bold">Nơi đăng ký hộ khẩu thường trú</label>
-                                    <form:input path="hoKhau" cssClass="form-control" disabled="${isViewMode}"/>
-                                </div>
-                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Sức khỏe / Bệnh lý</label>
+                                                <form:input path="sucKhoeCha" cssClass="form-control" placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label class="font-weight-bold">Nơi ở hiện nay (ấp, xã, huyện, tỉnh)</label>
+                                                <form:input path="noiOHienNayCha" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label class="control-label font-weight-bold">Nhập ngũ</label>
-                                    <form:input path="nhapNgu" cssClass="form-control" disabled="${isViewMode}"/> [cite: 55]
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label class="control-label font-weight-bold">Đơn vị huấn luyện CSM</label>
-                                    <form:input path="donViCSM" cssClass="form-control" disabled="${isViewMode}"/>
-                                </div>
-                            </div>
+                                        <h6 class="text-info font-weight-bold border-bottom mt-4">2. Họ và tên mẹ</h6>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Họ tên mẹ</label>
+                                                <form:input path="hoTenMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Sinh ngày</label>
+                                                <form:input path="ngaySinhMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label class="font-weight-bold">Số điện thoại (SĐT)</label>
+                                                <form:input path="sdtMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Tình trạng</label>
+                                                <div class="d-flex align-items-center mt-2">
+                                                    <form:radiobutton path="tinhTrangMe" value="Còn sống" disabled="${isViewMode}"/> <span class="ml-1 mr-3">Còn sống</span>
+                                                    <form:radiobutton path="tinhTrangMe" value="Từ trần" disabled="${isViewMode}"/> <span class="ml-1">Từ trần</span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Ngày từ trần (nếu có)</label>
+                                                <form:input path="ngayTuTranMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Nơi ở hiện nay (ấp, xã, huyện, tỉnh)</label>
+                                                <form:input path="noiOHienNayMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label class="control-label font-weight-bold">Ngày vào Đoàn</label>
-                                    <form:input path="ngayVaoDoan" cssClass="form-control" disabled="${isViewMode}"/> [cite: 72]
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label font-weight-bold">Ngày vào Đảng</label>
-                                    <form:input path="ngayVaoDang" cssClass="form-control" disabled="${isViewMode}"/> [cite: 75]
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label font-weight-bold">Chính thức</label>
-                                    <form:input path="ngayChinhThuc" cssClass="form-control" disabled="${isViewMode}"/> [cite: 78]
-                                </div>
-                            </div>
+                                        <h6 class="text-info font-weight-bold border-bottom mt-4">Tình trạng hôn nhân & Kinh tế</h6>
+                                        <div class="row bg-light py-2 rounded border mx-0 mb-3">
+                                            <div class="form-group col-md-12">
+                                                <label class="font-weight-bold">Tình trạng hôn nhân của cha mẹ:</label>
+                                                <div class="d-flex flex-wrap mt-1">
+                                                    <form:radiobutton path="honNhanChaMe" value="Hạnh phúc" class="ml-2"/> Hạnh phúc
+                                                    <form:radiobutton path="honNhanChaMe" value="Ly thân" class="ml-3"/> Ly thân
+                                                    <form:radiobutton path="honNhanChaMe" value="Ly hôn" class="ml-3"/> Ly hôn
+                                                    <form:radiobutton path="honNhanChaMe" value="Bạo lực gia đình" class="ml-3"/> Bạo lực gia đình
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label class="font-weight-bold">Hoàn cảnh kinh tế:</label>
+                                                <div class="d-flex mt-1">
+                                                    <form:radiobutton path="kinhTeGiaDinh" value="Khá giả" class="ml-2"/> Khá giả
+                                                    <form:radiobutton path="kinhTeGiaDinh" value="Đủ sống" class="ml-3"/> Đủ sống
+                                                    <form:radiobutton path="kinhTeGiaDinh" value="Khó khăn" class="ml-3"/> Khó khăn
+                                                </div>
+                                            </div>
+                                        </div>
 
-                            <div class="row">
-                                <div class="form-group col-md-4">
-                                    <label class="control-label font-weight-bold">Trình độ học vấn</label>
-                                    <form:input path="trinhDoHocVan" cssClass="form-control" disabled="${isViewMode}"/>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label font-weight-bold">Ngoại ngữ</label>
-                                    <form:input path="ngoaiNgu" cssClass="form-control" disabled="${isViewMode}"/> [cite: 95]
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label class="control-label font-weight-bold">Biết tiếng dân tộc</label>
-                                    <form:input path="tiengDanToc" cssClass="form-control" disabled="${isViewMode}"/>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="font-weight-bold">Gia đình có mấy anh em?</label>
+                                                <div class="input-group">
+                                                    <form:input path="soAnhEm" type="number" cssClass="form-control" placeholder="Tổng số"/>
+                                                    <form:input path="soAnhEmTrai" type="number" cssClass="form-control" placeholder="Trai"/>
+                                                    <form:input path="soAnhEmGai" type="number" cssClass="form-control" placeholder="Gái"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Bản thân là con thứ mấy?</label>
+                                                <form:input path="conThuMay" type="number" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Số người là cán bộ, Đảng viên</label>
+                                                <form:input path="soAnhEmLaCanBo" type="number" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label class="font-weight-bold">Số điện thoại liên lạc gia đình</label>
+                                                <form:input path="sdtLienLacGiaDinh" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <label class="font-weight-bold text-dark">3. Ông, bà nội</label>
+                                                    <form:textarea path="thongTinOngBaNoi" cssClass="form-control" rows="3"
+                                                                   placeholder="- Ông nội: Tình trạng, năm mất...&#10;- Bà nội: Tình trạng, năm mất..." disabled="${isViewMode}"/>
+                                                    <label class="mt-2 small italic">Ghi chú (Nội):</label>
+                                                    <form:input path="ghiChuNoi" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="p-2 border rounded bg-white">
+                                                    <label class="font-weight-bold text-dark">4. Ông, bà ngoại</label>
+                                                    <form:textarea path="thongTinOngBaNgoai" cssClass="form-control" rows="3"
+                                                                   placeholder="- Ông ngoại: Tình trạng, năm mất...&#10;- Bà ngoại: Tình trạng, năm mất..." disabled="${isViewMode}"/>
+                                                    <label class="mt-2 small italic">Ghi chú (Ngoại):</label>
+                                                    <form:input path="ghiChuNgoai" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="clearfix form-actions form-btn">
@@ -192,6 +501,29 @@
                             window.location.href = url;
                         }, 400);
                     }
+                });
+            });
+            $(document).ready(function() {
+                // Hàm xử lý ẩn hiện
+                function toggleCMKT() {
+                    var selectedValue = $('#nguyenVongSelect').val();
+                    if (selectedValue === 'Đi học CMKT') {
+                        $('#fieldCMKT').show();
+                    } else {
+                        $('#fieldCMKT').hide();
+                        // Xóa giá trị nếu người dùng đổi sang lựa chọn khác (tùy chọn)
+                        if (!'${isViewMode}') {
+                            $('input[name="chiTietCMKT"]').val('');
+                        }
+                    }
+                }
+
+                // Chạy khi load trang (để hiển thị đúng dữ liệu đã lưu)
+                toggleCMKT();
+
+                // Chạy khi thay đổi select
+                $('#nguyenVongSelect').change(function() {
+                    toggleCMKT();
                 });
             });
 
@@ -272,7 +604,6 @@
             });
 
 
-
             function validation() {
                 $('.error').hide().text('');
                 var isValid = true;
@@ -281,6 +612,12 @@
                 var canCuocCongDan = $('input[name="canCuocCongDan"]').val().trim();
                 var soHieuQuanNhan = $('input[name="soHieuQuanNhan"]').val().trim();
                 var ngayThangNamSinh = $('input[name="ngayThangNamSinh"]').val().trim();
+                var sucKhoe = $('select[name="sucKhoe"]').val();
+                var chieuCao = $('input[name="chieuCao"]').val();
+                var canNang = $('input[name="canNang"]').val();
+                var khiChat = $('select[name="khiChat"]').val();
+                var sdt = $('input[name="soDienThoaiBaoTin"]').val().trim();
+                var phoneRegex = /^(0[3|5|7|8|9])+([0-9]{8})$/;
 
                 if (hoTenKhaiSinh === '') {
                     $('.errhoTenKhaiSinh').show().text('Họ tên khai sinh không được để trống');
@@ -297,6 +634,26 @@
                 if (ngayThangNamSinh === '') {
                     $('.errngayThangNamSinh').show().text('Ngày, tháng, năm sinh không được để trống');
                     isValid = false;
+                }
+                if (sucKhoe === '' || sucKhoe === null) {
+                    alert('Vui lòng chọn phân loại sức khỏe');
+                    isValid = false;
+                }
+                if (chieuCao !== '' && chieuCao <= 0) {
+                    alert('Chiều cao phải lớn hơn 0');
+                    return false;
+                }
+                if (canNang !== '' && canNang <= 0) {
+                    alert('Cân nặng phải lớn hơn 0');
+                    return false;
+                }
+                if (khiChat === '') {
+                    alert('Vui lòng chọn đặc điểm khí chất');
+                    isValid = false;
+                }
+                if (sdt !== '' && !phoneRegex.test(sdt)) {
+                    alert('Số điện thoại báo tin không đúng định dạng (10 số, bắt đầu bằng 03, 05, 07, 08, 09)');
+                    return false;
                 }
                 return isValid;
             }
