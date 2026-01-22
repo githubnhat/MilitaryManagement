@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TieuDoiRepository extends JpaRepository<TieuDoi, Long> {
-    List<TieuDoi> findAll();
+    List<TieuDoi> findAllByStatus(int status);
 }

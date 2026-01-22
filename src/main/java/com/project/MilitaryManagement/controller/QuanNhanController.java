@@ -27,7 +27,7 @@ public class QuanNhanController {
                                  @RequestParam(value = "message", required = false) String message,
                                  @RequestParam(value = "alert", required = false) String alert) {
         model.addAttribute("hanhDong", "C");
-        List<TieuDoi> tieuDoiList = tieuDoiService.findAll();
+        List<TieuDoi> tieuDoiList = tieuDoiService.findAllByStatus(1);
         model.addAttribute("tieuDoiList",tieuDoiList);
         QuanNhan quanNhan = new QuanNhan();
         model.addAttribute("quanNhan", quanNhan);

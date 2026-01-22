@@ -148,7 +148,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
-                            <button id="deleteTerms" type="submit" class="btn btn-danger">Xóa</button>
+                            <button id="deleteTieuDoan" type="submit" class="btn btn-danger">Xóa</button>
                         </div>
                     </form>
                 </div>
@@ -196,7 +196,7 @@
                 })
             }
 
-            $('#deleteTerms').click(function (e) {
+            $('#deleteTieuDoan').click(function (e) {
                 e.preventDefault();
                 let data = {}; // mang object name: value
                 // lay data khi check vao cac checkbox
@@ -205,11 +205,11 @@
                 }).get();
                 if (dataArray.length != 0) {
                     data['ids'] = dataArray;
-                    deleteMenu(data);
+                    deleteTieuDoan(data);
                 }
             })
 
-            function deleteMenu(data) {
+            function deleteTieuDoan(data) {
                 $('.load').show();
                 $.ajax({
                     url: '${APIurl}',
