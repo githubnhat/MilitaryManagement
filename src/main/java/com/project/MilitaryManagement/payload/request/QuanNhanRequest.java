@@ -2,8 +2,10 @@ package com.project.MilitaryManagement.payload.request;
 
 import lombok.With;
 
+import java.util.Date;
+
 @With
-public record QuanNhanRequest<ngaySinhCha, sdtCha>(
+public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, ngayMatBaNoi, statusOngNgoai, ngayMatOngNgoai, statusBaNgoai, ngayMatBaNgoai, nguoiBaoTin>(
         Long id,
         long [] ids,
         String hoTenKhaiSinh,
@@ -37,6 +39,13 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha>(
         String nguyenVongBanThan,
         String chiTietCMKT,
         String diaChiDiPhep,
+        String hoTenVo,
+        String ngaySinhVo,
+        String diaChiVo,
+        String sdtVo,
+        Integer soConTrai,
+        Integer soConGai,
+        String thongTinChiTietCon,
         String nguoiBaoTin,
         String diaChiNguoiBaoTin,
         String soDienThoaiBaoTin,
@@ -70,9 +79,7 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha>(
         Integer soAnhEmLaCanBo,
         String sdtLienLacGiaDinh,
         String thongTinOngBaNoi,
-        String ghiChuNoi,
         String thongTinOngBaNgoai,
-        String ghiChuNgoai,
         String hoTenBanGai,
         String ngaySinhBanGai,
         String diaChiBanGai,
@@ -82,7 +89,19 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha>(
         String diaChiBanTrai,
         String sdtBanTrai,
         String nguoiAnhHuongTichCuc,
-        String canBoDiaPhuongTinNhiem
+        String canBoDiaPhuongTinNhiem,
+
+        String statusOngNoi,
+        Date ngayMatOngNoi,
+        String statusBaNoi,
+        Date ngayMatBaNoi,
+        String ghiChuNoi,
+
+        String statusOngNgoai,
+        Date ngayMatOngNgoai,
+        String statusBaNgoai,
+        Date ngayMatBaNgoai,
+        String ghiChuNgoai
 ) {
 }
 

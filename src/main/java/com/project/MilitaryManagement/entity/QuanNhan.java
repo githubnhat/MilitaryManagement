@@ -3,6 +3,9 @@ package com.project.MilitaryManagement.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -83,6 +86,25 @@ public class QuanNhan {
     private String chiTietCMKT;
     @Column(length = 255)
     private String diaChiDiPhep;
+
+    // --- THÔNG TIN VỢ ---
+    @Column(length = 100)
+    private String hoTenVo;
+    @Column(length = 20)
+    private String ngaySinhVo;
+    @Column(length = 255)
+    private String diaChiVo;
+    @Column(length = 20)
+    private String sdtVo;
+
+    // --- THÔNG TIN CON ---
+    @Column
+    private Integer soConTrai;
+    @Column
+    private Integer soConGai;
+    @Column(columnDefinition = "TEXT")
+    private String thongTinChiTietCon; //
+
     @Column(length = 100)
     private String nguoiBaoTin;
     @Column(length = 255)
@@ -144,13 +166,26 @@ public class QuanNhan {
     private Integer soAnhEmLaCanBo;
     @Column(length = 255)
     private String sdtLienLacGiaDinh;
-    @Column(length = 255)
-    private String thongTinOngBaNoi;
-    @Column(length = 255)
-    private String thongTinOngBaNgoai;
-    @Column(length = 255)
+    // --- ÔNG BÀ NỘI ---
+    private String statusOngNoi; // "con_song" hoặc "da_mat"
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ngayMatOngNoi;
+
+    private String statusBaNoi;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ngayMatBaNoi;
+
     private String ghiChuNoi;
-    @Column(length = 255)
+
+    // --- ÔNG BÀ NGOẠI ---
+    private String statusOngNgoai;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ngayMatOngNgoai;
+
+    private String statusBaNgoai;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ngayMatBaNgoai;
+
     private String ghiChuNgoai;
 
     @Column(length = 100)
@@ -173,6 +208,7 @@ public class QuanNhan {
     private String nguoiAnhHuongTichCuc;
     @Column(columnDefinition = "TEXT")
     private String canBoDiaPhuongTinNhiem;
+
 
     @ManyToOne
     @JoinColumn(name = "id_tieu_doi")

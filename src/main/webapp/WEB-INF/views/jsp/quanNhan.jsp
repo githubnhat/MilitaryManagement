@@ -53,8 +53,8 @@
                             <c:set var="isViewMode" value="${hanhDong.equals('I')}"/>
 
                             <div class="form-content container-fluid">
-                                <div class="card mb-4 border-primary">
-                                    <div class="card-header bg-primary text-white font-weight-bold text-center">
+                                <div class="card mb-4 border-info">
+                                    <div class="card-header bg-info text-white font-weight-bold">
                                         I. BẢN THÂN
                                     </div>
                                     <div class="card-body">
@@ -242,6 +242,41 @@
                                             </div>
                                         </div>
 
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <div class="p-3 border rounded bg-white h-100">
+                                                    <label class="font-weight-bold text-primary">5. Thông tin Vợ</label>
+                                                    <div class="form-group">
+                                                        <label class="small">Tình trạng hôn nhân:</label>
+                                                        <select id="hasWife" class="form-control form-control-sm">
+                                                            <option value="false">Chưa có vợ</option>
+                                                            <option value="true">Đã có vợ</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div id="wifeInfoFields" style="display: none;" class="mt-2 pt-2 border-top">
+                                                        <div class="mb-2">
+                                                            <label class="small">Họ và tên vợ:</label>
+                                                            <form:input path="hoTenVo" cssClass="form-control form-control-sm"/>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="small">Ngày sinh:</label>
+                                                            <form:input path="ngaySinhVo" cssClass="form-control form-control-sm" placeholder="dd/mm/yyyy"/>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="small">Địa chỉ:</label>
+                                                            <form:input path="diaChiVo" cssClass="form-control form-control-sm"/>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="small">SĐT vợ:</label>
+                                                            <form:input path="sdtVo" cssClass="form-control form-control-sm"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                         <div class="row bg-light p-2 rounded border mx-0">
                                             <div class="col-md-12"><small class="text-primary font-weight-bold">KHI CẦN BÁO TIN CHO AI</small></div>
                                             <div class="form-group col-md-3">
@@ -280,7 +315,7 @@
                             <div class="form-content container-fluid">
                                 <div class="card mb-4 border-info">
                                     <div class="card-header bg-info text-white font-weight-bold">
-                                        II. GIA ĐÌNH (Dựa trên biểu mẫu hồ sơ)
+                                        II. GIA ĐÌNH
                                     </div>
                                     <div class="card-body">
 
@@ -292,7 +327,7 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label class="font-weight-bold">Sinh ngày</label>
-                                                <form:input path="ngaySinhCha" cssClass="form-control" placeholder="dd/mm/yyyy" disabled="${isViewMode}"/>
+                                                <form:input path="ngaySinhCha" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label class="font-weight-bold">Số điện thoại (SĐT)</label>
@@ -325,18 +360,25 @@
                                                 <label class="font-weight-bold">Cơ quan công tác</label>
                                                 <form:input path="coQuanCha" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
+
                                             <div class="form-group col-md-3">
-                                                <div class="d-flex align-items-center mt-4">
-                                                    <label class="font-weight-bold mb-0 mr-2" for="laDangVienCha">
-                                                        Đảng viên
+                                                <label class="font-weight-bold">Chính trị</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text bg-white">
+                                                            <form:checkbox path="laDangVienCha"
+                                                                           value="true"
+                                                                           disabled="${isViewMode}"
+                                                                           id="laDangVienCha"
+                                                                           cssStyle="cursor: pointer;" />
+                                                        </div>
+                                                    </div>
+                                                    <label class="form-control" for="laDangVienCha" style="cursor: pointer; background-color: #fdfdfd;">
+                                                        Là Đảng viên
                                                     </label>
-                                                    <form:checkbox path="laDangVienCha"
-                                                                   value="true"
-                                                                   disabled="${isViewMode}"
-                                                                   id="laDangVienCha"
-                                                                   cssStyle="width: 18px; height: 18px; cursor: pointer;" />
                                                 </div>
                                             </div>
+
                                             <div class="form-group col-md-3">
                                                 <label class="font-weight-bold">Sức khỏe / Bệnh lý</label>
                                                 <form:input path="sucKhoeCha" cssClass="form-control" placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
@@ -374,7 +416,7 @@
                                             </div>
                                             <div class="form-group col-md-3">
                                                 <label class="font-weight-bold">Ngày từ trần (nếu có)</label>
-                                                <form:input path="ngayTuTranMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                                <form:input path="ngayTuTranMe" cssClass="form-control" placeholder="DL hay AL" disabled="${isViewMode}"/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="font-weight-bold">Nơi ở hiện nay (ấp, xã, huyện, tỉnh)</label>
@@ -386,25 +428,32 @@
                                                 <label class="font-weight-bold">Cơ quan công tác</label>
                                                 <form:input path="coQuanCha" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
+
                                             <div class="form-group col-md-3">
-                                                <div class="d-flex align-items-center mt-4">
-                                                    <label class="font-weight-bold mb-0 mr-2" for="laDangVienCha">
-                                                        Đảng viên
+                                                <label class="font-weight-bold">Chính trị</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text bg-white">
+                                                            <form:checkbox path="laDangVienCha"
+                                                                           value="true"
+                                                                           disabled="${isViewMode}"
+                                                                           id="laDangVienCha"
+                                                                           cssStyle="cursor: pointer;" />
+                                                        </div>
+                                                    </div>
+                                                    <label class="form-control" for="laDangVienCha" style="cursor: pointer; background-color: #fdfdfd;">
+                                                        Là Đảng viên
                                                     </label>
-                                                    <form:checkbox path="laDangVienCha"
-                                                                   value="true"
-                                                                   disabled="${isViewMode}"
-                                                                   id="laDangVienCha"
-                                                                   cssStyle="width: 18px; height: 18px; cursor: pointer;" />
                                                 </div>
                                             </div>
+
                                             <div class="form-group col-md-3">
                                                 <label class="font-weight-bold">Sức khỏe / Bệnh lý</label>
                                                 <form:input path="sucKhoeCha" cssClass="form-control" placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
                                             </div>
                                         </div>
 
-                                        <h6 class="text-info font-weight-bold border-bottom mt-4">Tình trạng hôn nhân & Kinh tế</h6>
+                                        <h6 class="text-info font-weight-bold border-bottom mt-4">3. Tình trạng hôn nhân & Kinh tế</h6>
                                         <div class="row bg-light py-2 rounded border mx-0 mb-3">
                                             <div class="form-group col-md-12">
                                                 <label class="font-weight-bold">Tình trạng hôn nhân của cha mẹ:</label>
@@ -462,22 +511,80 @@
                                         <div class="row mt-3">
                                             <div class="col-md-6">
                                                 <div class="p-2 border rounded bg-white">
-                                                    <label class="font-weight-bold text-dark">3. Ông, bà nội</label>
-                                                    <form:textarea path="thongTinOngBaNoi" cssClass="form-control" rows="3"
-                                                                   placeholder="- Ông nội: Tình trạng, năm mất...&#10;- Bà nội: Tình trạng, năm mất..." disabled="${isViewMode}"/>
+                                                    <label class="font-weight-bold text-dark">4. Ông, bà nội</label>
+                                                    <hr class="my-1">
+
+                                                    <div class="mb-3">
+                                                        <p class="mb-1 font-weight-bold small">Ông nội:</p>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusOngNoi" value="con_song" cssClass="status-check" label="Còn sống" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusOngNoi" value="da_mat" cssClass="status-check" label="Đã mất" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="mt-2 date-input" style="display: none;">
+                                                            <label class="small">Ngày từ trần:</label>
+                                                            <form:input type="date" path="ngayMatOngNoi" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <p class="mb-1 font-weight-bold small">Bà nội:</p>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusBaNoi" value="con_song" cssClass="status-check" label="Còn sống" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusBaNoi" value="da_mat" cssClass="status-check" label="Đã mất" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="mt-2 date-input" style="display: none;">
+                                                            <label class="small">Ngày từ trần:</label>
+                                                            <form:input type="date" path="ngayMatBaNoi" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
+
                                                     <label class="mt-2 small italic">Ghi chú (Nội):</label>
                                                     <form:input path="ghiChuNoi" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6">
                                                 <div class="p-2 border rounded bg-white">
-                                                    <label class="font-weight-bold text-dark">4. Ông, bà ngoại</label>
-                                                    <form:textarea path="thongTinOngBaNgoai" cssClass="form-control" rows="3"
-                                                                   placeholder="- Ông ngoại: Tình trạng, năm mất...&#10;- Bà ngoại: Tình trạng, năm mất..." disabled="${isViewMode}"/>
+                                                    <label class="font-weight-bold text-dark">5. Ông, bà ngoại</label>
+                                                    <hr class="my-1">
+
+                                                    <div class="mb-3">
+                                                        <p class="mb-1 font-weight-bold small">Ông ngoại:</p>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusOngNgoai" value="con_song" cssClass="status-check" label="Còn sống" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusOngNgoai" value="da_mat" cssClass="status-check" label="Đã mất" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="mt-2 date-input" style="display: none;">
+                                                            <label class="small">Ngày từ trần:</label>
+                                                            <form:input type="date" path="ngayMatOngNgoai" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <p class="mb-1 font-weight-bold small">Bà ngoại:</p>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusBaNgoai" value="con_song" cssClass="status-check" label="Còn sống" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <form:radiobutton path="statusBaNgoai" value="da_mat" cssClass="status-check" label="Đã mất" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="mt-2 date-input" style="display: none;">
+                                                            <label class="small">Ngày từ trần:</label>
+                                                            <form:input type="date" path="ngayMatBaNgoai" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
+
                                                     <label class="mt-2 small italic">Ghi chú (Ngoại):</label>
                                                     <form:input path="ghiChuNgoai" cssClass="form-control form-control-sm" disabled="${isViewMode}"/>
                                                 </div>
                                             </div>
+                                        </div>
                                             <div class="card mb-4 border-primary">
                                                 <div class="card-header bg-primary text-white font-weight-bold">
                                                     III. QUAN HỆ XÃ HỘI
@@ -573,7 +680,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         <script>
 
 
@@ -613,6 +719,51 @@
                         }
                     }
                 }
+
+                $(document).ready(function() {
+                    // Xử lý ẩn hiện thông tin vợ
+                    $('#hasWife').change(function() {
+                        if ($(this).val() === 'true') {
+                            $('#wifeInfoFields').fadeIn();
+                        } else {
+                            $('#wifeInfoFields').fadeOut();
+                            // Xóa dữ liệu nếu chọn chưa có vợ (tùy chọn)
+                            $('#wifeInfoFields input').val('');
+                        }
+                    });
+
+                    // Kiểm tra lúc load trang (nếu là chế độ sửa)
+                    if ($("input[name='hoTenVo']").val() !== "") {
+                        $('#hasWife').val('true');
+                        $('#wifeInfoFields').show();
+                    }
+                });
+                $(document).ready(function() {
+                    // Hàm kiểm tra và ẩn hiện field ngày mất
+                    function toggleDeathDate() {
+                        $('.status-check:checked').each(function() {
+                            var container = $(this).closest('div.mb-3').find('.date-input');
+                            if ($(this).val() === 'da_mat') {
+                                container.show();
+                            } else {
+                                container.hide();
+                            }
+                        });
+                    }
+
+                    // Lắng nghe sự kiện thay đổi radio button
+                    $('.status-check').change(function() {
+                        var container = $(this).closest('div.mb-3').find('.date-input');
+                        if ($(this).val() === 'da_mat') {
+                            container.fadeIn();
+                        } else {
+                            container.fadeOut();
+                        }
+                    });
+
+                    // Chạy khi load trang (trong trường hợp sửa dữ liệu cũ)
+                    toggleDeathDate();
+                });
 
                 // Chạy khi load trang (để hiển thị đúng dữ liệu đã lưu)
                 toggleCMKT();
@@ -752,6 +903,22 @@
                 //     return false;
                 // }
                 return isValid;
+            }
+
+            function addChildRow() {
+                const html = `
+        <tr class="small">
+            <td><input type="text" class="form-control form-control-sm child-name"></td>
+            <td><input type="text" class="form-control form-control-sm child-dob" placeholder="dd/mm/yyyy"></td>
+            <td><input type="text" class="form-control form-control-sm child-address"></td>
+            <td class="text-center">
+                <button type="button" class="btn btn-link text-danger p-0" onclick="$(this).closest('tr').remove()">
+                    <i class='bx bx-trash'></i>
+                </button>
+            </td>
+        </tr>`;
+                $('#childrenList').append(html);
+                $('#noChildMsg').hide();
             }
         </script>
         </body>

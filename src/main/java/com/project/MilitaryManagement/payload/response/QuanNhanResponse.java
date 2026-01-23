@@ -2,6 +2,8 @@ package com.project.MilitaryManagement.payload.response;
 
 import lombok.With;
 
+import java.util.Date;
+
 @With
 public record QuanNhanResponse (
     Long id,
@@ -69,9 +71,7 @@ public record QuanNhanResponse (
     Integer soAnhEmLaCanBo,
     String sdtLienLacGiaDinh,
     String thongTinOngBaNoi,
-    String ghiChuNoi,
     String thongTinOngBaNgoai,
-    String ghiChuNgoai,
     String hoTenBanGai,
     String ngaySinhBanGai,
     String diaChiBanGai,
@@ -81,6 +81,19 @@ public record QuanNhanResponse (
     String diaChiBanTrai,
     String sdtBanTrai,
     String nguoiAnhHuongTichCuc,
-    String canBoDiaPhuongTinNhiem
+    String canBoDiaPhuongTinNhiem,
+
+    String statusOngNoi,
+    Date ngayMatOngNoi,
+    String statusBaNoi,
+    Date ngayMatBaNoi,
+    String ghiChuNoi,
+
+    String statusOngNgoai,
+    Date ngayMatOngNgoai,
+    String statusBaNgoai,
+    Date ngayMatBaNgoai,
+    String ghiChuNgoai
+
 ){
 }
