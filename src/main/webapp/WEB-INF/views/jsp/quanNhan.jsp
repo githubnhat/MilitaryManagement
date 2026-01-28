@@ -75,6 +75,31 @@
 
                                         <div class="row">
                                             <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Căn cước công dân</label>
+                                                <form:input path="canCuocCongDan" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Số hiệu quân nhân</label>
+                                                <form:input path="soHieuQuanNhan" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Cấp bậc</label>
+                                                <form:select path="capBac" cssClass="form-control" disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn cấp bậc --"/>
+                                                    <form:option value="Binh nhì" label="Binh nhì"/>
+                                                    <form:option value="Binh nhất" label="Binh nhất"/>
+                                                    <form:option value="Hạ sĩ" label="Hạ sĩ"/>
+                                                    <form:option value="Trung sĩ" label="Trung sĩ"/>
+                                                    <form:option value="Thượng sĩ" label="Thượng sĩ"/>
+                                                </form:select>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Chức vụ</label>
+                                                <form:input path="chucVu" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-3">
                                                 <label class="font-weight-bold">Dân tộc</label>
                                                 <form:input path="danToc" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
@@ -124,7 +149,7 @@
 
                                         <div class="row">
                                             <div class="form-group col-md-4">
-                                                <label class="font-weight-bold">Trình độ học vấn</label>
+                                                <label class="font-weight-bold">Trình độ học vấn (Văn hóa)</label>
                                                 <form:input path="trinhDoHocVan" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                             <div class="form-group col-md-4">
@@ -139,7 +164,7 @@
 
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label class="font-weight-bold">Chuyên môn đào tạo qua trường</label>
+                                                <label class="font-weight-bold">Chuyên môn đào tạo qua trường (CMKT)</label>
                                                 <form:input path="chuyenMonDaoTao" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                             <div class="form-group col-md-6">
@@ -643,6 +668,31 @@
                                                             <form:textarea path="canBoDiaPhuongTinNhiem" cssClass="form-control" rows="3" placeholder="Ví dụ: Ông Nguyễn Văn A - Chủ tịch xã X; Bà Trần Thị B - Bí thư đoàn..." disabled="${isViewMode}"/>
                                                         </div>
                                                     </div>
+
+                                                    <h6 class="font-weight-bold text-primary mt-4">4. Các quan hệ xã hội phức tạp bên ngoài</h6>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            <label class="font-weight-bold">Nội dung cụ thể</label>
+                                                            <form:textarea path="dienBienCuThe" cssClass="form-control" rows="1" disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
+                                                    <h6 class="font-weight-bold text-primary mt-4">5. Diễn biến tư tưởng</h6>
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label class="font-weight-bold">Ngày, tháng</label>
+                                                            <form:input path="dienBienNgayThang" cssClass="form-control" placeholder="dd/mm/yyyy" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label class="font-weight-bold">Cán bộ gặp gỡ</label>
+                                                            <form:input path="dienBienCanBo" cssClass="form-control" disabled="${isViewMode}"/>
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label class="font-weight-bold">Nội dung diễn biến</label>
+                                                            <form:textarea path="dienBienNoiDung" cssClass="form-control" rows="1" disabled="${isViewMode}"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -856,8 +906,8 @@
                 var isValid = true;
 
                 // var hoTenKhaiSinh = $('input[name="hoTenKhaiSinh"]').val().trim();
-                // var canCuocCongDan = $('input[name="canCuocCongDan"]').val().trim();
-                // var soHieuQuanNhan = $('input[name="soHieuQuanNhan"]').val().trim();
+                var canCuocCongDan = $('input[name="canCuocCongDan"]').val().trim();
+                var soHieuQuanNhan = $('input[name="soHieuQuanNhan"]').val().trim();
                 // var ngayThangNamSinh = $('input[name="ngayThangNamSinh"]').val().trim();
                 // var sucKhoe = $('select[name="sucKhoe"]').val();
                 // var chieuCao = $('input[name="chieuCao"]').val();

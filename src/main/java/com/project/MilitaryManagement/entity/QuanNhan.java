@@ -26,6 +26,14 @@ public class QuanNhan {
     private String hoTenThuongDung;
     @Column(length = 20)
     private String ngayThangNamSinh;
+    @Column(length = 50)
+    private String soHieuQuanNhan;
+    @Column(length = 12)
+    private String canCuocCongDan;
+    @Column(length = 50)
+    private String capBac;
+    @Column(length = 100)
+    private String chucVu;
     @Column(length = 20)
     private String danToc;
     @Column(length = 100)
@@ -54,10 +62,6 @@ public class QuanNhan {
     private String ngayChinhThuc;
     @Column(length = 50)
     private String ngoaiNgu;
-    @Column(length = 50)
-    private String soHieuQuanNhan;
-    @Column(length = 50)
-    private String canCuocCongDan;
     @Column(length = 255)
     private String chuyenMonDaoTao;
     @Column(length = 255)
@@ -208,6 +212,15 @@ public class QuanNhan {
     private String nguoiAnhHuongTichCuc;
     @Column(columnDefinition = "TEXT")
     private String canBoDiaPhuongTinNhiem;
+
+    @Column(length = 20)
+    private String dienBienNgayThang;
+    @Column(length = 100)
+    private String dienBienCanBo;
+    @Column(columnDefinition = "TEXT")
+    private String dienBienNoiDung;
+    @Column(columnDefinition = "TEXT")
+    private String dienBienCuThe;
 
 
     @ManyToOne

@@ -11,7 +11,8 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String hoTenKhaiSinh,
         String hoTenThuongDung,
         String ngayThangNamSinh,
-        String danToc,
+        String capBac,
+        String chucVu,
         String tonGiao,
         String thanhPhanGd,
         String thanhPhanBanThan,
@@ -101,7 +102,12 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         Date ngayMatOngNgoai,
         String statusBaNgoai,
         Date ngayMatBaNgoai,
-        String ghiChuNgoai
+        String ghiChuNgoai,
+
+        String dienBienNgayThang,
+        String dienBienCanBo,
+        String dienBienNoiDung,
+        String dienBienCuThe
 ) {
 }
 

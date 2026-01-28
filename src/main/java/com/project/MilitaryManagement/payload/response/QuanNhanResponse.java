@@ -10,6 +10,8 @@ public record QuanNhanResponse (
     String hoTenKhaiSinh,
     String hoTenThuongDung,
     String ngayThangNamSinh,
+    String capBac,
+    String chucVu,
     String danToc,
     String tonGiao,
     String thanhPhanGd,
@@ -93,7 +95,11 @@ public record QuanNhanResponse (
     Date ngayMatOngNgoai,
     String statusBaNgoai,
     Date ngayMatBaNgoai,
-    String ghiChuNgoai
+    String ghiChuNgoai,
 
+    String dienBienNgayThang,
+    String dienBienCanBo,
+    String dienBienNoiDung,
+    String dienBienCuThe
 ){
 }
