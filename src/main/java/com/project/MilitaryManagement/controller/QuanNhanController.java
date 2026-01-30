@@ -43,6 +43,8 @@ public class QuanNhanController {
             QuanNhan quanNhan = quanNhanService.findQuanNhanById(id);
             model.addAttribute("hanhDong", "I");
             model.addAttribute("quanNhan", quanNhan);
+            List<TieuDoi> tieuDoiList = tieuDoiService.findAllByStatus(1);
+            model.addAttribute("tieuDoiList", tieuDoiList);
         }
         messageUtil.showMessage(message, alert, model);
         return "quanNhan";
@@ -77,6 +79,8 @@ public class QuanNhanController {
             QuanNhan quanNhan = quanNhanService.findQuanNhanById(id);
             model.addAttribute("hanhDong", "M");
             model.addAttribute("quanNhan", quanNhan);
+            List<TieuDoi> tieuDoiList = tieuDoiService.findAllByStatus(1);
+            model.addAttribute("tieuDoiList", tieuDoiList);
         }
         messageUtil.showMessage(message, alert, model);
         return "quanNhan";

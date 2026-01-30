@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="taoTieuDoanAPIurl" value="/api/v1/tieu-doan/tao-tieu-doan"/>
+<c:url var="capNhatTieuDoanAPIurl" value="/api/v1/tieu-doan/cap-nhat-tieu-doan"/>
+<c:url var="xoaTieuDoanAPIurl" value="/api/v1/tieu-doan/xoa-tieu-doan"/>
 <c:url var="tieuDoanUrl" value="/danh-sach-tieu-doan"/>
 
 <!DOCTYPE html>
@@ -46,7 +48,9 @@
                             </div>
                             <div class="card-header">
                                 <c:if test="${not empty message}">
-                                    <div class="text-center float-left alert alert-${alert}">${message}</div>
+                                    <div class="float-left">
+                                        <div class="text-center float-left alert alert-${alert}">${message}</div>
+                                    </div>
                                 </c:if>
                                 <div class="float-right">
                                     <a href="#addTieuDoanModal" class="btn btn-success" data-toggle="modal"><i
@@ -54,6 +58,7 @@
                                     <a href="#deleteTieuDoanModal" class="btn btn-danger" data-toggle="modal"><i
                                             class="fa fa-trash-o" aria-hidden="true"></i> <span>Xóa</span></a>
                                 </div>
+
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -91,11 +96,13 @@
                                                 </td>
                                             </c:if>
                                             <td class="text-center">
-                                                <a href="<c:url value='/quan-tri/dieu-khoan?id=${item.id}'/>"
-                                                   class="edit"><i
-                                                        class="fa fa-pencil"
-                                                        aria-hidden="true" data-toggle="tooltip"
-                                                        title="Chỉnh sửa"></i></a>
+                                                <a href="#" class="edit" data-toggle="modal"
+                                                   data-target="#editTieuDoanModal"
+                                                   data-id="${item.id}"
+                                                   data-ten="${item.tenTieuDoan}">
+                                                    <i class="bx bx-pencil" aria-hidden="true" data-toggle="tooltip"
+                                                       title="Chỉnh sửa"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -114,7 +121,7 @@
         <div id="addTieuDoanModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form id="formSubmit">
+                    <form id="formSubmitAdd">
                         <div class="modal-header">
                             <h4 class="modal-title">Thêm Tiểu Đoàn</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -133,8 +140,32 @@
                 </div>
             </div>
         </div>
+        <!-- Modify Modal HTML -->
+        <div id="editTieuDoanModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="formSubmitModify">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Chỉnh sửa Tiểu Đoàn</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="edit_id"/>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Tên tiểu đoàn</label>
+                                <input type="text" name="tenTieuDoan" id="edit_tenTieuDoan" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                            <button id="modifyTieuDoan" type="submit" class="btn btn-success">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Delete Modal HTML -->
-        <div id="deletePaymentModal" class="modal fade">
+        <div id="deleteTieuDoanModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -165,7 +196,7 @@
             $('#addTieuDoan').click(function (e) {
                 e.preventDefault();
                 let data = {}; // mang object name: value
-                let formData = $('#formSubmit').serializeArray();
+                let formData = $('#formSubmitAdd').serializeArray();
                 // vong lap
                 $.each(formData, function (i, v) {
                     data['' + v.name] = v.value
@@ -185,15 +216,59 @@
                     success: function (result) {
                         $('.load').hide();
                         if (result !== null)
-                            window.location.href = "${tieuDoanUrl}?message=insert_success&alert=success";
+                            window.location.href = "${tieuDoanUrl}?message=create_success&alert=success";
                         else
-                            window.location.href = "${tieuDoanUrl}?message=insert_fail&alert=danger";
+                            window.location.href = "${tieuDoanUrl}?message=create_fail&alert=danger";
                     },
                     error: function (error) {
                         $('.load').hide();
                         window.location.href = "${tieuDoanUrl}?message=system_error&alert=danger";
                     }
                 })
+            }
+
+
+            // 1. Khi bấm nút Edit: Lấy data từ hàng đó điền vào Modal
+                $('.edit').click(function () {
+                    var id = $(this).data('id');
+                    var ten = $(this).data('ten');
+
+                    $('#edit_id').val(id);
+                    $('#edit_tenTieuDoan').val(ten);
+                });
+
+                // 2. Xử lý gửi API Cập nhật
+                $('#modifyTieuDoan').click(function (e) {
+                    e.preventDefault();
+                    let data = {};
+                    let formData = $('#formSubmitModify').serializeArray();
+                    $.each(formData, function (i, v) {
+                        data["" + v.name] = v.value;
+                    });
+
+                    updateTieuDoan(data);
+                });
+
+
+            function updateTieuDoan(data) {
+
+                $.ajax({
+                    url: '${capNhatTieuDoanAPIurl}',
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify(data),
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result !== null)
+                            window.location.href = "${tieuDoanUrl}?message=update_success&alert=success";
+                        else
+                            window.location.href = "${tieuDoanUrl}?message=update_fail&alert=danger";
+                    },
+                    error: function (error) {
+                        $(".load").hide();
+                        window.location.href = "${tieuDoanUrl}?message=system_error&alert=danger";
+                    }
+                });
             }
 
             $('#deleteTieuDoan').click(function (e) {
@@ -212,21 +287,21 @@
             function deleteTieuDoan(data) {
                 $('.load').show();
                 $.ajax({
-                    url: '${APIurl}',
-                    type: 'DELETE',
+                    url: '${xoaTieuDoanAPIurl}',
+                    type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(data),
                     dataType: 'json',
                     success: function (result) {
                         $('.load').hide();
                         if (result)
-                            window.location.href = "${TermsUrl}?message=delete_success&alert=success";
+                            window.location.href = "${tieuDoanUrl}?message=delete_success&alert=success";
                         else
-                            window.location.href = "${TermsUrl}?message=delete_fail&alert=danger";
+                            window.location.href = "${tieuDoanUrl}?message=delete_fail&alert=danger";
                     },
                     error: function (error) {
                         $('.load').hide();
-                        window.location.href = "${TermsUrl}?message=system_error&alert=danger";
+                        window.location.href = "${tieuDoanUrl}?message=system_error&alert=danger";
                     }
                 })
             }

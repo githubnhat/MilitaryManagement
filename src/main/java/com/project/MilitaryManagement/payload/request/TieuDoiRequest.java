@@ -4,7 +4,9 @@ import lombok.With;
 
 @With
 public record TieuDoiRequest (
+        Long id,
         String tenTieuDoi,
-        Long trungDoi // ID của Trung đội trực thuộc
+        Long trungDoi,
+        long [] ids
 ) {
 }

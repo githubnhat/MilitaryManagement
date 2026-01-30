@@ -30,4 +30,15 @@ public class DaiDoiAPI {
         // Chuyển đổi sang Response DTO bằng Mapper và trả về
         return ResponseEntity.ok(list.stream().map(daiDoiMapper::toDaiDoiResponse).toList());
     }
+
+    @PostMapping("/cap-nhat-dai-doi")
+    public ResponseEntity<DaiDoiResponse> capNhatDaiDoi(@RequestBody DaiDoiRequest request) throws Exception {
+        return daiDoiService.update(request);
+    }
+
+    @PostMapping("/xoa-dai-doi")
+    public ResponseEntity<?> xoaDaiDoi(@RequestBody DaiDoiRequest request) throws Exception {
+        boolean result = daiDoiService.delete(request.ids());
+        return ResponseEntity.ok(result);
+    }
 }

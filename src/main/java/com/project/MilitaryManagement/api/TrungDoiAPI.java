@@ -28,4 +28,15 @@ public class TrungDoiAPI {
         List<TrungDoi> list = trungDoiService.findByDaiDoi_IdAndStatus(daiDoiId);
         return ResponseEntity.ok(list.stream().map(trungDoiMapper::toTrungDoiResponse).toList());
     }
+
+    @PostMapping("/cap-nhat-trung-doi")
+    public ResponseEntity<TrungDoiResponse> capNhat(@RequestBody TrungDoiRequest request) throws Exception {
+        return trungDoiService.update(request);
+    }
+
+    @PostMapping("/xoa-trung-doi")
+    public ResponseEntity<?> xoa(@RequestBody TrungDoiRequest request) {
+        boolean result = trungDoiService.delete(request.ids());
+        return ResponseEntity.ok(result);
+    }
 }

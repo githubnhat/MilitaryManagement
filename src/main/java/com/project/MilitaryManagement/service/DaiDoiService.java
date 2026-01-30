@@ -10,4 +10,6 @@ public interface DaiDoiService {
     ResponseEntity<DaiDoiResponse> save(DaiDoiRequest request) throws Exception;
     List<DaiDoi> findAllByStatus(int status);
     List<DaiDoi> findByTieuDoanId(Long tieuDoanId);
+    ResponseEntity<DaiDoiResponse> update(DaiDoiRequest request) throws Exception;
+    boolean delete(long[] ids);
 }

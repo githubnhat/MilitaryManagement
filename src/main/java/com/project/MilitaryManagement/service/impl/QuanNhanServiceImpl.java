@@ -2,6 +2,7 @@ package com.project.MilitaryManagement.service.impl;
 
 import com.project.MilitaryManagement.entity.Military;
 import com.project.MilitaryManagement.entity.QuanNhan;
+import com.project.MilitaryManagement.entity.TieuDoi;
 import com.project.MilitaryManagement.mapper.MilitaryMapper;
 import com.project.MilitaryManagement.mapper.QuanNhanMapper;
 import com.project.MilitaryManagement.payload.request.MilitaryRequest;
@@ -10,6 +11,7 @@ import com.project.MilitaryManagement.payload.response.MilitaryResponse;
 import com.project.MilitaryManagement.payload.response.QuanNhanResponse;
 import com.project.MilitaryManagement.repository.MilitaryRepository;
 import com.project.MilitaryManagement.repository.QuanNhanRepository;
+import com.project.MilitaryManagement.repository.TieuDoiRepository;
 import com.project.MilitaryManagement.service.QuanNhanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,10 +27,15 @@ public class QuanNhanServiceImpl implements QuanNhanService {
 
     private final QuanNhanRepository quanNhanRepository;
     private final QuanNhanMapper quanNhanMapper;
+    private final TieuDoiRepository tieuDoiRepository;
     @Override
     public ResponseEntity<QuanNhanResponse> save(QuanNhanRequest request) throws Exception {
         QuanNhan quanNhan = quanNhanMapper.toQuanNhan(request);
+        TieuDoi tieuDoi = tieuDoiRepository.findById(request.idTieuDoi())
+                .orElseThrow(() -> new Exception("Tiểu đội không tồn tại")
+        );
         quanNhan.setStatus(1);
+        quanNhan.setTieuDoi(tieuDoi);
         QuanNhanResponse quanNhanResponse = quanNhanMapper.toQuanNhanResponse(quanNhanRepository.save(quanNhan));
         return ResponseEntity.accepted().body(quanNhanResponse);
     }
@@ -52,7 +60,11 @@ public class QuanNhanServiceImpl implements QuanNhanService {
     public ResponseEntity<QuanNhanResponse> update(QuanNhanRequest request) throws Exception {
         QuanNhan entity = quanNhanMapper.toQuanNhan(request);
         QuanNhan quanNhan = quanNhanRepository.findQuanNhanByIdAndStatus(entity.getId(),1);
+        TieuDoi tieuDoi = tieuDoiRepository.findById(request.idTieuDoi())
+                .orElseThrow(() -> new Exception("Tiểu đội không tồn tại")
+                );
         entity.setStatus(quanNhan.getStatus());
+        entity.setTieuDoi(tieuDoi);
         QuanNhan quanNhanUpdated = new QuanNhan();
         if (quanNhan != null) {
             quanNhanUpdated = quanNhanRepository.save(entity);

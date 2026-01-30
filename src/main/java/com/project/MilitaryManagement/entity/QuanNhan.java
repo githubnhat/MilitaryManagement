@@ -134,6 +134,8 @@ public class QuanNhan {
     @Column(length = 255)
     private String sucKhoeCha;
     @Column(length = 255)
+    private String benhLyCha;
+    @Column(length = 255)
     private String coQuanCha;
     @Column
     private Boolean laDangVienCha;
@@ -146,6 +148,10 @@ public class QuanNhan {
     private String sdtMe;
     @Column(length = 20)
     private String tinhTrangMe;
+    @Column(length = 100)
+    private String ngheNghiepMe;
+    @Column(length = 100)
+    private String chucVuMe;
     @Column(length = 20)
     private String ngayTuTranMe;
     @Column(length = 255)
@@ -154,6 +160,8 @@ public class QuanNhan {
     private Boolean laDangVienMe;
     @Column(length = 255)
     private String sucKhoeMe;
+    @Column(length = 255)
+    private String benhLyMe;
     @Column(length = 255)
     private String noiOHienNayMe;
     @Column(length = 50)
@@ -210,8 +218,7 @@ public class QuanNhan {
     private String sdtBanTrai;
     @Column(columnDefinition = "TEXT")
     private String nguoiAnhHuongTichCuc;
-    @Column(columnDefinition = "TEXT")
-    private String canBoDiaPhuongTinNhiem;
+
 
     @Column(length = 20)
     private String dienBienNgayThang;
@@ -222,9 +229,27 @@ public class QuanNhan {
     @Column(columnDefinition = "TEXT")
     private String dienBienCuThe;
 
+    @Column(length = 100)
+    private String hoTenCBDP1;
+
+    @Column(length = 100)
+    private String chucVuCBDP1;
+
+    @Column(length = 20)
+    private String sdtCBDP1;
+
+    @Column(length = 100)
+    private String hoTenCBDP2;
+
+    @Column(length = 100)
+    private String chucVuCBDP2;
+
+    @Column(length = 20)
+    private String sdtCBDP2;
 
     @ManyToOne
     @JoinColumn(name = "id_tieu_doi")
+    @ToString.Exclude // Ngăn không cho gọi toString của TieuDoi
     private TieuDoi tieuDoi;
 
 }

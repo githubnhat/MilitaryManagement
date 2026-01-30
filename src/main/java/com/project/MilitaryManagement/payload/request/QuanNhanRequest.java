@@ -8,8 +8,12 @@ import java.util.Date;
 public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, ngayMatBaNoi, statusOngNgoai, ngayMatOngNgoai, statusBaNgoai, ngayMatBaNgoai, nguoiBaoTin>(
         Long id,
         long [] ids,
+        Long idTieuDoi,
         String hoTenKhaiSinh,
         String hoTenThuongDung,
+        String soHieuQuanNhan,
+        String canCuocCongDan,
+        String danToc,
         String ngayThangNamSinh,
         String capBac,
         String chucVu,
@@ -60,6 +64,7 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String coQuanCha,
         Boolean laDangVienCha,
         String sucKhoeCha,
+        String benhLyCha,
         String noiOHienNayCha,
         String hoTenMe,
         String ngaySinhMe, String sdtMe,
@@ -70,6 +75,7 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String coQuanMe,
         Boolean laDangVienMe,
         String sucKhoeMe,
+        String benhLyMe,
         String noiOHienNayMe,
         String honNhanChaMe,
         String kinhTeGiaDinh,
@@ -90,7 +96,6 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String diaChiBanTrai,
         String sdtBanTrai,
         String nguoiAnhHuongTichCuc,
-        String canBoDiaPhuongTinNhiem,
 
         String statusOngNoi,
         Date ngayMatOngNoi,
@@ -107,7 +112,13 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String dienBienNgayThang,
         String dienBienCanBo,
         String dienBienNoiDung,
-        String dienBienCuThe
+        String dienBienCuThe,
+        String hoTenCBDP1,
+        String chucVuCBDP1,
+        String sdtCBDP1,
+        String hoTenCBDP2,
+        String chucVuCBDP2,
+        String sdtCBDP2
 ) {
 }
 

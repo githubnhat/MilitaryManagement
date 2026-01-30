@@ -4,5 +4,7 @@ import lombok.With;
 
 @With
 public record TieuDoanRequest (
-        String tenTieuDoan) {
+        Long id,
+        String tenTieuDoan,
+        long [] ids) {
 }

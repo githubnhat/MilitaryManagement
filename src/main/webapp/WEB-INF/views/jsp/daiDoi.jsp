@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="/common/taglib.jsp" %>
 <c:url var="taoDaiDoiAPIurl" value="/api/v1/dai-doi/tao-dai-doi"/>
+<c:url var="capNhatDaiDoiAPIurl" value="/api/v1/dai-doi/cap-nhat-dai-doi"/>
+<c:url var="xoaDaiDoiAPIurl" value="/api/v1/dai-doi/xoa-dai-doi"/>
 <c:url var="daiDoiUrl" value="/danh-sach-dai-doi"/>
 
 <!DOCTYPE html>
@@ -76,7 +78,14 @@
                                                 </c:choose>
                                             </td>
                                             <td class="text-center">
-                                                <a href="<c:url value='/quan-tri/dai-doi?id=${item.id}'/>" class="edit"><i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" title="Chỉnh sửa"></i></a>
+                                                <a href="#" class="edit" data-toggle="modal"
+                                                   data-target="#editDaiDoiModal"
+                                                   data-id="${item.id}"
+                                                   data-ten="${item.tenDaiDoi}"
+                                                   data-tieudoan="${item.tieuDoan.id}">
+                                                    <i class="bx bx-pencil" aria-hidden="true" data-toggle="tooltip"
+                                                       title="Chỉnh sửa"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -90,37 +99,90 @@
         </div>
 
         <div id="addDaiDoiModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form id="formSubmit">
-                <div class="modal-header">
-                    <h4 class="modal-title">Thêm Đại Đội</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="font-weight-bold">Tên đại đội</label>
-                        <input type="text" name="tenDaiDoi" class="form-control" required/>
-                    </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="formSubmit">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Thêm Đại Đội</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="font-weight-bold">Tên đại đội</label>
+                                <input type="text" name="tenDaiDoi" class="form-control" required/>
+                            </div>
 
-                    <div class="form-group">
-                        <label class="font-weight-bold">Trực thuộc tiểu đoàn</label>
-                        <select class="form-control" name="tieuDoan" id="idTieuDoan" required>
-                            <option value="">-- Chọn tiểu đoàn --</option>
-                            <c:forEach var="tieuDoan" items="${tieuDoanList}">
-                                <option value="${tieuDoan.id}">${tieuDoan.tenTieuDoan}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Trực thuộc tiểu đoàn</label>
+                                <select class="form-control" name="tieuDoan" id="idTieuDoan" required>
+                                    <option value="">-- Chọn tiểu đoàn --</option>
+                                    <c:forEach var="tieuDoan" items="${tieuDoanList}">
+                                        <option value="${tieuDoan.id}">${tieuDoan.tenTieuDoan}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                            <button id="addDaiDoi" type="submit" class="btn btn-success">Thêm</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
-                    <button id="addDaiDoi" type="submit" class="btn btn-success">Thêm</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
+
+        <div id="editDaiDoiModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="formSubmitModify">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Chỉnh sửa Đại Đội</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="edit_id"/>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Tên đại đội</label>
+                                <input type="text" name="tenDaiDoi" id="edit_tenDaiDoi" class="form-control" required/>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">Trực thuộc tiểu đoàn</label>
+                                <select class="form-control" name="tieuDoan" id="edit_idTieuDoan" required>
+                                    <c:forEach var="tieuDoan" items="${tieuDoanList}">
+                                        <option value="${tieuDoan.id}">${tieuDoan.tenTieuDoan}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                            <button id="modifyDaiDoi" type="submit" class="btn btn-success">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="deleteDaiDoiModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Xóa Đại Đội</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn chắc chắn muốn xóa những đại đội đã chọn?</p>
+                            <p class="text-warning"><small>Hành động này không thể hoàn tác.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                            <button id="deleteDaiDoi" type="submit" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <script>
             $('#addDaiDoi').click(function (e) {
@@ -137,13 +199,68 @@
                     data: JSON.stringify(data),
                     dataType: 'json',
                     success: function (result) {
-                        window.location.href = "${daiDoiUrl}?message=insert_success&alert=success";
+                        window.location.href = "${daiDoiUrl}?message=create_success&alert=success";
                     },
                     error: function (error) {
                         window.location.href = "${daiDoiUrl}?message=system_error&alert=danger";
                     }
                 })
             });
+            $('.edit').click(function () {
+        var id = $(this).data('id');
+        var ten = $(this).data('ten');
+        var tieuDoanId = $(this).data('tieudoan');
+
+        $('#edit_id').val(id);
+        $('#edit_tenDaiDoi').val(ten);
+        $('#edit_idTieuDoan').val(tieuDoanId);
+    });
+
+    // 2. Gửi API Cập nhật
+    $('#modifyDaiDoi').click(function (e) {
+        e.preventDefault();
+        let data = {};
+        let formData = $('#formSubmitModify').serializeArray();
+        $.each(formData, function (i, v) {
+            data["" + v.name] = v.value;
+        });
+
+        $.ajax({
+            url: '${capNhatDaiDoiAPIurl}',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function (result) {
+                window.location.href = "${daiDoiUrl}?message=update_success&alert=success";
+            },
+            error: function (error) {
+                window.location.href = "${daiDoiUrl}?message=system_error&alert=danger";
+            }
+        });
+    });
+
+    // 3. Xử lý Xóa hàng loạt
+    $('#deleteDaiDoi').click(function (e) {
+        e.preventDefault();
+        let ids = $('tbody input[type=checkbox]:checked').map(function () {
+            return $(this).val();
+        }).get();
+
+        if (ids.length > 0) {
+            $.ajax({
+                url: '${xoaDaiDoiAPIurl}',
+                type: 'POST', // Hoặc DELETE tùy theo Controller
+                contentType: 'application/json',
+                data: JSON.stringify({ids: ids}),
+                success: function (result) {
+                    window.location.href = "${daiDoiUrl}?message=delete_success&alert=success";
+                },
+                error: function (error) {
+                    window.location.href = "${daiDoiUrl}?message=system_error&alert=danger";
+                }
+            });
+        }
+    });
         </script>
         <%@ include file="/common/footer.jsp" %>
     </div>

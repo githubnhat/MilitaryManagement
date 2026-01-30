@@ -97,7 +97,6 @@
                                 <th class="text-center">Họ và tên</th>
                                 <th class="text-center">Số hiệu QN</th>
                                 <th class="text-center">CCCD</th>
-                                <th class="text-center">Chức vụ</th>
                                 <th class="text-center">Cấp bậc</th>
                                 <th class="text-center">Ngày sinh</th>
                                 <th class="text-center">Trạng thái</th>
@@ -117,7 +116,6 @@
                                     <td>${item.soHieuQuanNhan}</td>
                                     <td>${item.canCuocCongDan}</td>
                                     <td>${item.capBac}</td>
-                                    <td>${item.ngayNhanCapBac}</td>
                                     <td>${item.ngayThangNamSinh}</td>
 
                                     <c:if test="${item.status == 1}">

@@ -1,5 +1,6 @@
 package com.project.MilitaryManagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -23,7 +24,9 @@ public class TieuDoi {
     @ManyToOne
     @JoinColumn(name = "id_trung_doi")
     private TrungDoi trungDoi;
-    @OneToMany(mappedBy = "tieuDoi", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tieuDoi")
+    @ToString.Exclude // Ngăn không cho gọi toString của danh sách QuanNhan
+    @JsonIgnore
     private List<QuanNhan> dsQuanNhan;
 
     @Column

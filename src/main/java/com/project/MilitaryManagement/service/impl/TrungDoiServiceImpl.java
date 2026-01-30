@@ -9,6 +9,7 @@ import com.project.MilitaryManagement.repository.DaiDoiRepository;
 import com.project.MilitaryManagement.repository.TrungDoiRepository;
 import com.project.MilitaryManagement.service.TrungDoiService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -23,16 +24,16 @@ public class TrungDoiServiceImpl implements TrungDoiService {
     @Override
     public ResponseEntity<TrungDoiResponse> save(TrungDoiRequest request) throws Exception {
         TrungDoi trungDoi = trungDoiMapper.toTrungDoi(request);
-        if (request.daiDoi() != null) {
-            DaiDoi daiDoiCha = daiDoiRepository.findById(request.daiDoi())
-                    .orElseThrow(() -> new Exception("Không tìm thấy Đại đội!"));
 
-            // 3. Gán đối tượng vào (Đây là bước quyết định việc lưu DB)
-            trungDoi.setDaiDoi(daiDoiCha);
+        // Gán Đại đội trực thuộc
+        if (request.daiDoi() != null) {
+            DaiDoi daiDoi = daiDoiRepository.findById(request.daiDoi())
+                    .orElseThrow(() -> new Exception("Đại đội không tồn tại"));
+            trungDoi.setDaiDoi(daiDoi);
         }
-        trungDoi.setStatus(1); // Mặc định status là 1 giống TieuDoanServiceImpl
-        TrungDoi result = trungDoiRepository.save(trungDoi);
-        return ResponseEntity.accepted().body(trungDoiMapper.toTrungDoiResponse(result));
+
+        trungDoi.setStatus(1);
+        return ResponseEntity.ok(trungDoiMapper.toTrungDoiResponse(trungDoiRepository.save(trungDoi)));
     }
 
     @Override
@@ -44,5 +45,45 @@ public class TrungDoiServiceImpl implements TrungDoiService {
     @Override
     public List<TrungDoi> findByDaiDoi_IdAndStatus(Long daiDoiId) {
         return trungDoiRepository.findByDaiDoi_IdAndStatus(daiDoiId, 1);
+    }
+
+    @Override
+    public ResponseEntity<TrungDoiResponse> update(TrungDoiRequest request) throws Exception {
+        // 1. Kiểm tra ID trực tiếp từ Record (tránh lỗi mapper)
+        if (request.id() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        // 2. Tìm bản ghi cũ để giữ status và kiểm tra tồn tại
+        TrungDoi existing = trungDoiRepository.findById(request.id())
+                .orElseThrow(() -> new Exception("Trung đội không tồn tại"));
+
+        // 3. Map request sang entity
+        TrungDoi entity = trungDoiMapper.toTrungDoi(request);
+
+        // 4. Ép ID và Status vào entity
+        entity.setId(request.id());
+        entity.setStatus(existing.getStatus());
+
+        // 5. Cập nhật Đại đội trực thuộc
+        if (request.daiDoi() != null) {
+            DaiDoi daiDoi = daiDoiRepository.findById(request.daiDoi())
+                    .orElseThrow(() -> new Exception("Đại đội không tồn tại"));
+            entity.setDaiDoi(daiDoi);
+        }
+
+        TrungDoi updated = trungDoiRepository.save(entity);
+        return ResponseEntity.accepted().body(trungDoiMapper.toTrungDoiResponse(updated));
+    }
+
+    @Override
+    public boolean delete(long[] ids) {
+        for (long id : ids) {
+            trungDoiRepository.findById(id).ifPresent(td -> {
+                td.setStatus(0); // Xóa mềm
+                trungDoiRepository.save(td);
+            });
+        }
+        return true;
     }
 }

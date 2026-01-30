@@ -28,7 +28,7 @@
 <div>
     <%@ include file="/common/menu.jsp" %>
     <div class="home-section">
-        <body>
+        <div>
         <div class="container-fluid home-page-content">
             <c:if test="${hanhDong.equals('C')}">
                 <h2 class="title">Thêm quân nhân</h2>
@@ -327,7 +327,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="font-weight-bold text-success">Biên chế tại Tiểu đội</label>
-                                        <select name="tieuDoiId" class="form-control" ${isViewMode ? 'disabled' : ''}>
+                                        <select name="idTieuDoi" class="form-control" ${isViewMode ? 'disabled' : ''}>
                                             <c:forEach var="item" items="${tieuDoiList}">
                                                 <option value="${item.id}" ${item.id == quanNhan.tieuDoi.id ? 'selected' : ''}>
                                                         ${item.tenTieuDoi}
@@ -403,10 +403,15 @@
                                                     </label>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group col-md-3">
-                                                <label class="font-weight-bold">Sức khỏe / Bệnh lý</label>
+                                        </div>
+                                        <div class="row">
+                                        <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Sức khỏe</label>
                                                 <form:input path="sucKhoeCha" cssClass="form-control" placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Bệnh lý</label>
+                                                <form:input path="benhLyCha" cssClass="form-control" placeholder="Bệnh lý cha" disabled="${isViewMode}"/>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -443,9 +448,13 @@
                                                 <label class="font-weight-bold">Ngày từ trần (nếu có)</label>
                                                 <form:input path="ngayTuTranMe" cssClass="form-control" placeholder="DL hay AL" disabled="${isViewMode}"/>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label class="font-weight-bold">Nơi ở hiện nay (ấp, xã, huyện, tỉnh)</label>
-                                                <form:input path="noiOHienNayMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Nghề nghiệp</label>
+                                                <form:input path="ngheNghiepMe" cssClass="form-control" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Chức vụ</label>
+                                                <form:input path="chucVuMe" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -471,10 +480,23 @@
                                                     </label>
                                                 </div>
                                             </div>
-
+                                        </div>
+                                        <div class="row">
                                             <div class="form-group col-md-3">
-                                                <label class="font-weight-bold">Sức khỏe / Bệnh lý</label>
-                                                <form:input path="sucKhoeCha" cssClass="form-control" placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
+                                                <label class="font-weight-bold">Sức khỏe</label>
+                                                <form:input path="sucKhoeMe" cssClass="form-control"
+                                                            placeholder="Tình trạng sức khỏe" disabled="${isViewMode}"/>
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Bệnh lý</label>
+                                                <form:input path="benhLyMe" cssClass="form-control"
+                                                            placeholder="Bệnh lý mẹ" disabled="${isViewMode}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label class="font-weight-bold">Nơi ở hiện nay (ấp, xã, huyện, tỉnh)</label>
+                                                <form:input path="noiOHienNayMe" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                         </div>
 
@@ -662,10 +684,39 @@
                                                             <form:textarea path="nguoiAnhHuongTichCuc" cssClass="form-control" rows="2" placeholder="Ghi rõ họ tên, mối quan hệ và lý do..." disabled="${isViewMode}"/>
                                                         </div>
 
-                                                        <div class="col-md-12">
-                                                            <h6 class="text-primary font-weight-bold">3. Cán bộ địa phương quen biết và tín nhiệm</h6>
-                                                            <label class="small italic text-muted">Ghi rõ họ tên, chức vụ, địa chỉ công tác (có thể nêu nhiều người):</label>
-                                                            <form:textarea path="canBoDiaPhuongTinNhiem" cssClass="form-control" rows="3" placeholder="Ví dụ: Ông Nguyễn Văn A - Chủ tịch xã X; Bà Trần Thị B - Bí thư đoàn..." disabled="${isViewMode}"/>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-4">
+                                                            <label>Họ tên Cán bộ địa phương</label>
+                                                            <input type="text" path="hoTenCBDP1" class="form-control"
+                                                                   value="${quanNhan.hoTenCBDP1}" ${isViewMode ? 'disabled' : ''}>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>Chức vụ</label>
+                                                            <input type="text" path="chucVuCBDP1" class="form-control"
+                                                                   value="${quanNhan.chucVuCBDP1}" ${isViewMode ? 'disabled' : ''}>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>Số điện thoại</label>
+                                                            <input type="text" path="sdtCBDP1" class="form-control"
+                                                                   value="${quanNhan.sdtCBDP1}" ${isViewMode ? 'disabled' : ''}>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="form-group col-md-4">
+                                                            <label>Họ tên Cán bộ địa phương</label>
+                                                            <input type="text" path="hoTenCBDP2" class="form-control"
+                                                                   value="${quanNhan.hoTenCBDP2}" ${isViewMode ? 'disabled' : ''}>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>Chức vụ</label>
+                                                            <input type="text" path="chucVuCBDP2" class="form-control"
+                                                                   value="${quanNhan.chucVuCBDP2}" ${isViewMode ? 'disabled' : ''}>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>Số điện thoại</label>
+                                                            <input type="text" path="sdtCBDP2" class="form-control"
+                                                                   value="${quanNhan.sdtCBDP2}" ${isViewMode ? 'disabled' : ''}>
                                                         </div>
                                                     </div>
 
@@ -674,7 +725,7 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-12">
                                                             <label class="font-weight-bold">Nội dung cụ thể</label>
-                                                            <form:textarea path="dienBienCuThe" cssClass="form-control" rows="1" disabled="${isViewMode}"/>
+                                                            <form:textarea path="dienBienCuThe" cssClass="form-control" rows="3" disabled="${isViewMode}"/>
                                                         </div>
                                                     </div>
                                                     <h6 class="font-weight-bold text-primary mt-4">5. Diễn biến tư tưởng</h6>
@@ -690,7 +741,7 @@
                                                         </div>
                                                         <div class="form-group col-md-12">
                                                             <label class="font-weight-bold">Nội dung diễn biến</label>
-                                                            <form:textarea path="dienBienNoiDung" cssClass="form-control" rows="1" disabled="${isViewMode}"/>
+                                                            <form:textarea path="dienBienNoiDung" cssClass="form-control" rows="3" disabled="${isViewMode}"/>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -2,6 +2,8 @@
 <%@include file="/common/taglib.jsp" %>
 <c:url var="taoTrungDoiAPIurl" value="/api/v1/trung-doi/tao-trung-doi"/>
 <c:url var="trungDoiUrl" value="/danh-sach-trung-doi"/>
+<c:url var="capNhatTrungDoiAPIurl" value="/api/v1/trung-doi/cap-nhat-trung-doi"/>
+<c:url var="xoaTrungDoiAPIurl" value="/api/v1/trung-doi/xoa-trung-doi"/>
 <c:url var="layDaiDoiByTieuDoanUrl" value="/api/v1/dai-doi/lay-theo-tieu-doan"/>
 
 <!DOCTYPE html>
@@ -35,15 +37,22 @@
                                     <div class="text-center float-left alert alert-${alert}">${message}</div>
                                 </c:if>
                                 <div class="float-right">
-                                    <a href="#addTrungDoiModal" class="btn btn-success" data-toggle="modal">
-                                        <i class="fa fa-plus-circle"></i> <span>Thêm mới</span>
-                                    </a>
+                                    <a href="#addTrungDoiModal" class="btn btn-success" data-toggle="modal"><i
+                                            class="fa fa-plus-circle"></i> <span>Thêm</span></a>
+                                    <a href="#deleteTrungDoiModal" class="btn btn-danger" data-toggle="modal"><i
+                                            class="fa fa-trash-o"></i> <span>Xóa</span></a>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
+                                        <th class="text-center">
+                                                <span class="custom-checkbox">
+                                                    <input type="checkbox" id="selectAll">
+                                                    <label for="selectAll"></label>
+                                                </span>
+                                        </th>
                                         <th class="text-center">Tên Trung đội</th>
                                         <th class="text-center">Thuộc Đại đội</th>
                                         <th class="text-center">Thuộc Tiểu đoàn</th>
@@ -54,6 +63,12 @@
                                     <tbody>
                                     <c:forEach var="item" items="${trungDoiList}">
                                         <tr>
+                                            <td class="text-center">
+                                                  <span class="custom-checkbox">
+                                                    <input type="checkbox" id="checkbox_${item.id}" value="${item.id}">
+                                                    <label for="checkbox_${item.id}"></label>
+                                                </span>
+                                            </td>
                                             <td>${item.tenTrungDoi}</td>
                                             <td>${item.daiDoi.tenDaiDoi}</td> <%-- --%>
                                             <td>${item.daiDoi.tieuDoan.tenTieuDoan}</td>
@@ -68,7 +83,14 @@
                                                 </c:choose>
                                             </td>
                                             <td class="text-center">
-                                                <a href="#" class="edit"><i class="fa fa-pencil" title="Chỉnh sửa"></i></a>
+                                                <a href="#" class="edit" data-toggle="modal"
+                                                   data-target="#editTrungDoiModal"
+                                                   data-id="${item.id}"
+                                                   data-ten="${item.tenTrungDoi}"
+                                                   data-tieudoan="${item.daiDoi.tieuDoan.id}"
+                                                   data-daidoi="${item.daiDoi.id}">
+                                                    <i class='bx bxs-edit'></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -121,58 +143,179 @@
             </div>
         </div>
 
-        <script>
-            // 1. Xử lý AJAX load Đại đội khi chọn Tiểu đoàn
-            $('#selectTieuDoan').change(function() {
-                let tieuDoanId = $(this).val();
-                let $selectDaiDoi = $('#selectDaiDoi');
+        <div id="editTrungDoiModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="formSubmitModify">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Chỉnh sửa Trung Đội</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" name="id" id="edit_id"/>
 
-                $selectDaiDoi.empty();
-                if (tieuDoanId) {
-                    $selectDaiDoi.append('<option value="">-- Đang tải đại đội... --</option>');
-                    $.ajax({
-                        url: '${layDaiDoiByTieuDoanUrl}/' + tieuDoanId,
-                        type: 'GET',
-                        success: function(res) {
-                            $selectDaiDoi.empty();
-                            $selectDaiDoi.append('<option value="">-- Chọn đại đội --</option>');
-                            $.each(res, function(i, item) {
+                            <div class="form-group">
+                                <label class="font-weight-bold">Tên trung đội</label>
+                                <input type="text" name="tenTrungDoi" id="edit_tenTrungDoi" class="form-control"
+                                       required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-weight-bold">Thuộc Tiểu đoàn</label>
+                                <select class="form-control" id="edit_selectTieuDoan">
+                                    <c:forEach var="td" items="${tieuDoanList}">
+                                        <option value="${td.id}">${td.tenTieuDoan}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-weight-bold">Trực thuộc Đại đội</label>
+                                <select class="form-control" name="daiDoi" id="edit_idDaiDoi" required>
+                                    <c:forEach var="dd" items="${daiDoiList}">
+                                        <option value="${dd.id}">${dd.tenDaiDoi}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="modifyTrungDoi" type="submit" class="btn btn-success">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="deleteTrungDoiModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Xóa Trung Đội</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn chắc chắn muốn xóa những trung đội đã chọn?</p>
+                            <p class="text-warning"><small>Hành động này sẽ không thể khôi phục lại.</small>
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                            <button id="deleteTrungDoi" type="submit" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                // --- 1. XỬ LÝ MODAL THÊM MỚI ---
+                $('#selectTieuDoan').change(function () {
+                    let id = $(this).val();
+                    let $selectDaiDoi = $('#selectDaiDoi');
+                    $selectDaiDoi.empty().append('<option value="">-- Chọn đại đội --</option>');
+
+                    if (id) {
+                        $.get('${layDaiDoiByTieuDoanUrl}/' + id, function (res) {
+                            $.each(res, function (i, item) {
                                 $selectDaiDoi.append('<option value="' + item.id + '">' + item.tenDaiDoi + '</option>');
                             });
-                        },
-                        error: function() {
-                            alert("Lỗi khi tải danh sách Đại đội");
-                        }
-                    });
-                } else {
-                    $selectDaiDoi.append('<option value="">-- Vui lòng chọn tiểu đoàn trước --</option>');
-                }
-            });
-
-            // 2. Xử lý Submit Form thêm Trung đội
-            $('#addTrungDoiBtn').click(function (e) {
-                e.preventDefault();
-                let data = {};
-                let formData = $('#formSubmit').serializeArray();
-                $.each(formData, function (i, v) {
-                    data['' + v.name] = v.value;
+                        });
+                    }
                 });
 
-                $.ajax({
-                    url: '${taoTrungDoiAPIurl}', <%-- --%>
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(data),
-                    dataType: 'json',
-                    success: function (result) {
-                        window.location.href = "${trungDoiUrl}?message=insert_success&alert=success";
-                    },
-                    error: function (error) {
-                        window.location.href = "${trungDoiUrl}?message=system_error&alert=danger";
+                $('#addTrungDoiBtn').click(function (e) {
+                    e.preventDefault();
+                    sendAjaxRequest('${taoTrungDoiAPIurl}', '#formSubmit', 'create_success');
+                });
+
+                // --- 2. XỬ LÝ MODAL CHỈNH SỬA ---
+                $('.edit').click(function () {
+                    let id = $(this).data('id');
+                    let ten = $(this).data('ten');
+                    let tieuDoanId = $(this).data('tieudoan');
+                    let daiDoiId = $(this).data('daidoi');
+
+                    // Điền dữ liệu vào Modal
+                    $('#edit_id').val(id);
+                    $('#edit_tenTrungDoi').val(ten);
+                    $('#edit_selectTieuDoan').val(tieuDoanId);
+
+                    // Load danh sách Đại đội dựa trên Tiểu đoàn đã chọn
+                    loadDaiDoiForEdit(tieuDoanId, daiDoiId);
+                });
+
+                function loadDaiDoiForEdit(tieuDoanId, selectedDaiDoiId) {
+                    let $selectDD = $('#edit_idDaiDoi');
+                    $selectDD.empty().append('<option value="">-- Chọn đại đội --</option>');
+
+                    if (tieuDoanId) {
+                        $.get('${layDaiDoiByTieuDoanUrl}/' + tieuDoanId, function (res) {
+                            $.each(res, function (i, item) {
+                                $selectDD.append('<option value="' + item.id + '">' + item.tenDaiDoi + '</option>');
+                            });
+                            // Tự động chọn Đại đội hiện tại sau khi danh sách được tải xong
+                            if (selectedDaiDoiId) {
+                                $selectDD.val(selectedDaiDoiId);
+                            }
+                        });
+                    }
+                }
+
+                // Khi thay đổi Tiểu đoàn trong Modal Sửa
+                $('#edit_selectTieuDoan').change(function () {
+                    loadDaiDoiForEdit($(this).val(), null);
+                });
+
+                // Gửi yêu cầu cập nhật
+                $('#modifyTrungDoi').click(function (e) {
+                    e.preventDefault();
+                    sendAjaxRequest('${capNhatTrungDoiAPIurl}', '#formSubmitModify', 'update_success');
+                });
+
+                // --- 3. HÀM DÙNG CHUNG & XÓA ---
+                function sendAjaxRequest(url, formId, msgType) {
+                    let data = {};
+                    let formData = $(formId).serializeArray();
+                    $.each(formData, function (i, v) {
+                        data["" + v.name] = v.value;
+                    });
+
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(data),
+                        success: function () {
+                            window.location.href = "${trungDoiUrl}?message=" + msgType + "&alert=success";
+                        },
+                        error: function () {
+                            window.location.href = "${trungDoiUrl}?message=system_error&alert=danger";
+                        }
+                    });
+                }
+
+                $('#deleteTrungDoi').click(function (e) {
+                    e.preventDefault();
+                    let ids = $('tbody input[type=checkbox]:checked').map(function () {
+                        return $(this).val();
+                    }).get();
+
+                    if (ids.length > 0) {
+                        $.ajax({
+                            url: '${xoaTrungDoiAPIurl}',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ids: ids}),
+                            success: function () {
+                                window.location.href = "${trungDoiUrl}?message=delete_success&alert=success";
+                            }
+                        });
                     }
                 });
             });
         </script>
+
         <%@ include file="/common/footer.jsp" %>
     </div>
 </div>

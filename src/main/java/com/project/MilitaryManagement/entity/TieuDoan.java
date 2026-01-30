@@ -18,6 +18,7 @@ public class TieuDoan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
     private String tenTieuDoan;
 
     @OneToMany(mappedBy = "tieuDoan", cascade = CascadeType.ALL)

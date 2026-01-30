@@ -10,9 +10,11 @@ public record QuanNhanResponse (
     String hoTenKhaiSinh,
     String hoTenThuongDung,
     String ngayThangNamSinh,
+    String soHieuQuanNhan,
+    String canCuocCongDan,
+    String danToc,
     String capBac,
     String chucVu,
-    String danToc,
     String tonGiao,
     String thanhPhanGd,
     String thanhPhanBanThan,
@@ -53,6 +55,7 @@ public record QuanNhanResponse (
     String coQuanCha,
     Boolean laDangVienCha,
     String sucKhoeCha,
+    String benhLyCha,
     String noiOHienNayCha,
     String hoTenMe,
     String ngaySinhMe, String sdtMe,
@@ -63,6 +66,7 @@ public record QuanNhanResponse (
     String coQuanMe,
     Boolean laDangVienMe,
     String sucKhoeMe,
+    String benhLyMe,
     String noiOHienNayMe,
     String honNhanChaMe,
     String kinhTeGiaDinh,
@@ -83,7 +87,7 @@ public record QuanNhanResponse (
     String diaChiBanTrai,
     String sdtBanTrai,
     String nguoiAnhHuongTichCuc,
-    String canBoDiaPhuongTinNhiem,
+
 
     String statusOngNoi,
     Date ngayMatOngNoi,
@@ -100,6 +104,12 @@ public record QuanNhanResponse (
     String dienBienNgayThang,
     String dienBienCanBo,
     String dienBienNoiDung,
-    String dienBienCuThe
+    String dienBienCuThe,
+    String hoTenCBDP1,
+    String chucVuCBDP1,
+    String sdtCBDP1,
+    String hoTenCBDP2,
+    String chucVuCBDP2,
+    String sdtCBDP2
 ){
 }
