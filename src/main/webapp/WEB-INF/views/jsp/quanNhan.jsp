@@ -206,7 +206,49 @@
                                                 <form:input path="benhLy" cssClass="form-control" disabled="${isViewMode}"/>
                                             </div>
                                         </div>
-
+                                        <div class="row mt-3">
+                                            <div class="col-md-12">
+                                                <h6 class="text-danger font-weight-bold"><i
+                                                        class='bx bx-Bookmark-heart'></i> Đối tượng chính sách</h6>
+                                                <hr class="mt-0">
+                                            </div>
+                                            <div class="col-md-12 d-flex flex-wrap">
+                                                <div class="form-check mr-4">
+                                                    <input class="form-check-input" type="checkbox" id="conLietSi"
+                                                           path="conLietSi"
+                                                        ${quanNhan.conLietSi ? 'checked' : ''} ${isViewMode ? 'disabled' : ''}>
+                                                    <label class="form-check-label" for="conLietSi">Con liệt sĩ</label>
+                                                </div>
+                                                <div class="form-check mr-4">
+                                                    <input class="form-check-input" type="checkbox" id="conTB"
+                                                           path="conTB"
+                                                        ${quanNhan.conTB ? 'checked' : ''} ${isViewMode ? 'disabled' : ''}>
+                                                    <label class="form-check-label" for="conTB">Con thương binh
+                                                        (TB)</label>
+                                                </div>
+                                                <div class="form-check mr-4">
+                                                    <input class="form-check-input" type="checkbox" id="conBB"
+                                                           path="conBB"
+                                                        ${quanNhan.conBB ? 'checked' : ''} ${isViewMode ? 'disabled' : ''}>
+                                                    <label class="form-check-label" for="conBB">Con bệnh binh
+                                                        (BB)</label>
+                                                </div>
+                                                <div class="form-check mr-4">
+                                                    <input class="form-check-input" type="checkbox" id="hoNgheo"
+                                                           path="hoNgheo"
+                                                        ${quanNhan.hoNgheo ? 'checked' : ''} ${isViewMode ? 'disabled' : ''}>
+                                                    <label class="form-check-label" for="hoNgheo">Gia đình hộ
+                                                        nghèo</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="hoCanNgheo"
+                                                           path="hoCanNgheo"
+                                                        ${quanNhan.hoCanNgheo ? 'checked' : ''} ${isViewMode ? 'disabled' : ''}>
+                                                    <label class="form-check-label" for="hoCanNgheo">Gia đình hộ cận
+                                                        nghèo</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="row mt-3">
                                             <div class="form-group col-md-6">
                                                 <label class="font-weight-bold">Trước nhập ngũ (Làm gì, ở đâu, thời gian)</label>

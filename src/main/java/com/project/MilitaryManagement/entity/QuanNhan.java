@@ -3,9 +3,6 @@ package com.project.MilitaryManagement.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
 
 @Entity
 @Data
@@ -180,23 +177,23 @@ public class QuanNhan {
     private String sdtLienLacGiaDinh;
     // --- ÔNG BÀ NỘI ---
     private String statusOngNoi; // "con_song" hoặc "da_mat"
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayMatOngNoi;
+    @Column(length = 20)
+    private String ngayMatOngNoi;
 
     private String statusBaNoi;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayMatBaNoi;
+    @Column(length = 20)
+    private String ngayMatBaNoi;
 
     private String ghiChuNoi;
 
     // --- ÔNG BÀ NGOẠI ---
     private String statusOngNgoai;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayMatOngNgoai;
+    @Column(length = 20)
+    private String ngayMatOngNgoai;
 
     private String statusBaNgoai;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayMatBaNgoai;
+    @Column(length = 20)
+    private String ngayMatBaNgoai;
 
     private String ghiChuNgoai;
 
@@ -246,6 +243,16 @@ public class QuanNhan {
 
     @Column(length = 20)
     private String sdtCBDP2;
+    @Column
+    private boolean conLietSi;
+    @Column
+    private boolean conTB;
+    @Column
+    private boolean conBB;
+    @Column
+    private boolean hoNgheo;
+    @Column
+    private boolean hoCanNgheo;
 
     @ManyToOne
     @JoinColumn(name = "id_tieu_doi")

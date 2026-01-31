@@ -2,7 +2,6 @@ package com.project.MilitaryManagement.payload.request;
 
 import lombok.With;
 
-import java.util.Date;
 
 @With
 public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, ngayMatBaNoi, statusOngNgoai, ngayMatOngNgoai, statusBaNgoai, ngayMatBaNgoai, nguoiBaoTin>(
@@ -98,15 +97,15 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String nguoiAnhHuongTichCuc,
 
         String statusOngNoi,
-        Date ngayMatOngNoi,
+        String ngayMatOngNoi,
         String statusBaNoi,
-        Date ngayMatBaNoi,
+        String ngayMatBaNoi,
         String ghiChuNoi,
 
         String statusOngNgoai,
-        Date ngayMatOngNgoai,
+        String ngayMatOngNgoai,
         String statusBaNgoai,
-        Date ngayMatBaNgoai,
+        String ngayMatBaNgoai,
         String ghiChuNgoai,
 
         String dienBienNgayThang,
@@ -118,7 +117,12 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String sdtCBDP1,
         String hoTenCBDP2,
         String chucVuCBDP2,
-        String sdtCBDP2
+        String sdtCBDP2,
+        boolean conLietSi,
+        boolean conTB,
+        boolean conBB,
+        boolean hoNgheo,
+        boolean hoCanNgheo
 ) {
 }
 
