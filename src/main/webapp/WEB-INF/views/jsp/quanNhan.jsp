@@ -758,35 +758,29 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-4">
                                                             <label>Họ tên Cán bộ địa phương</label>
-                                                            <input type="text" path="hoTenCBDP1" class="form-control"
-                                                                   value="${quanNhan.hoTenCBDP1}" ${isViewMode ? 'disabled' : ''}>
+                                                            <form:input path="hoTenCBDP1" cssClass="form-control" disabled="${isViewMode}"/>
                                                         </div>
                                                         <div class="form-group col-md-4">
                                                             <label>Chức vụ</label>
-                                                            <input type="text" path="chucVuCBDP1" class="form-control"
-                                                                   value="${quanNhan.chucVuCBDP1}" ${isViewMode ? 'disabled' : ''}>
+                                                            <form:input path="chucVuCBDP1" cssClass="form-control" disabled="${isViewMode}"/>
                                                         </div>
                                                         <div class="form-group col-md-4">
                                                             <label>Số điện thoại</label>
-                                                            <input type="text" path="sdtCBDP1" class="form-control"
-                                                                   value="${quanNhan.sdtCBDP1}" ${isViewMode ? 'disabled' : ''}>
+                                                            <form:input path="sdtCBDP1" cssClass="form-control" disabled="${isViewMode}"/>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col-md-4">
                                                             <label>Họ tên Cán bộ địa phương</label>
-                                                            <input type="text" path="hoTenCBDP2" class="form-control"
-                                                                   value="${quanNhan.hoTenCBDP2}" ${isViewMode ? 'disabled' : ''}>
+                                                            <form:input path="hoTenCBDP2" cssClass="form-control" disabled="${isViewMode}"/>
                                                         </div>
                                                         <div class="form-group col-md-4">
                                                             <label>Chức vụ</label>
-                                                            <input type="text" path="chucVuCBDP2" class="form-control"
-                                                                   value="${quanNhan.chucVuCBDP2}" ${isViewMode ? 'disabled' : ''}>
+                                                            <form:input path="chucVuCBDP2" cssClass="form-control" disabled="${isViewMode}"/>
                                                         </div>
                                                         <div class="form-group col-md-4">
                                                             <label>Số điện thoại</label>
-                                                            <input type="text" path="sdtCBDP2" class="form-control"
-                                                                   value="${quanNhan.sdtCBDP2}" ${isViewMode ? 'disabled' : ''}>
+                                                            <form:input path="sdtCBDP2" cssClass="form-control" disabled="${isViewMode}"/>
                                                         </div>
                                                     </div>
 
