@@ -41,8 +41,66 @@
 
 			<h1>Quản lý quân nhân!</h1>
 			<c:if test="${not empty message}">
-			<div class="text-center float-left text-success">${message}</div>
+				<div class="row">
+					<div class="text-center float-left text-success ml-4">${message}</div>
+				</div>
+
 			</c:if>
+				<div class="row">
+					<div class="col-md-4">
+						<table class="report-table">
+							<tr>
+								<th colspan="2">THỐNG KÊ ĐẠI ĐỘI</th>
+							</tr>
+							<tr class="bg-yellow">
+								<td>TÊN ĐƠN VỊ</td>
+								<td class="text-center">SL</td>
+							</tr>
+							<c:forEach items="${statsDonVi.daiDoi}" var="row">
+								<tr>
+									<td>${row[0]}</td>
+									<td class="text-center">${row[1]}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+
+					<div class="col-md-4">
+						<table class="report-table">
+							<tr>
+								<th colspan="2">THỐNG KÊ TRUNG ĐỘI</th>
+							</tr>
+							<tr class="bg-yellow">
+								<td>TÊN ĐƠN VỊ</td>
+								<td class="text-center">SL</td>
+							</tr>
+							<c:forEach items="${statsDonVi.trungDoi}" var="row">
+								<tr>
+									<td>${row[0]}</td>
+									<td class="text-center">${row[1]}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+
+					<div class="col-md-4">
+						<table class="report-table">
+							<tr>
+								<th colspan="2">THỐNG KÊ TIỂU ĐỘI</th>
+							</tr>
+							<tr class="bg-yellow">
+								<td>TÊN ĐƠN VỊ</td>
+								<td class="text-center">SL</td>
+							</tr>
+							<c:forEach items="${statsDonVi.tieuDoi}" var="row">
+								<tr>
+									<td>${row[0]}</td>
+									<td class="text-center">${row[1]}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
 			</div>
 			<!-- /.container -->
 			<script>

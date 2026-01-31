@@ -30,6 +30,7 @@ public record QuanNhanRequest<ngaySinhCha, sdtCha, ngayMatOngNoi, statusBaNoi, n
         String ngoaiNgu,
         String tiengDanToc,
         String chuyenMonDaoTao,
+        String nganhHoc,
         String chuyenMonTuHoc,
         Integer sucKhoe,
         String benhLy,

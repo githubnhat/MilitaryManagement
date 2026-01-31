@@ -150,7 +150,19 @@
                                         <div class="row">
                                             <div class="form-group col-md-4">
                                                 <label class="font-weight-bold">Trình độ học vấn (Văn hóa)</label>
-                                                <form:input path="trinhDoHocVan" cssClass="form-control" disabled="${isViewMode}"/>
+                                                <form:select path="trinhDoHocVan" cssClass="form-control"
+                                                             disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn trình độ --"/>
+                                                    <form:option value="2" label="Cấp 2"/>
+                                                    <form:option value="3" label="Cấp 3"/>
+                                                    <form:option value="6" label="Lớp 6"/>
+                                                    <form:option value="7" label="Lớp 7"/>
+                                                    <form:option value="8" label="Lớp 8"/>
+                                                    <form:option value="9" label="Lớp 9"/>
+                                                    <form:option value="10" label="Lớp 10"/>
+                                                    <form:option value="11" label="Lớp 11"/>
+                                                    <form:option value="12" label="Lớp 12"/>
+                                                </form:select>
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label class="font-weight-bold">Ngoại ngữ</label>
@@ -163,9 +175,24 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-group col-md-6">
+                                            <div class="form-group col-md-3">
                                                 <label class="font-weight-bold">Chuyên môn đào tạo qua trường (CMKT)</label>
-                                                <form:input path="chuyenMonDaoTao" cssClass="form-control" disabled="${isViewMode}"/>
+                                                <form:select path="chuyenMonDaoTao" cssClass="form-control"
+                                                             disabled="${isViewMode}">
+                                                    <form:option value="" label="-- Chọn cấp --"/>
+                                                    <form:option value="Sơ cấp" label="Sơ cấp"/>
+                                                    <form:option value="Trung cấp" label="Trung cấp"/>
+                                                    <form:option value="Cao đẳng" label="Cao đẳng"/>
+                                                    <form:option value="Đại học" label="Đại học"/>
+                                                    <form:option value="Sau đại học" label="Sau đại học"/>
+                                                </form:select>
+                                            </div>
+
+                                            <div class="form-group col-md-3">
+                                                <label class="font-weight-bold">Ngành học cụ thể</label>
+                                                <form:input path="nganhHoc" cssClass="form-control"
+                                                            placeholder="VD: Công nghệ thông tin"
+                                                            disabled="${isViewMode}"/>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label class="font-weight-bold">Chuyên môn tự học, biết làm</label>
@@ -370,6 +397,7 @@
                                     <div class="form-group col-md-6">
                                         <label class="font-weight-bold text-success">Biên chế tại Tiểu đội</label>
                                         <select name="idTieuDoi" class="form-control" ${isViewMode ? 'disabled' : ''}>
+                                            <option value=""> -- Chọn Tiểu đội -- </option>
                                             <c:forEach var="item" items="${tieuDoiList}">
                                                 <option value="${item.id}" ${item.id == quanNhan.tieuDoi.id ? 'selected' : ''}>
                                                         ${item.tenTieuDoi}

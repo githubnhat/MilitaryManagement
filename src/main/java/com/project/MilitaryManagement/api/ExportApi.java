@@ -1,7 +1,8 @@
 package com.project.MilitaryManagement.api;
 
 import com.project.MilitaryManagement.entity.Military;
-import com.project.MilitaryManagement.service.MilitaryService;
+import com.project.MilitaryManagement.entity.QuanNhan;
+import com.project.MilitaryManagement.service.QuanNhanService;
 import com.project.MilitaryManagement.utils.ExcelExportService;
 import com.project.MilitaryManagement.utils.WordExportService;
 import jakarta.servlet.http.HttpServletResponse;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping("/api/v1/military")
 public class ExportApi {
 
-    private final MilitaryService militaryService; // Service chính của bạn
+    private final QuanNhanService quanNhanService; // Service chính của bạn
 
     private final WordExportService wordExportService; // Service vừa tạo
 
@@ -32,14 +33,14 @@ public class ExportApi {
 
     @GetMapping("/export/word/{id}")
     public void exportMilitaryToWord(@PathVariable Long id, HttpServletResponse response) throws IOException {
-        Military military = militaryService.findMilitaryById(id);
-        if (military == null) {
+        QuanNhan quanNhan = quanNhanService.findQuanNhanById(id);
+        if (quanNhan == null) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Military not found with id: " + id);
             return;
         }
 
         // Gọi service với phương thức mới
-        wordExportService.exportFromTemplate(response, military);
+        wordExportService.exportFromTemplate(response, quanNhan);
     }
 
     @GetMapping("/export/excel")
@@ -54,9 +55,9 @@ public class ExportApi {
         response.setHeader(headerKey, headerValue);
 
         // 2. Lấy danh sách quân nhân từ database
-        List<Military> militaryList = militaryService.findAllByStatus(1);
+        List<QuanNhan> quanNhansList = quanNhanService.findAllByStatus(1);
 
         // 3. Gọi service để ghi dữ liệu vào response
-        excelExportService.exportFromTemplate(response, militaryList);
+        excelExportService.exportFromTemplate(response, quanNhansList);
     }
 }

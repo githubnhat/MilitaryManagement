@@ -18,7 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -92,6 +94,15 @@ public class QuanNhanServiceImpl implements QuanNhanService {
             }
         }
         return flag;
+    }
+
+    @Override
+    public Map<String, List<Object[]>> getThongKeDonVi() {
+        Map<String, List<Object[]>> stats = new HashMap<>();
+        stats.put("daiDoi", quanNhanRepository.countByDaiDoi());
+        stats.put("trungDoi", quanNhanRepository.countByTrungDoi());
+        stats.put("tieuDoi", quanNhanRepository.countByTieuDoi());
+        return stats;
     }
 
 }

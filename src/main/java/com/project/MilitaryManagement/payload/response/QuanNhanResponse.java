@@ -28,6 +28,7 @@ public record QuanNhanResponse (
     String ngoaiNgu,
     String tiengDanToc,
     String chuyenMonDaoTao,
+    String nganhHoc,
     String chuyenMonTuHoc,
     Integer sucKhoe,
     String benhLy,

@@ -9,6 +9,7 @@ import com.project.MilitaryManagement.payload.response.QuanNhanResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface QuanNhanService {
     ResponseEntity<QuanNhanResponse> save(QuanNhanRequest request) throws Exception;
@@ -17,4 +18,5 @@ public interface QuanNhanService {
     List<QuanNhan> searchByKeyword(String keyword);
     ResponseEntity<QuanNhanResponse> update(QuanNhanRequest request) throws Exception;
     boolean delete (long [] ids);
+    Map<String, List<Object[]>> getThongKeDonVi();
 }

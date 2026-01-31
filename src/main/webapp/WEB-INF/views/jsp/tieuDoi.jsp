@@ -43,6 +43,8 @@
                                     <a href="#addTieuDoiModal" class="btn btn-success" data-toggle="modal">
                                         <i class="fa fa-plus-circle"></i> <span>Thêm mới</span>
                                     </a>
+                                    <a href="#deleteTieuDoiModal" class="btn btn-danger" data-toggle="modal"><i
+                                            class="fa fa-trash-o" aria-hidden="true"></i> <span>Xóa</span></a>
                                 </div>
                             </div>
                             <div class="card-body">

@@ -1,6 +1,7 @@
 package com.project.MilitaryManagement.utils;
 
 import com.project.MilitaryManagement.entity.Military;
+import com.project.MilitaryManagement.entity.QuanNhan;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -16,7 +17,7 @@ import java.util.List;
 @Service
 public class ExcelExportService {
 
-    public void exportFromTemplate(HttpServletResponse response, List<Military> militaryList) throws IOException {
+    public void exportFromTemplate(HttpServletResponse response, List<QuanNhan> quanNhanList) throws IOException {
         InputStream templateFile = new ClassPathResource("templates/file/danh_sach_template.xlsx").getInputStream();
 
         try (Workbook workbook = new XSSFWorkbook(templateFile)) {
@@ -24,7 +25,7 @@ public class ExcelExportService {
             int templateRowIndex = 9; // Dòng mẫu bắt đầu
             Row templateRow = sheet.getRow(templateRowIndex);
 
-            if (militaryList == null || militaryList.isEmpty() || templateRow == null) {
+            if (quanNhanList == null || quanNhanList.isEmpty() || templateRow == null) {
                 workbook.write(response.getOutputStream());
                 return;
             }
@@ -38,7 +39,7 @@ public class ExcelExportService {
             }
 
             if (sheet.getLastRowNum() >= templateRowIndex) {
-                sheet.shiftRows(templateRowIndex, sheet.getLastRowNum(), militaryList.size());
+                sheet.shiftRows(templateRowIndex, sheet.getLastRowNum(), quanNhanList.size());
             }
 
             // --- 1. TẠO CÁC FONT CẦN THIẾT ---
@@ -53,65 +54,130 @@ public class ExcelExportService {
             normalFont.setFontName("Times New Roman");
 
             // Lặp và điền dữ liệu
-            for (int i = 0; i < militaryList.size(); i++) {
-                Military military = militaryList.get(i);
+            for (int i = 0; i < quanNhanList.size(); i++) {
+                QuanNhan quanNhan = quanNhanList.get(i);
                 Row currentRow = sheet.createRow(templateRowIndex + i);
 
                 createCell(currentRow, 0, i + 1, templateCellStyles[0]);
 
-                // Cột 1: Chức vụ đảm nhận tháng/ năm (giữ nguyên)
-                String position = military.getPosition() != null ? military.getPosition() : "";
-                String positionAppointmentDate = military.getPositionAppointmentDate() != null ? military.getPositionAppointmentDate() : "";
-                createCell(currentRow, 1, position + "\n" + positionAppointmentDate, createWrapTextStyle(workbook, templateCellStyles[1]));
+                createCell(currentRow, 1, i + 1, templateCellStyles[1]);
 
-                // --- 2. ÁP DỤNG RICH TEXT CHO CỘT 2 ---
-                String hoTen = military.getBirthFullName() != null ? military.getBirthFullName() : "";
-                String namSinh = military.getDateOfBirth() != null ? military.getDateOfBirth() : "";
-                String queQuan = military.getPlaceOfOrigin() != null ? military.getPlaceOfOrigin() : "";
-                String SCMQĐ = military.getMilitaryIdNumber() != null ? military.getMilitaryIdNumber() : "";
-                String CCCD = military.getNationalIdNumber() != null ? military.getNationalIdNumber() : "";
-                // Ghép các phần không in đậm lại
-                String otherInfo = namSinh + "\n" + queQuan + "\n" + SCMQĐ + "\n" + CCCD;
-                // Gọi hàm helper để tạo ô rich text
-                createRichTextCell(currentRow, 2, hoTen, otherInfo,
-                        createWrapTextStyle(workbook, templateCellStyles[2]),
-                        boldFont, normalFont);
+                String fullName = quanNhan.getHoTenKhaiSinh().trim();
+                int lastSpaceIndex = fullName.lastIndexOf(" ");
 
-                // Cột 3: Cấp bậc/Tháng năm
-                String capBac = military.getMilitaryRank() != null ? military.getMilitaryRank() : "";
-                String ngayNhanCapBac = military.getRankConfermentDate() != null ? military.getRankConfermentDate() : "";
-                createCell(currentRow, 3, capBac + "\n" + ngayNhanCapBac, createWrapTextStyle(workbook, templateCellStyles[3]));
+                String ten;
+                String phanConLai;
 
-                // Cột 4: Nhập ngũ
-                createCell(currentRow, 4, military.getEnlistmentDate(), templateCellStyles[4]);
+                if (lastSpaceIndex == -1) {
+                    ten = fullName;
+                    phanConLai = "";
+                } else {
+                    phanConLai = fullName.substring(0, lastSpaceIndex);
+                    ten = fullName.substring(lastSpaceIndex + 1);
+                }
+                // Họ
+                createCell(currentRow, 2, phanConLai , createWrapTextStyle(workbook, templateCellStyles[2]));
+                // Tên
+                createCell(currentRow, 3, ten , createWrapTextStyle(workbook, templateCellStyles[3]));
+                //
+                String dob = quanNhan.getNgayThangNamSinh();
+                String[] parts = dob.split("/");
 
-                // Các cột còn lại giữ nguyên logic cũ...
-                String ngayVaoDang = military.getPartyJoinDate() != null ? military.getPartyJoinDate() : "";
-                String ngayChinhThucVaoDang = military.getOfficialPartyMembershipDate() != null ? military.getOfficialPartyMembershipDate() : "";
-                createCell(currentRow, 5, ngayVaoDang + "\n" + ngayChinhThucVaoDang, createWrapTextStyle(workbook, templateCellStyles[5]));
+                String ngay = parts[0]; // "25"
+                String thang = parts[1]; // "12"
+                String nam = parts[2]; // "2000"
+                // ngày
+                createCell(currentRow, 4, ngay , createWrapTextStyle(workbook, templateCellStyles[4]));
+                // tháng
+                createCell(currentRow, 5, thang , createWrapTextStyle(workbook, templateCellStyles[5]));
+                // năm
+                createCell(currentRow, 6, nam , createWrapTextStyle(workbook, templateCellStyles[6]));
+                // số hiệu quân nhân
+                String soHieuQuanNhan = quanNhan.getSoHieuQuanNhan() != null ? quanNhan.getSoHieuQuanNhan() : "";
+                createCell(currentRow, 7, soHieuQuanNhan , createWrapTextStyle(workbook, templateCellStyles[7]));
 
-                // Cột 6:
-                String chienDau = military.isParticipatedInCombat() ? "Có" : "Không";
-                String chucVuDaQua = military.getPreviousPositions() != null ? military.getPreviousPositions() :"";
-                String thoiGianChienDau = military.getCombatDuration() != null ? military.getCombatDuration() : "";
-                String cot6 = "*Chiến đấu: " + chienDau + "\n" + "Chức vụ" + "\n" + "- " + chucVuDaQua + "\n" + thoiGianChienDau;
-                createCell(currentRow, 6, cot6, templateCellStyles[6]);
+                //Nhập ngũ
+                String nhapNgu = quanNhan.getNhapNgu();
+                String nhapNguResult = nhapNgu;
 
-                String truong = military.getSchoolName() != null ? military.getSchoolName() : "";
-                String thoiGianHoc = military.getStudyDuration() != null ? military.getStudyDuration() : "";
-                createCell(currentRow, 7, truong + "\n" + thoiGianHoc, createWrapTextStyle(workbook, templateCellStyles[7]));
+                if (nhapNgu.indexOf("/") != nhapNgu.lastIndexOf("/")) {
+                    nhapNguResult = nhapNgu.substring(nhapNgu.indexOf("/") + 1);
+                }
+                createCell(currentRow, 8, nhapNguResult , createWrapTextStyle(workbook, templateCellStyles[8]));
 
-                String vanHoa = military.getEducationLevel() != null ? military.getEducationLevel() : "";
-                String sucKhoe = military.getHealthStatus() != null ? military.getHealthStatus() : "";
-                createCell(currentRow, 8, vanHoa + "\n" + sucKhoe, createWrapTextStyle(workbook, templateCellStyles[8]));
+                // Cấp bậc
+                createCell(currentRow, 9, quanNhan.getCapBac() , createWrapTextStyle(workbook, templateCellStyles[9]));
 
-                createCell(currentRow, 9, military.getTrainingUnit(), templateCellStyles[9]);
-                createCell(currentRow, 10, military.getProfessionalQualification(), templateCellStyles[10]);
-                createCell(currentRow, 11, military.getNotes(), templateCellStyles[11]);
+                // Chức vụ
+                createCell(currentRow, 10, quanNhan.getChucVu() , createWrapTextStyle(workbook, templateCellStyles[10]));
+
+                // Đơn vị
+                createCell(currentRow, 11, quanNhan.getDonViCSM() , createWrapTextStyle(workbook, templateCellStyles[11]));
+
+                // Văn hoá
+                createCell(currentRow, 12, quanNhan.getTrinhDoHocVan() , createWrapTextStyle(workbook, templateCellStyles[12]));
+
+                // Dân tộc
+                createCell(currentRow, 13, quanNhan.getDanToc() , createWrapTextStyle(workbook, templateCellStyles[13]));
+
+                // Tôn giáo
+                String tonGiao = quanNhan.getTonGiao() != null ? quanNhan.getTonGiao() : "Không";
+                createCell(currentRow, 14, tonGiao , createWrapTextStyle(workbook, templateCellStyles[14]));
+
+                // Đoàn Đảng
+                String doanDang = "Không";
+                doanDang = !"".equals(quanNhan.getNgayVaoDoan()) ? "Đoàn" : "Không";
+                doanDang = !"".equals(quanNhan.getNgayVaoDang()) ? "Đảng" : doanDang;
+                createCell(currentRow, 15, doanDang , createWrapTextStyle(workbook, templateCellStyles[15]));
+
+                // Sức khoẻ
+                createCell(currentRow, 16, quanNhan.getSucKhoe().toString() , createWrapTextStyle(workbook, templateCellStyles[16]));
+
+                // CMKT Cấp
+                String chuyenMon = quanNhan.getChuyenMonDaoTao(); // Lấy giá trị từ form [cite: 63]
+                String vietTatChuyenMon = switch (chuyenMon) {
+                    case "Đại học" -> "ĐH";
+                    case "Cao đẳng" -> "CĐ";
+                    case "Trung cấp" -> "TC";
+                    case "Sơ cấp" -> "SC";
+                    default -> "";
+                };
+                createCell(currentRow, 17, vietTatChuyenMon , createWrapTextStyle(workbook, templateCellStyles[17]));
+
+                // CMKT Ngành học
+                String nganhHoc = quanNhan.getNganhHoc() != null ? quanNhan.getNganhHoc() : "";
+                createCell(currentRow, 18, nganhHoc , createWrapTextStyle(workbook, templateCellStyles[18]));
+
+                // Họ và tên cha mẹ
+                String namSinhCha = quanNhan.getNgaySinhCha().substring(quanNhan.getNgaySinhCha().length() - 2);
+                String cha = quanNhan.getHoTenCha() != null ? quanNhan.getHoTenCha() : "" ;
+                String namSinhMe = quanNhan.getNgaySinhMe().substring(quanNhan.getNgaySinhMe().length() - 2);
+                String me = quanNhan.getHoTenMe() != null ? quanNhan.getHoTenMe() : "";
+
+                String hoTenChaMe =  cha + " - " + namSinhCha + "\n" + me + " - " +  namSinhMe;
+                createCell(currentRow, 19, hoTenChaMe , createWrapTextStyle(workbook, templateCellStyles[19]));
+
+                // Nguyên Quán
+                String[] parts1 = quanNhan.getNguyenQuan().split(",");
+
+                // Trim từng phần tử để đảm bảo sạch dữ liệu
+                for (int j = 0; j < parts.length; j++) {
+                    parts1[j] = parts1[j].trim();
+                }
+
+                // Gán giá trị dựa trên thứ tự (cần kiểm tra độ dài mảng để tránh lỗi)
+                String ap = (parts1.length > 0) ? parts1[0] : "";
+                String xa = (parts1.length > 1) ? parts1[1] : "";
+                String huyen = (parts1.length > 2) ? parts1[2] : "";
+                String tinh = (parts1.length > 3) ? parts1[3] : "";
+                createCell(currentRow, 20, ap , createWrapTextStyle(workbook, templateCellStyles[20]));
+                createCell(currentRow, 21, xa , createWrapTextStyle(workbook, templateCellStyles[21]));
+                createCell(currentRow, 22, huyen , createWrapTextStyle(workbook, templateCellStyles[22]));
+                createCell(currentRow, 23, tinh , createWrapTextStyle(workbook, templateCellStyles[23]));
             }
 
             // Xóa dòng template gốc
-            Row originalTemplateRowToDelete = sheet.getRow(templateRowIndex + militaryList.size());
+            Row originalTemplateRowToDelete = sheet.getRow(templateRowIndex + quanNhanList.size());
             if (originalTemplateRowToDelete != null) {
                 sheet.removeRow(originalTemplateRowToDelete);
             }
@@ -123,23 +189,23 @@ public class ExcelExportService {
     /**
      * Helper mới: Tạo một ô với nội dung Rich Text (in đậm một phần).
      */
-    private void createRichTextCell(Row row, int columnCount, String boldText, String normalText,
-                                    CellStyle style, XSSFFont boldFont, XSSFFont normalFont) {
-        Cell cell = row.createCell(columnCount);
-        String fullText = boldText + "\n" + normalText;
-        XSSFRichTextString richString = new XSSFRichTextString(fullText);
-
-        if (boldText != null && !boldText.isEmpty()) {
-            richString.applyFont(0, boldText.length(), boldFont);
-        }
-
-        if (normalText != null && !normalText.isEmpty()) {
-            richString.applyFont(boldText.length(), fullText.length(), normalFont);
-        }
-
-        cell.setCellValue(richString);
-        cell.setCellStyle(style);
-    }
+//    private void createRichTextCell(Row row, int columnCount, String boldText, String normalText,
+//                                    CellStyle style, XSSFFont boldFont, XSSFFont normalFont) {
+//        Cell cell = row.createCell(columnCount);
+//        String fullText = boldText + "\n" + normalText;
+//        XSSFRichTextString richString = new XSSFRichTextString(fullText);
+//
+//        if (boldText != null && !boldText.isEmpty()) {
+//            richString.applyFont(0, boldText.length(), boldFont);
+//        }
+//
+//        if (normalText != null && !normalText.isEmpty()) {
+//            richString.applyFont(boldText.length(), fullText.length(), normalFont);
+//        }
+//
+//        cell.setCellValue(richString);
+//        cell.setCellStyle(style);
+//    }
 
     private CellStyle createWrapTextStyle(Workbook workbook, CellStyle originalStyle) {
         CellStyle style = workbook.createCellStyle();

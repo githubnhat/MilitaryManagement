@@ -59,8 +59,10 @@ public class QuanNhan {
     private String ngayChinhThuc;
     @Column(length = 50)
     private String ngoaiNgu;
-    @Column(length = 255)
+    @Column(length = 50)
     private String chuyenMonDaoTao;
+    @Column(length = 200)
+    private String nganhHoc;
     @Column(length = 255)
     private String chuyenMonTuHoc;
     @Column
