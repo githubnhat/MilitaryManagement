@@ -41,7 +41,7 @@ public class QuanNhan {
     private String thanhPhanBanThan;
     @Column(length = 50)
     private String nguyenQuan;
-    @Column(length = 50)
+    @Column(length = 200)
     private String hoKhau;
     @Column(length = 50)
     private String donViCSM;

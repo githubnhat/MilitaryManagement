@@ -149,10 +149,19 @@ public class ExcelExportService {
                 createCell(currentRow, 18, nganhHoc , createWrapTextStyle(workbook, templateCellStyles[18]));
 
                 // Họ và tên cha mẹ
-                String namSinhCha = quanNhan.getNgaySinhCha().substring(quanNhan.getNgaySinhCha().length() - 2);
-                String cha = quanNhan.getHoTenCha() != null ? quanNhan.getHoTenCha() : "" ;
-                String namSinhMe = quanNhan.getNgaySinhMe().substring(quanNhan.getNgaySinhMe().length() - 2);
-                String me = quanNhan.getHoTenMe() != null ? quanNhan.getHoTenMe() : "";
+                String namSinhCha = "";
+                String cha = "";
+                if(quanNhan.getHoTenCha() != null || quanNhan.getHoTenCha() !="") {
+                    namSinhCha = quanNhan.getNgaySinhCha().substring(quanNhan.getNgaySinhCha().length() - 2);
+                    cha = quanNhan.getHoTenCha();
+                }
+
+                String namSinhMe = "";
+                String me = "";
+                if(quanNhan.getHoTenMe() != null) {
+                    namSinhMe = quanNhan.getNgaySinhMe().substring(quanNhan.getNgaySinhMe().length() - 2);
+                    me = quanNhan.getHoTenMe();
+                }
 
                 String hoTenChaMe =  cha + " - " + namSinhCha + "\n" + me + " - " +  namSinhMe;
                 createCell(currentRow, 19, hoTenChaMe , createWrapTextStyle(workbook, templateCellStyles[19]));
